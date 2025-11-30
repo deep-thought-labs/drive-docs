@@ -1,10 +1,10 @@
 ---
-title: "Port Reference"
+title: "Port Reference: Blockchain Nodes"
 ---
 
-# Port Reference Guide
+# Port Reference Guide: Blockchain Nodes
 
-This document provides detailed descriptions of all port types that services may use. This is a reference guide for understanding what each port does and when it might be needed.
+This document provides detailed descriptions of all port types that blockchain node services use. This is a reference guide for understanding what each port does and when it might be needed.
 
 ## Table of Contents
 
@@ -306,5 +306,7 @@ This endpoint can expose sensitive information about your application's internal
 
 ## See Also
 
-- [Port Strategy]({{< relref "strategy" >}}) - Port allocation strategy and service configuration
+- [Port Strategy]({{< relref "." >}}) - Port allocation strategy and general information
 - [Service Catalog]({{< relref "../catalog" >}}) - Service listings with port mappings
+- [Environment Variables]({{< relref "../environment" >}}) - Environment variables reference
+

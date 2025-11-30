@@ -1,8 +1,8 @@
 ---
-title: "Environment Variables"
+title: "Environment Variables: Blockchain Nodes"
 ---
 
-# Environment Variables
+# Environment Variables: Blockchain Nodes
 
 Complete reference for all environment variables that can be configured in `docker-compose.yml` files for blockchain node services.
 
@@ -354,6 +354,7 @@ environment:
 
 ## See Also
 
-- [Port Strategy]({{< relref "ports/strategy" >}}) - Port allocation and configuration
-- [Port Reference]({{< relref "ports/reference" >}}) - Detailed port descriptions
-- [Service Structure]({{< relref "service-structure" >}}) - Service architecture and configuration
+- [Service Catalog]({{< relref "../catalog" >}}) - Service-specific configurations with actual values
+- [Port Strategy]({{< relref "../ports" >}}) - Port allocation and configuration
+- [Service Structure]({{< relref "../service-structure" >}}) - Service architecture and configuration
+

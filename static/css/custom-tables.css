@@ -1,0 +1,23 @@
+/* Custom table styles for environment variables tables */
+.env-vars-table table {
+  table-layout: fixed;
+  width: 100%;
+}
+
+.env-vars-table table th:nth-child(1),
+.env-vars-table table td:nth-child(1) {
+  width: 20%;
+}
+
+.env-vars-table table th:nth-child(2),
+.env-vars-table table td:nth-child(2) {
+  width: 25%;
+  word-break: break-all;
+  overflow-wrap: break-word;
+}
+
+.env-vars-table table th:nth-child(3),
+.env-vars-table table td:nth-child(3) {
+  width: 55%;
+}
+

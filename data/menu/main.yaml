@@ -82,18 +82,25 @@ main:
             ref: "/drive/services/service-structure"
             weight: 531
           - name: "Environment Variables"
-            ref: "/drive/services/environment-variables"
+            ref: "/drive/services/environment"
             weight: 532
+            sub:
+              - name: "Blockchain Nodes"
+                ref: "/drive/services/environment/blockchain-nodes"
+                weight: 5321
+              - name: "General"
+                ref: "/drive/services/environment/general"
+                weight: 5322
           - name: "Ports"
             ref: "/drive/services/ports"
             weight: 533
             sub:
-              - name: "Port Strategy"
-                ref: "/drive/services/ports/strategy"
-                weight: 5321
-              - name: "Port Reference"
-                ref: "/drive/services/ports/reference"
-                weight: 5322
+              - name: "Blockchain Nodes"
+                ref: "/drive/services/ports/blockchain-nodes"
+                weight: 5331
+              - name: "General"
+                ref: "/drive/services/ports/general"
+                weight: 5332
           - name: "Blockchain Nodes"
             ref: "/drive/services/blockchain-nodes"
             weight: 534

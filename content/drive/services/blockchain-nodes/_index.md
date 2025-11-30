@@ -11,7 +11,7 @@ All blockchain nodes share the same Docker image and structure, differing only i
 ## Documentation
 
 - [Service Catalog]({{< relref "../catalog" >}}) - Complete list of all services including blockchain nodes
-- [Environment Variables]({{< relref "../environment-variables" >}}) - Complete environment variables reference
-- [Port Strategy]({{< relref "../ports/strategy" >}}) - Port allocation and configuration
-- [Port Reference]({{< relref "../ports/reference" >}}) - Detailed port descriptions
+- [Environment Variables]({{< relref "../environment" >}}) - Complete environment variables reference
+- [Port Strategy]({{< relref "../ports" >}}) - Port allocation and configuration
+- [Port Reference: Blockchain Nodes]({{< relref "../ports/blockchain-nodes" >}}) - Detailed port descriptions
 

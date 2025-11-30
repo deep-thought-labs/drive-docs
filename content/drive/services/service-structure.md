@@ -26,9 +26,9 @@ services/
 Services are defined in `docker-compose.yml`, which contains all service-specific configurations:
 
 - **Container image and version** - The Docker image used for the service
-- **Environment variables** - Service configuration through environment variables (see [Environment Variables]({{< relref "environment-variables" >}}))
+- **Environment variables** - Service configuration through environment variables (see [Environment Variables]({{< relref "environment" >}}))
 - **Volume mounts** - Persistent data directories mapped to the container
-- **Port mappings** - Network ports exposed by the service (see [Port Strategy]({{< relref "ports/strategy" >}}))
+- **Port mappings** - Network ports exposed by the service (see [Port Strategy]({{< relref "ports" >}}))
 - **Network configuration** - Container networking setup
 
 The `docker-compose.yml` file is the central configuration point for each service, defining how the container runs, what resources it uses, and how it connects to your system.
