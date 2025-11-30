@@ -173,6 +173,14 @@ ports:
 
 ---
 
+## Firewall Configuration
+
+For detailed instructions on how to configure your system's firewall to allow incoming connections:
+
+- [Firewall Configuration Guide]({{< relref "firewall-configuration" >}}) - Complete guide for configuring firewalls on Ubuntu/Linux, macOS, and Windows
+
+---
+
 ## Port Reference Documentation
 
 For detailed descriptions of port types by service category:

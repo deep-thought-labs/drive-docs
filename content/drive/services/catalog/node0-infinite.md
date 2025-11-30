@@ -248,16 +248,13 @@ See the [Blockchain Nodes Guides]({{< relref "../../guides/blockchain-nodes" >}}
 
 ## Firewall Configuration
 
-These firewall configuration commands are for your local host system where Drive is running. They configure the firewall on your machine to allow incoming connections to the service ports.
+These firewall configuration commands are specific to this service with the correct port numbers. For detailed instructions on how to configure your system's firewall, see the [Firewall Configuration Guide]({{< relref "../ports/firewall-configuration" >}}).
 
-**Important Notes:**
-- These commands only configure the firewall on your local host system
-- Network-level firewalls (routers, ISPs, cloud providers) may also need configuration
-- For remote servers in datacenters, firewall rules are typically pre-configured by the hosting provider
-- If you still cannot connect after configuring your local firewall, check for additional network-level firewalls
-
-**⚠️ Critical: SSH Access**
-Before configuring any firewall rules, **always ensure SSH (port 22) is allowed**. If you're connecting to a remote server via SSH and you enable the firewall without allowing SSH, you will lose access to your server. Make sure to add SSH to your firewall rules first:
+**Quick Reference:**
+- These commands configure the firewall on your **local host system** only
+- Network-level firewalls may also need configuration
+- **Always allow SSH (port 22) first** to avoid losing server access
+- For complete firewall setup instructions, see the [Firewall Configuration Guide]({{< relref "../ports/firewall-configuration" >}})
 
 - **Ubuntu/Linux:** `sudo ufw allow 22/tcp` or `sudo ufw allow ssh`
 - **macOS:** Usually not an issue, but verify in System Preferences if firewall is enabled

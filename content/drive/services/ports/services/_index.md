@@ -26,7 +26,7 @@ Each service configuration document includes:
 
 ## See Also
 
-- [Port Strategy]({{< relref "../strategy" >}}) - Port allocation strategy and general information
-- [Port Reference]({{< relref "../reference" >}}) - Detailed port descriptions
+- [Port Strategy]({{< relref ".." >}}) - Port allocation strategy and general information
+- [Port Reference: Blockchain Nodes]({{< relref "../blockchain-nodes" >}}) - Detailed port descriptions
 - [Service Catalog]({{< relref "../../catalog" >}}) - Complete service listings
 

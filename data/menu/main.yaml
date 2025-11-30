@@ -95,6 +95,9 @@ main:
             ref: "/drive/services/ports"
             weight: 533
             sub:
+              - name: "Firewall Configuration"
+                ref: "/drive/services/ports/firewall-configuration"
+                weight: 5330
               - name: "Blockchain Nodes"
                 ref: "/drive/services/ports/blockchain-nodes"
                 weight: 5331
