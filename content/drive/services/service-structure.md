@@ -26,7 +26,7 @@ services/
 Services are defined in `docker-compose.yml`, which contains all service-specific configurations:
 
 - **Container image and version** - The Docker image used for the service
-- **Environment variables** - Service configuration through environment variables (see [Environment Variables]({{< relref "blockchain-nodes/environment-variables" >}}))
+- **Environment variables** - Service configuration through environment variables (see [Environment Variables]({{< relref "environment-variables" >}}))
 - **Volume mounts** - Persistent data directories mapped to the container
 - **Port mappings** - Network ports exposed by the service (see [Port Strategy]({{< relref "ports/strategy" >}}))
 - **Network configuration** - Container networking setup
@@ -44,11 +44,12 @@ cd services/<service-name>
 
 ./drive.sh up -d      # Start in daemon mode
 ./drive.sh stop       # Stop gracefully
-./drive.sh restart    # Restart service
+./drive.sh down       # Stop and remove container
 ./drive.sh start      # Start (if stopped)
-./drive.sh bash       # Access container shell
+./drive.sh restart    # Restart service
 ./drive.sh ps         # Show container status
 ./drive.sh logs       # View container logs
+./drive.sh bash       # Access container shell
 ```
 
 ### Script Features
@@ -75,4 +76,4 @@ All blockchain nodes share the same Docker image but differ in:
 - Genesis files
 - Port assignments
 
-See [Blockchain Nodes Catalog]({{< relref "blockchain-nodes/catalog" >}}) for specific configurations.
+See [Service Catalog]({{< relref "catalog" >}}) for the complete list of all blockchain node services and their configurations.

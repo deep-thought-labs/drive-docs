@@ -16,11 +16,23 @@ cd services/<service-name>
 # Start service (background)
 ./drive.sh up -d
 
+# Show container status
+./drive.sh ps
+
 # Stop service
 ./drive.sh stop
 
-# Restart service
+# Stop and remove container
+./drive.sh down
+
+# Start (if stopped)
+./drive.sh start      
+
+# Restart service (if already running)
 ./drive.sh restart
+
+# View container logs
+./drive.sh logs
 
 # Access container shell
 ./drive.sh bash
@@ -34,5 +46,5 @@ For detailed service structure, configuration, and advanced topics, see [Service
 
 ## Next Steps
 
+- [Service Catalog]({{< relref "/drive/services/catalog" >}}) - All available services
 - [Blockchain Node Guides]({{< relref "/drive/guides/blockchain-nodes" >}})
-- [Service Catalog]({{< relref "/drive/services/blockchain-nodes/catalog" >}})

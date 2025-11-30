@@ -75,12 +75,18 @@ main:
         ref: "/drive/services"
         weight: 53
         sub:
+          - name: "Service Catalog"
+            ref: "/drive/services/catalog"
+            weight: 530
           - name: "Service Structure"
             ref: "/drive/services/service-structure"
             weight: 531
+          - name: "Environment Variables"
+            ref: "/drive/services/environment-variables"
+            weight: 532
           - name: "Ports"
             ref: "/drive/services/ports"
-            weight: 532
+            weight: 533
             sub:
               - name: "Port Strategy"
                 ref: "/drive/services/ports/strategy"
@@ -90,30 +96,7 @@ main:
                 weight: 5322
           - name: "Blockchain Nodes"
             ref: "/drive/services/blockchain-nodes"
-            weight: 533
-            sub:
-              - name: "Catalog"
-                ref: "/drive/services/blockchain-nodes/catalog"
-                weight: 5331
-              - name: "Environment Variables"
-                ref: "/drive/services/blockchain-nodes/environment-variables"
-                weight: 5332
-          - name: "Nginx"
-            ref: "/drive/services/nginx"
             weight: 534
-            sub:
-              - name: "Configuration"
-                ref: "/drive/services/nginx/configuration"
-                weight: 5341
-              - name: "Virtual Hosts"
-                ref: "/drive/services/nginx/virtual-hosts"
-                weight: 5342
-              - name: "SSL/HTTPS"
-                ref: "/drive/services/nginx/ssl-https"
-                weight: 5343
-              - name: "Reverse Proxy"
-                ref: "/drive/services/nginx/reverse-proxy"
-                weight: 5344
       - name: "Troubleshooting"
         ref: "/drive/troubleshooting"
         weight: 54
