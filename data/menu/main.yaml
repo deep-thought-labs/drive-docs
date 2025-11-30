@@ -29,14 +29,17 @@ main:
         ref: "/drive/quick-start"
         weight: 51
         sub:
+          - name: "Architecture Overview"
+            ref: "/drive/quick-start/architecture"
+            weight: 510
           - name: "Installation"
             ref: "/drive/quick-start/installation"
             weight: 511
           - name: "Git Clone"
             ref: "/drive/quick-start/git-clone"
             weight: 512
-          - name: "First Service: Nginx"
-            ref: "/drive/quick-start/first-service-nginx"
+          - name: "Managing Services"
+            ref: "/drive/quick-start/managing-services"
             weight: 513
       - name: "Guides"
         ref: "/drive/guides"
