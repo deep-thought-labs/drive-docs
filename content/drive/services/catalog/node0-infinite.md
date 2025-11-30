@@ -19,23 +19,11 @@ Mainnet blockchain node for the Infinite network. Uses standard/default ports (n
 ## Table of Contents
 
 - [Port Configuration](#port-configuration)
-  - [Quick Reference](#quick-reference)
-  - [Port Calculation](#port-calculation)
-  - [Required Ports](#required-ports)
-  - [Optional Ports](#optional-ports)
 - [Environment Variables](#environment-variables)
-  - [Binary Configuration](#binary-configuration)
-  - [Chain Identification](#chain-identification)
-  - [Network P2P Configuration](#network-p2p-configuration)
+- [Essential Commands](#essential-commands)
 - [Docker Compose Configuration](#docker-compose-configuration)
-  - [Minimal Configuration](#minimal-configuration-required-ports-only)
-  - [Full Configuration](#full-configuration-all-ports)
 - [Firewall Configuration](#firewall-configuration)
-  - [Required Ports](#required-ports-1)
-  - [Optional Ports](#optional-ports-1)
 - [Persistent Data](#persistent-data)
-  - [Volume Mapping](#volume-mapping)
-  - [Data Stored](#data-stored)
 - [See Also](#see-also)
 
 ---
@@ -242,11 +230,43 @@ services:
 
 ---
 
+## Essential Commands
+
+This service is a blockchain node, which requires specialized commands for initialization, starting, stopping, and managing the node.
+
+General container management commands (start, stop, restart, etc.) are described in the [Managing Services]({{< relref "../../quick-start/managing-services" >}}) section.
+
+For detailed information about blockchain node-specific commands, including:
+- How to initialize a blockchain node
+- How to start and stop nodes
+- Key management operations
+- Accessing the graphical interface
+
+See the [Blockchain Nodes Guides]({{< relref "../../guides/blockchain-nodes" >}}) section in the documentation.
+
+---
+
 ## Firewall Configuration
 
-If you need to accept incoming connections from external networks, configure your firewall using UFW (Ubuntu):
+These firewall configuration commands are for your local host system where Drive is running. They configure the firewall on your machine to allow incoming connections to the service ports.
 
-{{< expand "Required Ports" "↕" >}}
+**Important Notes:**
+- These commands only configure the firewall on your local host system
+- Network-level firewalls (routers, ISPs, cloud providers) may also need configuration
+- For remote servers in datacenters, firewall rules are typically pre-configured by the hosting provider
+- If you still cannot connect after configuring your local firewall, check for additional network-level firewalls
+
+**⚠️ Critical: SSH Access**
+Before configuring any firewall rules, **always ensure SSH (port 22) is allowed**. If you're connecting to a remote server via SSH and you enable the firewall without allowing SSH, you will lose access to your server. Make sure to add SSH to your firewall rules first:
+
+- **Ubuntu/Linux:** `sudo ufw allow 22/tcp` or `sudo ufw allow ssh`
+- **macOS:** Usually not an issue, but verify in System Preferences if firewall is enabled
+- **Windows:** SSH is typically managed separately, but verify Remote Desktop or SSH access is allowed
+
+### Required Ports
+
+{{< tabs "firewall-required" >}}
+{{< tab "Ubuntu/Linux" >}}
 ```bash
 # P2P port (required for validators and peer connections)
 sudo ufw allow 26656/tcp
@@ -254,9 +274,45 @@ sudo ufw allow 26656/tcp
 # RPC port (optional, only if exposing RPC API)
 sudo ufw allow 26657/tcp
 ```
-{{< /expand >}}
+{{< /tab >}}
+{{< tab "macOS" >}}
+**Recommended:** macOS typically allows incoming connections by default, so you may not need to configure anything. However, we recommend verifying your firewall settings.
 
-{{< expand "Optional Ports" "↕" >}}
+**First Option - System Preferences (Recommended):**
+Use the built-in graphical interface to configure firewall rules:
+1. Open **System Preferences** (or **System Settings** on newer macOS versions)
+2. Go to **Security & Privacy** > **Firewall**
+3. Click the lock icon and enter your password to make changes
+4. Click **Firewall Options...**
+5. Add rules to allow incoming connections for the required ports (26656, 26657)
+
+**Second Option - Command Line (Advanced):**
+If you prefer command-line configuration, you can modify `/etc/pf.conf`:
+
+```bash
+# Edit /etc/pf.conf and add rules:
+# pass in proto tcp from any to any port 26656  # P2P port
+# pass in proto tcp from any to any port 26657  # RPC port
+
+# Then reload the firewall:
+sudo pfctl -f /etc/pf.conf
+```
+{{< /tab >}}
+{{< tab "Windows" >}}
+```powershell
+# P2P port (required for validators and peer connections)
+New-NetFirewallRule -DisplayName "Drive P2P" -Direction Inbound -LocalPort 26656 -Protocol TCP -Action Allow
+
+# RPC port (optional, only if exposing RPC API)
+New-NetFirewallRule -DisplayName "Drive RPC" -Direction Inbound -LocalPort 26657 -Protocol TCP -Action Allow
+```
+{{< /tab >}}
+{{< /tabs >}}
+
+### Optional Ports
+
+{{< tabs "firewall-optional" >}}
+{{< tab "Ubuntu/Linux" >}}
 ```bash
 # gRPC (if exposing gRPC API)
 sudo ufw allow 9090/tcp
@@ -284,7 +340,64 @@ sudo ufw allow 8100/tcp
 ```
 
 **Note:** The `/tcp` protocol specification is optional in UFW. You can use either `sudo ufw allow 26656/tcp` or `sudo ufw allow 26656` - both work the same way.
-{{< /expand >}}
+{{< /tab >}}
+{{< tab "macOS" >}}
+**Recommended:** macOS typically allows incoming connections by default, so you may not need to configure anything. However, we recommend verifying your firewall settings.
+
+**First Option - System Preferences (Recommended):**
+Use the built-in graphical interface to configure firewall rules:
+1. Open **System Preferences** (or **System Settings** on newer macOS versions)
+2. Go to **Security & Privacy** > **Firewall**
+3. Click the lock icon and enter your password to make changes
+4. Click **Firewall Options...**
+5. Add rules to allow incoming connections for the optional ports you want to expose (9090, 9091, 1317, 8545, 8546, 26660, 6065, 8100)
+
+**Second Option - Command Line (Advanced):**
+If you prefer command-line configuration, you can modify `/etc/pf.conf`:
+
+```bash
+# Edit /etc/pf.conf and add rules for each port you want to expose:
+# pass in proto tcp from any to any port 9090  # gRPC
+# pass in proto tcp from any to any port 9091  # gRPC-Web
+# pass in proto tcp from any to any port 1317  # REST API
+# pass in proto tcp from any to any port 8545  # JSON-RPC HTTP
+# pass in proto tcp from any to any port 8546  # JSON-RPC WebSocket
+# pass in proto tcp from any to any port 26660 # Prometheus
+# pass in proto tcp from any to any port 6065  # EVM Metrics
+# pass in proto tcp from any to any port 8100  # Geth Metrics
+
+# Then reload the firewall:
+sudo pfctl -f /etc/pf.conf
+```
+{{< /tab >}}
+{{< tab "Windows" >}}
+```powershell
+# gRPC (if exposing gRPC API)
+New-NetFirewallRule -DisplayName "Drive gRPC" -Direction Inbound -LocalPort 9090 -Protocol TCP -Action Allow
+
+# gRPC-Web (if exposing gRPC-Web API)
+New-NetFirewallRule -DisplayName "Drive gRPC-Web" -Direction Inbound -LocalPort 9091 -Protocol TCP -Action Allow
+
+# REST API (if exposing REST API)
+New-NetFirewallRule -DisplayName "Drive REST API" -Direction Inbound -LocalPort 1317 -Protocol TCP -Action Allow
+
+# JSON-RPC HTTP (if exposing Ethereum-compatible API)
+New-NetFirewallRule -DisplayName "Drive JSON-RPC HTTP" -Direction Inbound -LocalPort 8545 -Protocol TCP -Action Allow
+
+# JSON-RPC WebSocket (if exposing WebSocket API)
+New-NetFirewallRule -DisplayName "Drive JSON-RPC WS" -Direction Inbound -LocalPort 8546 -Protocol TCP -Action Allow
+
+# Prometheus (if exposing metrics)
+New-NetFirewallRule -DisplayName "Drive Prometheus" -Direction Inbound -LocalPort 26660 -Protocol TCP -Action Allow
+
+# EVM Metrics (if exposing EVM metrics)
+New-NetFirewallRule -DisplayName "Drive EVM Metrics" -Direction Inbound -LocalPort 6065 -Protocol TCP -Action Allow
+
+# Geth Metrics (if exposing Geth metrics)
+New-NetFirewallRule -DisplayName "Drive Geth Metrics" -Direction Inbound -LocalPort 8100 -Protocol TCP -Action Allow
+```
+{{< /tab >}}
+{{< /tabs >}}
 
 ---
 
