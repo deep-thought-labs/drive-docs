@@ -1,3 +1,32 @@
+# Drive Documentation
+
+## Quick Start - Running Hugo
+
+To run the Hugo documentation site locally:
+
+```bash
+# Install Hugo (if not already installed)
+# macOS: brew install hugo
+# Linux: sudo apt-get install hugo
+# Windows: choco install hugo
+
+# Start the development server
+hugo server
+
+# The site will be available at http://localhost:1313
+```
+
+For production build:
+
+```bash
+# Generate static site
+hugo
+
+# Output will be in the 'public/' directory
+```
+
+---
+
 # Documentation Structure
 
 ## Proposed Structure for `content/`

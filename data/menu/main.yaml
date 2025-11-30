@@ -5,19 +5,119 @@ main:
     weight: 10
     icon: "gdoc_home"
 
-  - name: "Installation"
-    ref: "/instalacion"
+  - name: "Concepts"
+    ref: "/concepts"
     weight: 20
-    icon: "gdoc_download"
+    icon: "gdoc_extension"
 
-  - name: "Commands"
-    ref: "/comandos"
+  - name: "Ecosystem"
+    ref: "/ecosystem"
     weight: 30
-    icon: "gdoc_keyboard"
+    icon: "gdoc_extension"
+
+  - name: "Blockchain"
+    ref: "/blockchain"
+    weight: 40
+    icon: "gdoc_link"
+
+  - name: "Drive"
+    ref: "/drive"
+    weight: 50
+    icon: "gdoc_storage"
     sub:
-      - name: "Node Management"
-        ref: "/comandos/nodos"
-        weight: 31
-      - name: "API Management"
-        ref: "/comandos/apis"
-        weight: 32
+      - name: "Quick Start"
+        ref: "/drive/quick-start"
+        weight: 51
+        sub:
+          - name: "Installation"
+            ref: "/drive/quick-start/installation"
+            weight: 511
+          - name: "Git Clone"
+            ref: "/drive/quick-start/git-clone"
+            weight: 512
+          - name: "First Service: Nginx"
+            ref: "/drive/quick-start/first-service-nginx"
+            weight: 513
+      - name: "Guides"
+        ref: "/drive/guides"
+        weight: 52
+        sub:
+          - name: "Blockchain Nodes"
+            ref: "/drive/guides/blockchain-nodes"
+            weight: 521
+            sub:
+              - name: "Initialize Node"
+                ref: "/drive/guides/blockchain-nodes/initialize-node"
+                weight: 5211
+              - name: "Start/Stop Node"
+                ref: "/drive/guides/blockchain-nodes/start-stop-node"
+                weight: 5212
+              - name: "Manage Keys"
+                ref: "/drive/guides/blockchain-nodes/manage-keys"
+                weight: 5213
+              - name: "Graphical Interface"
+                ref: "/drive/guides/blockchain-nodes/graphical-interface"
+                weight: 5214
+          - name: "General"
+            ref: "/drive/guides/general"
+            weight: 522
+            sub:
+              - name: "Container Management"
+                ref: "/drive/guides/general/container-management"
+                weight: 5221
+              - name: "System Update"
+                ref: "/drive/guides/general/system-update"
+                weight: 5222
+      - name: "Services"
+        ref: "/drive/services"
+        weight: 53
+        sub:
+          - name: "Service Structure"
+            ref: "/drive/services/service-structure"
+            weight: 531
+          - name: "Ports"
+            ref: "/drive/services/ports"
+            weight: 532
+            sub:
+              - name: "Port Strategy"
+                ref: "/drive/services/ports/strategy"
+                weight: 5321
+              - name: "Port Reference"
+                ref: "/drive/services/ports/reference"
+                weight: 5322
+          - name: "Blockchain Nodes"
+            ref: "/drive/services/blockchain-nodes"
+            weight: 533
+            sub:
+              - name: "Catalog"
+                ref: "/drive/services/blockchain-nodes/catalog"
+                weight: 5331
+              - name: "Environment Variables"
+                ref: "/drive/services/blockchain-nodes/environment-variables"
+                weight: 5332
+          - name: "Nginx"
+            ref: "/drive/services/nginx"
+            weight: 534
+            sub:
+              - name: "Configuration"
+                ref: "/drive/services/nginx/configuration"
+                weight: 5341
+              - name: "Virtual Hosts"
+                ref: "/drive/services/nginx/virtual-hosts"
+                weight: 5342
+              - name: "SSL/HTTPS"
+                ref: "/drive/services/nginx/ssl-https"
+                weight: 5343
+              - name: "Reverse Proxy"
+                ref: "/drive/services/nginx/reverse-proxy"
+                weight: 5344
+      - name: "Troubleshooting"
+        ref: "/drive/troubleshooting"
+        weight: 54
+        sub:
+          - name: "Common Issues"
+            ref: "/drive/troubleshooting/common-issues"
+            weight: 541
+          - name: "Network Diagnosis"
+            ref: "/drive/troubleshooting/network-diagnosis"
+            weight: 542
