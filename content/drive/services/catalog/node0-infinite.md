@@ -248,17 +248,9 @@ See the [Blockchain Nodes Guides]({{< relref "../../guides/blockchain-nodes" >}}
 
 ## Firewall Configuration
 
-These firewall configuration commands are specific to this service with the correct port numbers. For detailed instructions on how to configure your system's firewall, see the [Firewall Configuration Guide]({{< relref "../ports/firewall-configuration" >}}).
+**⚠️ Critical:** Before configuring any firewall rules for this service, you must first allow SSH (port 22) on your system. If you're connecting to a remote server via SSH and you enable the firewall without allowing SSH first, you will lose access to your server.
 
-**Quick Reference:**
-- These commands configure the firewall on your **local host system** only
-- Network-level firewalls may also need configuration
-- **Always allow SSH (port 22) first** to avoid losing server access
-- For complete firewall setup instructions, see the [Firewall Configuration Guide]({{< relref "../ports/firewall-configuration" >}})
-
-- **Ubuntu/Linux:** `sudo ufw allow 22/tcp` or `sudo ufw allow ssh`
-- **macOS:** Usually not an issue, but verify in System Preferences if firewall is enabled
-- **Windows:** SSH is typically managed separately, but verify Remote Desktop or SSH access is allowed
+The complete firewall configuration process, including how to verify and allow SSH (port 22), is described in detail in the [Firewall Configuration Guide]({{< relref "../ports/firewall-configuration" >}}). The commands shown below are specific to this service with the correct port numbers for Infinite Mainnet, but please review the guide for the complete setup process.
 
 ### Required Ports
 
