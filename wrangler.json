@@ -1,6 +1,6 @@
 {
-  "name": "babelfish-docs",
-  "compatibility_date": "2025-10-01",
+  "name": "drive-docs",
+  "compatibility_date": "2025-11-30",
   "assets": {
     "directory": "./public"
   }
