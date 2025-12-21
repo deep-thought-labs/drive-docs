@@ -2,8 +2,6 @@
 title: "Port Configuration: QOM Network"
 ---
 
-# Port Configuration: QOM Network
-
 **Service Number:** 3  
 **Service Name:** `qom`  
 **Container Name:** `qom`

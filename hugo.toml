@@ -30,15 +30,10 @@ enableRobotsTXT = true
     pageRef = "/drive"
     weight = 1
   [[menu.main]]
-    identifier = "blockchain"
-    name = "Blockchain"
-    pageRef = "/blockchain"
+    identifier = "concepts"
+    name = "Concepts"
+    pageRef = "/concepts"
     weight = 2
-  [[menu.main]]
-    identifier = "ecosystem"
-    name = "Ecosystem"
-    pageRef = "/ecosystem"
-    weight = 3
   [[menu.main]]
     name = "Search"
     weight = 10

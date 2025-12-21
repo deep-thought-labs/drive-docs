@@ -2,8 +2,6 @@
 title: "Quick Start"
 ---
 
-# Quick Start
-
 Get Drive up and running quickly. Follow these steps in order:
 
 1. [Architecture Overview]({{< relref "architecture" >}}) - Understand how Drive works

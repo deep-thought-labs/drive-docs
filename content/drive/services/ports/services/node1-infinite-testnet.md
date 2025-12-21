@@ -2,8 +2,6 @@
 title: "Port Configuration: Infinite Testnet"
 ---
 
-# Port Configuration: Infinite Testnet
-
 **Service Number:** 1  
 **Service Name:** `infinite-testnet`  
 **Container Name:** `infinite-testnet`

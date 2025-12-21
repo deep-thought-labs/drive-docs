@@ -2,8 +2,6 @@
 title: "Infinite Testnet (node1-infinite-testnet)"
 ---
 
-# Infinite Testnet (node1-infinite-testnet)
-
 **Service Number:** 1  
 **Service Directory:** `node1-infinite-testnet`  
 **Service/Container Name:** `infinite-testnet`  

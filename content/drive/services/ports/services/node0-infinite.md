@@ -2,8 +2,6 @@
 title: "Port Configuration: Infinite Mainnet"
 ---
 
-# Port Configuration: Infinite Mainnet
-
 **Service Number:** 0  
 **Service Name:** `infinite`  
 **Container Name:** `infinite`

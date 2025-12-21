@@ -2,8 +2,6 @@
 title: "Troubleshooting"
 ---
 
-# Troubleshooting
-
 Solutions to common problems, diagnostic tools, and recovery procedures.
 
 ## Documentation

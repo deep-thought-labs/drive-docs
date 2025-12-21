@@ -2,9 +2,9 @@
 title: "Ecosystem"
 type: "docs"
 weight: 3
+sidebar:
+  exclude: true
 ---
-
-# Ecosystem
 
 General ecosystem documentation.
 

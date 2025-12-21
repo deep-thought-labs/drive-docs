@@ -2,8 +2,6 @@
 title: "Environment Variables: General"
 ---
 
-# Environment Variables: General
-
 Global environment variables shared across all services that use the common Drive image.
 
 [Content to be added as general environment variables are defined]

@@ -2,8 +2,6 @@
 title: "Port Configuration: Infinite Creative Network"
 ---
 
-# Port Configuration: Infinite Creative Network
-
 **Service Number:** 2  
 **Service Name:** `infinite-creative`  
 **Container Name:** `infinite-creative`

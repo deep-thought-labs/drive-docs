@@ -2,8 +2,6 @@
 title: "Nginx"
 ---
 
-# Nginx
-
 Nginx web server service overview, use cases, and assigned ports.
 
 ## Documentation

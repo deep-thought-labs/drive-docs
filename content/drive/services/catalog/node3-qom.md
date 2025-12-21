@@ -2,8 +2,6 @@
 title: "QOM Network (node3-qom)"
 ---
 
-# QOM Network (node3-qom)
-
 **Service Number:** 3  
 **Service Directory:** `node3-qom`  
 **Service/Container Name:** `qom`  

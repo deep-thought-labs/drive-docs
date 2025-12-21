@@ -2,8 +2,6 @@
 title: "Managing Services"
 ---
 
-# Managing Services
-
 Drive services are organized in the `services/` directory. Each service is independent and can be managed separately.
 
 ## Basic Commands

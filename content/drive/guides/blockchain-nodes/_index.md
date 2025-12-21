@@ -2,8 +2,6 @@
 title: "Blockchain Nodes Guides"
 ---
 
-# Blockchain Nodes Guides
-
 Guides for blockchain node operations.
 
 ## Available Guides

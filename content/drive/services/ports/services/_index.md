@@ -2,8 +2,6 @@
 title: "Service Port Configurations"
 ---
 
-# Service Port Configurations
-
 Complete port configurations for each service, including port mappings, Docker Compose examples, and firewall configurations.
 
 ## Available Service Configurations

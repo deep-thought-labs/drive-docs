@@ -2,8 +2,6 @@
 title: "Port Reference: General"
 ---
 
-# Port Reference: General
-
 General ports shared across all services that use the common Drive image.
 
 [Content to be added as general ports are defined]

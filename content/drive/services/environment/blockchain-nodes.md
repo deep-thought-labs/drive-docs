@@ -2,8 +2,6 @@
 title: "Environment Variables: Blockchain Nodes"
 ---
 
-# Environment Variables: Blockchain Nodes
-
 Complete reference for all environment variables that can be configured in `docker-compose.yml` files for blockchain node services.
 
 ## Table of Contents

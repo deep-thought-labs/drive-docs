@@ -2,9 +2,9 @@
 title: "Blockchain"
 type: "docs"
 weight: 2
+sidebar:
+  exclude: true
 ---
-
-# Blockchain
 
 Main blockchain documentation.
 

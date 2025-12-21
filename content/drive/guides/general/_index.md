@@ -2,8 +2,6 @@
 title: "General Guides"
 ---
 
-# General Guides
-
 General guides for system-wide operations.
 
 ## Available Guides

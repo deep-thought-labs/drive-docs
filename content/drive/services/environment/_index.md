@@ -2,8 +2,6 @@
 title: "Environment Variables"
 ---
 
-# Environment Variables
-
 Environment variables are configuration parameters passed to Docker containers that control how services behave. In Drive, all services can have environment variables, and many services share the same variable names but with different values.
 
 ## How Environment Variables Work in Drive

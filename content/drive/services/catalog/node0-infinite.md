@@ -2,8 +2,6 @@
 title: "Infinite Mainnet (node0-infinite)"
 ---
 
-# Infinite Mainnet (node0-infinite)
-
 **Service Number:** 0  
 **Service Directory:** `node0-infinite`  
 **Service/Container Name:** `infinite`  

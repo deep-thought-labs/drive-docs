@@ -2,8 +2,6 @@
 title: "Service Catalog"
 ---
 
-# Service Catalog
-
 Complete list of all services currently supported by Drive.
 
 ## Blockchain Node Services

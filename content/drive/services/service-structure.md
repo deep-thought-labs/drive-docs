@@ -2,8 +2,6 @@
 title: "Service Structure"
 ---
 
-# Service Structure
-
 ## Architecture Overview
 
 Drive services are Docker containers defined using Docker Compose. Each service has:

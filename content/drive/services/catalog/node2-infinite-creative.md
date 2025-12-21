@@ -2,8 +2,6 @@
 title: "Infinite Creative Network (node2-infinite-creative)"
 ---
 
-# Infinite Creative Network (node2-infinite-creative)
-
 **Service Number:** 2  
 **Service Directory:** `node2-infinite-creative`  
 **Service/Container Name:** `infinite-creative`  
