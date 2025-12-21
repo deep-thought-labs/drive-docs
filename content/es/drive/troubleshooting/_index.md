@@ -1,0 +1,10 @@
+---
+title: "Solución de Problemas"
+---
+
+Soluciones a problemas comunes, herramientas de diagnóstico y procedimientos de recuperación.
+
+## Documentación
+
+- [Problemas Comunes]({{< relref "common-issues" >}})
+- [Diagnóstico de Red]({{< relref "network-diagnosis" >}})
