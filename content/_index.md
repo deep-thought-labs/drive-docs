@@ -1,8 +1,9 @@
 ---
-title: "Documentation Home"
+title: "Drive Documentation"
+type: "docs"
 ---
 
-# Documentation Home
+# Drive Documentation
 
-Welcome to the documentation.
+Bienvenido a la documentación de Drive.
 

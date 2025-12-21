@@ -1,6 +1,6 @@
 baseURL = "/"
 title = "Drive Documentation"
-theme = "hugo-geekdoc"
+theme = "hextra"
 
 # Required to get well formatted code blocks
 pygmentsUseClasses = true
@@ -22,6 +22,28 @@ enableRobotsTXT = true
 
 [taxonomies]
   tag = "tags"
+
+[menu]
+  [[menu.main]]
+    identifier = "drive"
+    name = "Drive"
+    pageRef = "/drive"
+    weight = 1
+  [[menu.main]]
+    identifier = "blockchain"
+    name = "Blockchain"
+    pageRef = "/blockchain"
+    weight = 2
+  [[menu.main]]
+    identifier = "ecosystem"
+    name = "Ecosystem"
+    pageRef = "/ecosystem"
+    weight = 3
+  [[menu.main]]
+    name = "Search"
+    weight = 10
+    [menu.main.params]
+      type = "search"
 
 [params]
   # (Optional, default none) Set a subtitle used in the page header.
@@ -123,3 +145,39 @@ enableRobotsTXT = true
   #[params.geekdocContentLicense]
   #  name = "CC BY-SA 4.0"
   #  link = "https://creativecommons.org/licenses/by-sa/4.0/"
+
+  # Configuración de Hextra
+  description = "Documentación de Drive - Herramienta de gestión de infraestructura descentralizada"
+
+  [params.navbar]
+    displayTitle = true
+    displayLogo = false
+    width = "wide"
+
+  [params.theme]
+    default = "system"
+    displayToggle = true
+
+  [params.footer]
+    enable = true
+    displayCopyright = true
+    displayPoweredBy = true
+    width = "normal"
+
+  [params.search]
+    enable = true
+    type = "flexsearch"
+    [params.search.flexsearch]
+      index = "content"
+      tokenize = "forward"
+
+  [params.toc]
+    displayTags = true
+
+  [params.page]
+    width = "normal"
+
+  [params.highlight]
+    [params.highlight.copy]
+      enable = true
+      display = "hover"

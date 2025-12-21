@@ -1,0 +1,20 @@
+{{- /*
+Shortcode compatible con la sintaxis de hugo-geekdoc para el tema hextra.
+Crea una interfaz con pestañas.
+
+Uso: {{< tabs "id-grupo" >}}...{{< /tabs >}}
+
+@param {string} 0 El ID del grupo de pestañas (primer parámetro posicional)
+*/ -}}
+
+{{- /* Procesar el Inner para que los shortcodes tab anidados se ejecuten */ -}}
+{{- .Inner -}}
+
+{{- $groupID := .Get 0 | default (printf "tabs-%d" .Ordinal) -}}
+{{- $groupKey := printf "tabs-%s" $groupID -}}
+{{- $tabs := .Scratch.Get $groupKey | default slice -}}
+
+{{- if gt (len $tabs) 0 -}}
+  {{- partial "shortcodes/tabs" (dict "tabs" $tabs "enableSync" false "id" .Ordinal) -}}
+{{- end -}}
+

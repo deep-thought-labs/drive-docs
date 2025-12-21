@@ -1,5 +1,7 @@
 ---
 title: "Concepts"
+type: "docs"
+weight: 4
 ---
 
 # Concepts
