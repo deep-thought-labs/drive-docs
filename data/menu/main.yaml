@@ -133,3 +133,6 @@ main:
           - name: "Network Diagnosis"
             ref: "/drive/troubleshooting/network-diagnosis"
             weight: 542
+          - name: "Permission Issues"
+            ref: "/drive/troubleshooting/permission-issues"
+            weight: 543

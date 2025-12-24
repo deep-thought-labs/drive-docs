@@ -9,3 +9,4 @@ Solutions to common problems, diagnostic tools, and recovery procedures.
 
 - [Common Issues]({{< relref "common-issues" >}})
 - [Network Diagnosis]({{< relref "network-diagnosis" >}})
+- [Permission Issues]({{< relref "permission-issues" >}})
