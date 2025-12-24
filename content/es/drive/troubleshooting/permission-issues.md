@@ -5,6 +5,18 @@ weight: 543
 
 Guía para identificar y resolver problemas de permisos relacionados con la carpeta `persistent-data` y los contenedores Docker.
 
+> [!NOTE]
+> **Trabajo en Progreso**
+>
+> Estamos trabajando activamente en mejorar el manejo automático de permisos para que Drive funcione correctamente **sin importar qué usuario estés usando** en el sistema host. Esto incluye:
+>
+> - Mejoras en el script `drive.sh` para detectar y resolver problemas de permisos de manera más robusta
+> - Verificaciones post-configuración para asegurar que los permisos se aplicaron correctamente
+> - Mensajes informativos más claros cuando hay problemas de permisos
+> - Posibles cambios en la configuración de Docker Compose para soportar diferentes UIDs
+>
+> Por el momento, **lo recomendable es que el usuario que esté ejecutando Drive en el sistema host tenga UID 1000** para evitar problemas de permisos.
+
 ## Síntomas del Problema
 
 Si experimentas alguno de estos errores, probablemente tienes un problema de permisos:
@@ -98,15 +110,6 @@ El script `drive.sh` intenta resolver problemas de permisos automáticamente:
    - Esto es más seguro y permanente
 
 **Limitación actual:** Si no tienes permisos de escritura Y no tienes sudo, el script no puede configurar permisos automáticamente.
-
-## Trabajo en Progreso
-
-Estamos trabajando activamente en mejorar el manejo automático de permisos para que Drive funcione correctamente **sin importar qué usuario estés usando** en el sistema host. Esto incluye:
-
-- Mejoras en el script `drive.sh` para detectar y resolver problemas de permisos de manera más robusta
-- Verificaciones post-configuración para asegurar que los permisos se aplicaron correctamente
-- Mensajes informativos más claros cuando hay problemas de permisos
-- Posibles cambios en la configuración de Docker Compose para soportar diferentes UIDs
 
 Para más detalles técnicos sobre cómo funciona actualmente el sistema de permisos, consulta la [documentación técnica de Gestión de Permisos]({{< relref "../services/technical/permission-handling" >}}).
 

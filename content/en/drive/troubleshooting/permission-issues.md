@@ -5,6 +5,18 @@ weight: 543
 
 Guide to identify and resolve permission problems related to the `persistent-data` folder and Docker containers.
 
+> [!NOTE]
+> **Work in Progress**
+>
+> We are actively working on improving automatic permission handling so that Drive works correctly **regardless of which user you are using** on the host system. This includes:
+>
+> - Improvements to the `drive.sh` script to detect and resolve permission problems more robustly
+> - Post-configuration verifications to ensure permissions were applied correctly
+> - Clearer informative messages when there are permission problems
+> - Possible changes to Docker Compose configuration to support different UIDs
+>
+> For now, **it is recommended that the user running Drive on the host system has UID 1000** to avoid permission issues.
+
 ## Problem Symptoms
 
 If you experience any of these errors, you likely have a permission problem:
@@ -98,15 +110,6 @@ The `drive.sh` script attempts to resolve permission problems automatically:
    - This is more secure and permanent
 
 **Current limitation:** If you don't have write permissions AND don't have sudo, the script cannot configure permissions automatically.
-
-## Work in Progress
-
-We are actively working on improving automatic permission handling so that Drive works correctly **regardless of which user you are using** on the host system. This includes:
-
-- Improvements to the `drive.sh` script to detect and resolve permission problems more robustly
-- Post-configuration verifications to ensure permissions were applied correctly
-- Clearer informative messages when there are permission problems
-- Possible changes to Docker Compose configuration to support different UIDs
 
 For more technical details on how the permission system currently works, see the [Permission Handling technical documentation]({{< relref "../services/technical/permission-handling" >}}).
 
