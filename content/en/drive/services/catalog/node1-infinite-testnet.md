@@ -169,7 +169,7 @@ This service does not have a pre-configured value for this variable. If needed, 
 
 This service is a blockchain node, which requires specialized commands for initialization, starting, stopping, and managing the node.
 
-General container management commands (start, stop, restart, etc.) are described in the [Managing Services]({{< relref "../../quick-start/managing-services" >}}) section.
+General container management commands (start, stop, restart, etc.) are described in the [Container Management]({{< relref "../../guides/general/container-management" >}}) section.
 
 For detailed information about blockchain node-specific commands, including:
 - How to initialize a blockchain node

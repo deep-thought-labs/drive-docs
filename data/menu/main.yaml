@@ -38,7 +38,7 @@ main:
           - name: "Git Clone"
             ref: "/drive/quick-start/git-clone"
             weight: 512
-          - name: "Managing Services"
+          - name: "Verify Installation"
             ref: "/drive/quick-start/managing-services"
             weight: 513
       - name: "Guides"

@@ -232,7 +232,7 @@ services:
 
 Este servicio es un nodo blockchain, que requiere comandos especializados para la inicialización, inicio, detención y gestión del nodo.
 
-Comandos generales de gestión de contenedores (iniciar, detener, reiniciar, etc.) se describen en la [Managing Servicios]({{< relref "../../quick-start/managing-services" >}}) sección.
+Comandos generales de gestión de contenedores (iniciar, detener, reiniciar, etc.) se describen en la [Gestión de Contenedores]({{< relref "../../guides/general/container-management" >}}) sección.
 
 Para información detallada sobre comandos específicos de nodos blockchain, incluyendo:
 - Cómo inicializar un nodo blockchain

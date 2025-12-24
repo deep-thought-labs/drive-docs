@@ -1,49 +1,52 @@
 ---
-title: "Managing Services"
+title: "Verify Installation"
 weight: 513
 ---
 
-Drive services are organized in the `services/` directory. Each service is independent and can be managed separately.
+Before continuing, verify that your system is correctly configured and ready to use Drive. This verification will ensure that all necessary components are working correctly.
 
-## Basic Commands
+## Verify Docker
 
-All services use `drive.sh` in their directory:
+Confirm that Docker is working correctly:
 
 ```bash
-cd services/<service-name>
-
-# Start service (background)
-./drive.sh up -d
-
-# Show container status
-./drive.sh ps
-
-# Stop service
-./drive.sh stop
-
-# Stop and remove container
-./drive.sh down
-
-# Start (if stopped)
-./drive.sh start      
-
-# Restart service (if already running)
-./drive.sh restart
-
-# View container logs
-./drive.sh logs
-
-# Access container shell
-./drive.sh bash
+docker ps
 ```
 
-## Service Types
+**Expected result:** You should see a list (possibly empty) of containers without errors. If you see an error, Docker is not working correctly.
 
-Each service type has specific features. **Blockchain Nodes** include a graphical interface and specialized node management commands.
+## Verify Repository Structure
 
-For detailed service structure, configuration, and advanced topics, see [Service Structure]({{< relref "/drive/services/service-structure" >}}).
+From the root directory of the cloned repository (`drive/`), verify that the `services/` folder exists:
+
+```bash
+ls services/
+```
+
+**Expected result:** You should see a list of service folders (for example: `node0-infinite`, `node1-infinite-testnet`, etc.).
+
+## Verify Management Script
+
+Enter any service and verify that the `drive.sh` script exists and is executable:
+
+```bash
+cd services/node0-infinite  # Or any other available service
+ls -la drive.sh
+```
+
+**Expected result:** You should see the `drive.sh` file with execute permissions (indicated by the `x` in the permissions).
+
+## ✅ Verification Complete
+
+If all the above commands worked correctly, your system is configured and ready to use Drive.
 
 ## Next Steps
 
-- [Service Catalog]({{< relref "/drive/services/catalog" >}}) - All available services
-- [Blockchain Node Guides]({{< relref "/drive/guides/blockchain-nodes" >}})
+Now that you have completed the Quick Start and verified your installation, you can continue with the following sections according to your needs:
+
+- **[Guides]({{< relref "../guides" >}})** - Learn to perform specific operations
+  - [Container Management]({{< relref "../guides/general/container-management" >}}) - Detailed commands for managing services
+  - [Blockchain Nodes]({{< relref "../guides/blockchain-nodes" >}}) - Specific guides for working with blockchain nodes
+
+- **[Services]({{< relref "../services" >}})** - Complete technical reference
+  - [Service Catalog]({{< relref "../services/catalog" >}}) - Complete list of available services and their configurations

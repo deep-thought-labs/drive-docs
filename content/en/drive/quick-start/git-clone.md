@@ -37,6 +37,6 @@ cd node0-infinite  # Example: enter a specific service
 
 Now that you have the repository cloned, consult the following sections of the documentation:
 
-- [Managing Services]({{< relref "managing-services" >}}) - Learn how to use services in Drive
+- [Verify Installation]({{< relref "managing-services" >}}) - Verify that everything is configured correctly
 - [Guides]({{< relref "../guides" >}}) - Specific guides for common operations
 - [Service Catalog]({{< relref "../services/catalog" >}}) - Complete list of available services

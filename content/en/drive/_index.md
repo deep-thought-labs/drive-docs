@@ -16,7 +16,7 @@ To get the most out of this documentation, we recommend following this order:
    - [Drive Architecture]({{< relref "quick-start/architecture" >}}) - Understand how Drive works
    - [Prerequisites]({{< relref "quick-start/installation" >}}) - Install the required tools
    - [Git Clone]({{< relref "quick-start/git-clone" >}}) - Get the source code
-   - [Managing Services]({{< relref "quick-start/managing-services" >}}) - Learn to use basic services
+   - [Verify Installation]({{< relref "quick-start/managing-services" >}}) - Verify that everything is configured correctly
 
 2. **[Guides]({{< relref "guides" >}})** - Learn to perform specific operations
    - [General]({{< relref "guides/general" >}}) - General management operations

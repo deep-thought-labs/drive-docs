@@ -467,4 +467,4 @@ If Git commands don't work after installation:
 
 - [Architecture Overview]({{< relref "architecture" >}}) - Understand how Drive works
 - [Cloning the Repository]({{< relref "git-clone" >}}) - Next step after installation
-- [Managing Services]({{< relref "managing-services" >}}) - Learn how to use services in Drive
+- [Verify Installation]({{< relref "managing-services" >}}) - Verify that everything is configured correctly

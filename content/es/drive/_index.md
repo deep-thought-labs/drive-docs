@@ -16,7 +16,7 @@ Para obtener el mejor provecho de esta documentación, te recomendamos seguir es
    - [Arquitectura de Drive]({{< relref "quick-start/architecture" >}}) - Entender cómo funciona Drive
    - [Requisitos Previos]({{< relref "quick-start/installation" >}}) - Instalar las herramientas necesarias
    - [Clonar Repositorio]({{< relref "quick-start/git-clone" >}}) - Obtener el código fuente
-   - [Gestionar Servicios]({{< relref "quick-start/managing-services" >}}) - Aprender a usar servicios básicos
+   - [Verificar Instalación]({{< relref "quick-start/managing-services" >}}) - Verificar que todo está configurado correctamente
 
 2. **[Guías]({{< relref "guides" >}})** - Aprende a realizar operaciones específicas
    - [General]({{< relref "guides/general" >}}) - Operaciones generales de gestión
