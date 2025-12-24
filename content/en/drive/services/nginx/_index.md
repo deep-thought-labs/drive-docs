@@ -1,5 +1,6 @@
 ---
 title: "Nginx"
+weight: 535
 ---
 
 Nginx web server service overview, use cases, and assigned ports.

@@ -1,5 +1,6 @@
 ---
 title: "Nginx"
+weight: 535
 ---
 
 Resumen del servicio de servidor web Nginx, casos de uso y puertos asignados.

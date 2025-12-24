@@ -1,5 +1,6 @@
 ---
 title: "Solución de Problemas"
+weight: 54
 ---
 
 Soluciones a problemas comunes, herramientas de diagnóstico y procedimientos de recuperación.

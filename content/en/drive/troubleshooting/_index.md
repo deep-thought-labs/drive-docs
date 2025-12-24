@@ -1,5 +1,6 @@
 ---
 title: "Troubleshooting"
+weight: 54
 ---
 
 Solutions to common problems, diagnostic tools, and recovery procedures.

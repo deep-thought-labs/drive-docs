@@ -1,5 +1,6 @@
 ---
 title: "Blockchain Nodes"
+weight: 534
 ---
 
 Overview of blockchain node services, their common structure, and how they differ only in configuration values.

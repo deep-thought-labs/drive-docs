@@ -32,7 +32,7 @@ main:
           - name: "Architecture Overview"
             ref: "/drive/quick-start/architecture"
             weight: 510
-          - name: "Installation"
+          - name: "Prerequisites"
             ref: "/drive/quick-start/installation"
             weight: 511
           - name: "Git Clone"
@@ -45,41 +45,41 @@ main:
         ref: "/drive/guides"
         weight: 52
         sub:
-          - name: "Blockchain Nodes"
-            ref: "/drive/guides/blockchain-nodes"
-            weight: 521
-            sub:
-              - name: "Initialize Node"
-                ref: "/drive/guides/blockchain-nodes/initialize-node"
-                weight: 5211
-              - name: "Start/Stop Node"
-                ref: "/drive/guides/blockchain-nodes/start-stop-node"
-                weight: 5212
-              - name: "Manage Keys"
-                ref: "/drive/guides/blockchain-nodes/manage-keys"
-                weight: 5213
-              - name: "Graphical Interface"
-                ref: "/drive/guides/blockchain-nodes/graphical-interface"
-                weight: 5214
           - name: "General"
             ref: "/drive/guides/general"
-            weight: 522
+            weight: 521
             sub:
               - name: "Container Management"
                 ref: "/drive/guides/general/container-management"
-                weight: 5221
+                weight: 5211
               - name: "System Update"
                 ref: "/drive/guides/general/system-update"
+                weight: 5212
+          - name: "Blockchain Nodes"
+            ref: "/drive/guides/blockchain-nodes"
+            weight: 522
+            sub:
+              - name: "Graphical Interface"
+                ref: "/drive/guides/blockchain-nodes/graphical-interface"
+                weight: 5221
+              - name: "Manage Keys"
+                ref: "/drive/guides/blockchain-nodes/manage-keys"
                 weight: 5222
+              - name: "Initialize Node"
+                ref: "/drive/guides/blockchain-nodes/initialize-node"
+                weight: 5223
+              - name: "Start/Stop Node"
+                ref: "/drive/guides/blockchain-nodes/start-stop-node"
+                weight: 5224
       - name: "Services"
         ref: "/drive/services"
         weight: 53
         sub:
-          - name: "Service Catalog"
-            ref: "/drive/services/catalog"
-            weight: 530
           - name: "Service Structure"
             ref: "/drive/services/service-structure"
+            weight: 530
+          - name: "Service Catalog"
+            ref: "/drive/services/catalog"
             weight: 531
           - name: "Environment Variables"
             ref: "/drive/services/environment"
@@ -107,6 +107,9 @@ main:
           - name: "Blockchain Nodes"
             ref: "/drive/services/blockchain-nodes"
             weight: 534
+          - name: "Nginx"
+            ref: "/drive/services/nginx"
+            weight: 535
       - name: "Troubleshooting"
         ref: "/drive/troubleshooting"
         weight: 54

@@ -1,5 +1,6 @@
 ---
-title: "Instalación"
+title: "Requisitos Previos"
+weight: 511
 ---
 
 Instala los requisitos técnicos antes de clonar el repositorio. Esta guía te ayudará a verificar si las herramientas requeridas ya están instaladas y proporcionará instrucciones de instalación si es necesario.

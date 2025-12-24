@@ -1,5 +1,6 @@
 ---
 title: "Service Structure"
+weight: 530
 ---
 
 ## Architecture Overview

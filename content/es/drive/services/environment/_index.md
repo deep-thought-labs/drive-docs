@@ -1,5 +1,6 @@
 ---
 title: "Variables de Entorno"
+weight: 532
 ---
 
 Las variables de entorno son parámetros de configuración pasados a los contenedores Docker que controlan cómo se comportan los servicios. En Drive, todos los servicios pueden tener variables de entorno, y muchos servicios comparten los mismos nombres de variables pero con valores diferentes.

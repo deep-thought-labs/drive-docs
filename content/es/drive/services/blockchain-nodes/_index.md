@@ -1,5 +1,6 @@
 ---
 title: "Nodos Blockchain"
+weight: 534
 ---
 
 Resumen de los servicios de nodos blockchain, su estructura común y cómo difieren solo en los valores de configuración.

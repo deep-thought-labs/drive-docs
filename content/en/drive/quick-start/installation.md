@@ -1,5 +1,6 @@
 ---
-title: "Installation"
+title: "Prerequisites"
+weight: 511
 ---
 
 Install the technical requirements before cloning the repository. This guide will help you verify if the required tools are already installed and provide installation instructions if needed.

@@ -1,5 +1,6 @@
 ---
 title: "Arquitectura de Drive"
+weight: 510
 ---
 
 Drive es una colección de servicios de contenedores Docker preconfigurados listos para usar. Cada servicio es una imagen Docker autocontenida que viene con todas las configuraciones necesarias ya establecidas.
