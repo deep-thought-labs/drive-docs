@@ -11,6 +11,7 @@ Service structure documentation, service type descriptions, and service catalogs
 - [Service Catalog]({{< relref "catalog" >}}) - Complete list of all available services
 - [Environment Variables]({{< relref "environment" >}}) - Environment variables reference
 - [Port Strategy]({{< relref "ports" >}}) - Port allocation and management
+- [Technical Reference]({{< relref "technical" >}}) - Detailed technical documentation of internal components
 
 ## Service Types
 

@@ -36,6 +36,11 @@ ls -la drive.sh
 
 **Resultado esperado:** Deberías ver el archivo `drive.sh` con permisos de ejecución (indicado por la `x` en los permisos).
 
+> [!NOTE]
+> **Nota sobre Permisos**
+>
+> Los contenedores de Drive ejecutan como usuario con **UID 1000**. Si estás utilizando un sistema Ubuntu como host de Drive, asegúrate de utilizar un usuario que tenga **UID 1000** para evitar problemas de permisos. Puedes verificar tu UID con el comando `id -u`.
+
 ## ✅ Verificación Completa
 
 Si todos los comandos anteriores funcionaron correctamente, tu sistema está configurado y listo para usar Drive.

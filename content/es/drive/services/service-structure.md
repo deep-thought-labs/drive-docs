@@ -22,48 +22,43 @@ services/
 
 ## Configuración de Docker Compose
 
-Servicios are defined in `docker-compose.yml`, which contains all service-specific configurations:
+Los servicios se definen en `docker-compose.yml`, que contiene todas las configuraciones específicas del servicio:
 
-- **Container image and version** - The Docker image used for the service
-- **Environment variables** - Service configuration through environment variables (see [Variables de Entorno]({{< relref "environment" >}}))
-- **Volume mounts** - Persistent data directories mapped to the container
-- **Port mappings** - Network ports exposed by the service (see [Estrategia de Puertos]({{< relref "ports" >}}))
-- **Network configuration** - Container networking setup
+- **Imagen y versión del contenedor** - La imagen Docker utilizada para el servicio
+- **Variables de entorno** - Configuración del servicio a través de variables de entorno (ver [Variables de Entorno]({{< relref "environment" >}}))
+- **Montajes de volúmenes** - Directorios de datos persistentes mapeados al contenedor
+- **Mapeo de puertos** - Puertos de red expuestos por el servicio (ver [Estrategia de Puertos]({{< relref "ports" >}}))
+- **Configuración de red** - Configuración de red del contenedor
 
-The `docker-compose.yml` file is the central configuration point for each service, defining how the container runs, what resources it uses, and how it connects to your system.
+El archivo `docker-compose.yml` es el punto central de configuración para cada servicio, definiendo cómo se ejecuta el contenedor, qué recursos usa y cómo se conecta a tu sistema.
+
+Para un análisis técnico detallado del archivo `docker-compose.yml`, consulta [Estructura de Docker Compose]({{< relref "technical/docker-compose-structure" >}}).
 
 ## drive.sh Script
 
-The `drive.sh` script provides consistent management across all services:
+El script `drive.sh` proporciona gestión consistente en todos los servicios:
 
 ### Comandos Básicos
 
-```bash
-cd services/<service-name>
+Para ver todos los comandos disponibles y su uso detallado, consulta [Gestión de Contenedores]({{< relref "../guides/general/container-management" >}}) en las Guías.
 
-./drive.sh up -d      # Start in daemon mode
-./drive.sh stop       # Stop gracefully
-./drive.sh down       # Detener y eliminar contenedor
-./drive.sh start      # Iniciar (si está detenido)
-./drive.sh restart    # Reiniciar servicio
-./drive.sh ps         # Mostrar estado del contenedor
-./drive.sh logs       # Ver registros del contenedor
-./drive.sh bash       # Acceder a la shell del contenedor
-```
+### Características del Script
 
-### Script Features
+- **Manejo automático de permisos** - Funciona con o sin `sudo`
+- **Interfaz consistente** - Los mismos comandos funcionan en todos los servicios
+- **Gestión simplificada** - Abstrae la complejidad de Docker Compose
 
-- Automatic permission handling
-- Works with or without sudo
-- Consistent interface across services
+Para un análisis técnico detallado del script `drive.sh`, incluyendo cómo gestiona los permisos, consulta [Análisis del Script drive.sh]({{< relref "technical/drive-script-analysis" >}}).
 
 ## Datos Persistentes
 
-Each service's `persistent-data/` directory:
-- Stored locally on your system
-- Never shared or synced
-- Contains service-specific data:
-  - Blockchain nodes: chain data, keys, configuration
+Cada directorio `persistent-data/` del servicio:
+- Se almacena localmente en tu sistema
+- Nunca se comparte ni sincroniza
+- Contiene datos específicos del servicio:
+  - Nodos blockchain: datos de cadena, claves, configuración
+
+**Importante:** Los permisos de `persistent-data/` son gestionados automáticamente por el script `drive.sh`. Para documentación técnica completa sobre cómo Drive maneja los permisos, consulta [Gestión de Permisos]({{< relref "technical/permission-handling" >}}).
 
 ## Tipos de Servicios
 

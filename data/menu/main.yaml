@@ -110,6 +110,19 @@ main:
           - name: "Nginx"
             ref: "/drive/services/nginx"
             weight: 535
+          - name: "Technical Reference"
+            ref: "/drive/services/technical"
+            weight: 536
+            sub:
+              - name: "Docker Compose Structure"
+                ref: "/drive/services/technical/docker-compose-structure"
+                weight: 5361
+              - name: "drive.sh Script Analysis"
+                ref: "/drive/services/technical/drive-script-analysis"
+                weight: 5362
+              - name: "Permission Handling"
+                ref: "/drive/services/technical/permission-handling"
+                weight: 5363
       - name: "Troubleshooting"
         ref: "/drive/troubleshooting"
         weight: 54

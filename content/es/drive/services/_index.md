@@ -11,6 +11,7 @@ Documentación de estructura de servicios, descripciones de tipos de servicios y
 - [Catálogo de Servicios]({{< relref "catalog" >}}) - Lista completa de todos los servicios disponibles
 - [Variables de Entorno]({{< relref "environment" >}}) - Referencia de variables de entorno
 - [Estrategia de Puertos]({{< relref "ports" >}}) - Asignación y gestión de puertos
+- [Referencia Técnica]({{< relref "technical" >}}) - Documentación técnica detallada de componentes internos
 
 ## Tipos de Servicios
 
