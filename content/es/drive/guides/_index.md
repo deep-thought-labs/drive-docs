@@ -13,6 +13,6 @@ Guías específicas de acciones organizadas por categoría.
 ## Nodos Blockchain
 
 - [Interfaz Gráfica]({{< relref "blockchain-nodes/graphical-interface" >}})
-- [Gestionar Claves]({{< relref "blockchain-nodes/manage-keys" >}})
+- [Gestión de Claves]({{< relref "blockchain-nodes/keys" >}})
 - [Inicializar Nodo]({{< relref "blockchain-nodes/initialize-node" >}})
 - [Iniciar/Detener Nodo]({{< relref "blockchain-nodes/start-stop-node" >}})

@@ -1,5 +1,5 @@
 ---
-title: "Concepts"
+title: "Atomic Concepts"
 type: "docs"
 weight: 4
 ---

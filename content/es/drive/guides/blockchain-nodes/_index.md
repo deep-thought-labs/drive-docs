@@ -1,13 +1,13 @@
 ---
-title: "Nodos Blockchain Guías"
+title: "Nodos Blockchain"
 weight: 522
 ---
 
-Guías for blockchain node operations.
+Guías para operaciones de nodos blockchain.
 
-## Available Guías
+## Guías Disponibles
 
-- [Interfaz Gráfica]({{< relref "graphical-interface" >}})
-- [Gestionar Claves]({{< relref "manage-keys" >}})
-- [Inicializar Nodo]({{< relref "initialize-node" >}})
-- [Iniciar/Detener Nodo]({{< relref "start-stop-node" >}})
+- [Interfaz Gráfica]({{< relref "graphical-interface" >}}) - Guía de la interfaz gráfica
+- [Gestión de Claves]({{< relref "keys" >}}) - Gestión completa de claves criptográficas
+- [Inicializar Nodo]({{< relref "initialize-node" >}}) - Cómo inicializar un nodo
+- [Iniciar/Detener Nodo]({{< relref "start-stop-node" >}}) - Operaciones básicas del nodo
