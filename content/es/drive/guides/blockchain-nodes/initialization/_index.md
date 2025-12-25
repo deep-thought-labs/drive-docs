@@ -134,7 +134,7 @@ Para obtener el mejor provecho de esta documentación, te recomendamos seguir es
 **Si encuentras problemas:**
 
 - Consulta la sección de solución de problemas en cada guía
-- Revisa [Iniciar/Detener Nodo]({{< relref "../start-stop-node" >}}) para información sobre cómo limpiar datos
+- Revisa [Borrar Data del Nodo]({{< relref "../delete-node-data" >}}) para información sobre cómo eliminar los datos del nodo
 
 ## Próximos Pasos
 

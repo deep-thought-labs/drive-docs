@@ -93,7 +93,7 @@ Esta práctica te permite verificar que siempre puedes recuperar exactamente la 
    ```
 
 2. **Detén el nodo y elimina los datos:**
-   - Consulta [Iniciar/Detener Nodo]({{< relref "../start-stop-node" >}}) para instrucciones sobre cómo detener el nodo y limpiar los datos del nodo usando la interfaz gráfica.
+   - Consulta [Borrar Data del Nodo]({{< relref "../delete-node-data" >}}) para instrucciones completas sobre cómo detener el nodo y eliminar los datos del nodo usando la interfaz gráfica.
 
 3. **Reinicializa el nodo con la misma frase semilla:**
    - Sigue el procedimiento completo de [Inicialización con Recovery]({{< relref "recovery-initialization" >}}) usando exactamente la misma frase semilla que usaste antes.

@@ -110,7 +110,7 @@ Si recibes este error, significa que el nodo ya fue inicializado previamente. Pa
 2. **Elimina la data del nodo** usando la interfaz gráfica o comandos
 3. **Vuelve a inicializar** con el método que prefieras
 
-Para más detalles sobre cómo limpiar los datos del nodo, consulta [Iniciar/Detener Nodo]({{< relref "../start-stop-node" >}}).
+Para más detalles sobre cómo eliminar los datos del nodo, consulta [Borrar Data del Nodo]({{< relref "../delete-node-data" >}}).
 
 ### No Puedo Encontrar mis Archivos de Configuración
 

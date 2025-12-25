@@ -104,7 +104,7 @@ En algunos casos, necesitas limpiar la data del nodo:
 >
 > **Asegúrate de tener respaldos** antes de limpiar la data, especialmente si eres validador.
 
-Para más información sobre cómo limpiar la data del nodo, consulta [Iniciar/Detener Nodo]({{< relref "../drive/guides/blockchain-nodes/start-stop-node" >}}).
+Para más información sobre cómo eliminar la data del nodo, consulta [Borrar Data del Nodo]({{< relref "../drive/guides/blockchain-nodes/delete-node-data" >}}).
 
 ## Respaldo de la Data del Nodo
 

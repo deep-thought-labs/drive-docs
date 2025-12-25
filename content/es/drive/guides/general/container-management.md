@@ -89,13 +89,83 @@ Reinicia un servicio que ya está ejecutándose:
 
 ### 📋 Ver Registros del Contenedor
 
-Visualiza los logs del contenedor en tiempo real:
+Los logs del contenedor muestran información sobre el contenedor Docker mismo, incluyendo mensajes de inicio, errores de Docker y cualquier salida del entrypoint o CMD del contenedor.
+
+> [!NOTE]
+> **Diferencia entre Logs del Contenedor y Logs del Nodo**
+>
+> Es importante entender la diferencia:
+> - **Logs del contenedor:** Logs de Docker (inicio del contenedor, errores de Docker, configuración del contenedor)
+> - **Logs del nodo:** Logs del proceso blockchain (sincronización, bloques, actividad del nodo)
+>
+> Para ver los logs del nodo blockchain, consulta [Monitoreo del Nodo]({{< relref "../blockchain-nodes/node-monitoring" >}}).
+
+#### Ver Todos los Logs
 
 ```bash
+cd services/node0-infinite  # O cualquier otro servicio
 ./drive.sh logs
 ```
 
-Para ver los últimos logs y salir, presiona `Ctrl+C`.
+Muestra todos los logs del contenedor desde su inicio.
+
+#### Seguir Logs en Tiempo Real
+
+```bash
+cd services/node0-infinite
+./drive.sh logs -f
+```
+
+Muestra los logs del contenedor en tiempo real, actualizándose automáticamente. Presiona `Ctrl+C` para detener.
+
+#### Ver Últimas N Líneas
+
+```bash
+cd services/node0-infinite
+./drive.sh logs --tail=100
+```
+
+Muestra solo las últimas 100 líneas de logs. Puedes cambiar el número según necesites.
+
+#### Ver Últimas N Líneas y Seguir
+
+```bash
+cd services/node0-infinite
+./drive.sh logs --tail=100 -f
+```
+
+Muestra las últimas 100 líneas y luego continúa mostrando logs nuevos en tiempo real.
+
+#### Filtrar Logs por Tiempo
+
+```bash
+cd services/node0-infinite
+# Logs de la última hora
+./drive.sh logs --since=1h
+
+# Logs hasta hace 1 hora
+./drive.sh logs --until=1h
+```
+
+**Opciones disponibles:**
+- `-f` o `--follow`: Transmitir logs en tiempo real
+- `--tail=N`: Mostrar solo las últimas N líneas
+- `--since=1h`: Mostrar logs desde hace 1 hora (puedes usar `1m`, `1h`, `1d`, etc.)
+- `--until=1h`: Mostrar logs hasta hace 1 hora
+
+**Cuándo usar logs del contenedor:**
+- Depurar problemas de inicio del contenedor
+- Ver errores a nivel de Docker
+- Verificar configuración del contenedor
+- Problemas de permisos o montaje de volúmenes
+
+**Cuándo usar logs del nodo:**
+- Monitorear actividad del nodo blockchain
+- Ver progreso de sincronización
+- Depurar problemas de la blockchain
+- Ver procesamiento de bloques
+
+Para más información sobre logs del nodo, consulta [Monitoreo del Nodo]({{< relref "../blockchain-nodes/node-monitoring" >}}).
 
 ## Comandos que Requieren Nombre de Contenedor
 
