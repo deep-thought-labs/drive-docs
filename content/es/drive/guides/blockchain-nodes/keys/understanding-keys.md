@@ -14,7 +14,7 @@ Esta guía explica las diferencias entre validadores y full nodes en cuanto a la
 > - [Keyring]({{< relref "../../../../../concepts/keyring" >}}) - Qué es un keyring y cómo funciona
 > - [Private Validator Key]({{< relref "../../../../../concepts/private-validator-key" >}}) - Qué es el Private Validator Key y su importancia
 > - [Keyring vs Private Validator Key]({{< relref "../../../../../concepts/keyring-vs-validator-key" >}}) - Diferencias detalladas entre ambos componentes
-> - [Inicializar Nodo]({{< relref "../initialize-node" >}}) - Guía completa sobre modos de inicialización y recuperabilidad
+> - [Inicialización de Nodo]({{< relref "../initialization" >}}) - Guía completa sobre modos de inicialización y recuperabilidad
 
 ## Diferencias entre Validadores y Full Nodes en la Gestión de Claves
 
@@ -38,7 +38,7 @@ Los full nodes (nodos completos) **NO necesitan preocuparse por la recuperabilid
 - **Sin riesgo de pérdida permanente** - Si pierden la Private Validator Key, simplemente pueden reinicializar el nodo con una nueva
 
 **Para full nodes:**
-- Puedes usar [inicialización simple]({{< relref "../initialize-node#inicialización-simple" >}}) sin preocuparte por la recuperabilidad de la Private Validator Key
+- Puedes usar [inicialización simple]({{< relref "../initialization/simple-initialization" >}}) sin preocuparte por la recuperabilidad de la Private Validator Key
 - El nodo generará automáticamente una Private Validator Key para su funcionamiento interno
 - No necesitas respaldar la Private Validator Key porque no representa una identidad crítica en la blockchain
 - **SÍ puedes usar claves de cuenta** en el keyring para operaciones si lo necesitas (transacciones, delegaciones, etc.)
@@ -53,7 +53,7 @@ Los validadores **DEBEN preocuparse por la recuperabilidad de la Private Validat
 - **Riesgo de pérdida permanente** - Si pierden su Private Validator Key y no pueden recuperarla (porque no usaron recovery mode), pierden su validador para siempre
 
 **Para validadores:**
-- **DEBES** inicializar con [recovery mode]({{< relref "../initialize-node#inicialización-con-recovery" >}}) usando una frase semilla para asegurar la recuperabilidad de la Private Validator Key
+- **DEBES** inicializar con [recovery mode]({{< relref "../initialization/recovery-initialization" >}}) usando una frase semilla para asegurar la recuperabilidad de la Private Validator Key
 - **DEBES** respaldar tu frase semilla de forma segura
 - Es recomendable usar la misma frase semilla para inicializar el nodo (generar la Private Validator Key) y para el [keyring]({{< relref "../../../../../concepts/keyring" >}}) (claves de cuenta para operaciones)
 - Si pierdes tu `priv_validator_key` y no usaste recovery mode, perderás tu validador permanentemente
@@ -70,7 +70,7 @@ Para entender en detalle cómo se relacionan estos componentes y por qué es rec
 |---------|-----------|-----------|
 | **Uso de claves de cuenta (keyring)** | ✅ Opcional - para operaciones si se necesita | ✅ Recomendado - para operaciones on-chain |
 | **Recuperabilidad de Private Validator Key** | ❌ No necesaria - puede usar inicialización simple | ✅ **CRÍTICA** - DEBE usar recovery mode |
-| **Inicialización del nodo** | [Simple]({{< relref "../initialize-node#inicialización-simple" >}}) está bien | **DEBE ser con [recovery]({{< relref "../initialize-node#inicialización-con-recovery" >}})** |
+| **Inicialización del nodo** | [Simple]({{< relref "../initialization/simple-initialization" >}}) está bien | **DEBE ser con [recovery]({{< relref "../initialization/recovery-initialization" >}})** |
 | **Riesgo de perder Private Validator Key** | Bajo impacto - puede reinicializar | **Pérdida permanente del validador** |
 | **Respaldar frase semilla** | No necesario para Private Validator Key | **OBLIGATORIO** para Private Validator Key |
 
@@ -81,6 +81,6 @@ Ahora que entiendes los conceptos fundamentales:
 - **[Operaciones de Gestión]({{< relref "operations" >}})** - Aprende a realizar operaciones de gestión de claves
 - **[Mejores Prácticas de Seguridad]({{< relref "security" >}})** - Protege tus claves siguiendo estas recomendaciones
 - **[Workflow para Validadores]({{< relref "validator-workflow" >}})** - Si eres validador, sigue este workflow paso a paso
-- **[Inicializar Nodo]({{< relref "../initialize-node" >}})** - Guía práctica para inicializar un nodo
+- **[Inicialización de Nodo]({{< relref "../initialization" >}})** - Guía práctica para inicializar un nodo
 - **[Interfaz Gráfica]({{< relref "../graphical-interface" >}})** - Usa la interfaz gráfica para gestionar tu nodo
 

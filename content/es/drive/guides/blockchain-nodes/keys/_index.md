@@ -28,7 +28,7 @@ Para obtener el mejor provecho de esta documentación, te recomendamos seguir es
 > - [Keyring]({{< relref "../../../../../concepts/keyring" >}}) - Qué es un keyring y cómo funciona
 > - [Private Validator Key]({{< relref "../../../../../concepts/private-validator-key" >}}) - Qué es el Private Validator Key y su importancia
 > - [Keyring vs Private Validator Key]({{< relref "../../../../../concepts/keyring-vs-validator-key" >}}) - Diferencias detalladas entre ambos componentes
-> - [Inicializar Nodo]({{< relref "../initialize-node" >}}) - Guía completa sobre modos de inicialización y recuperabilidad
+> - [Inicialización de Nodo]({{< relref "../initialization" >}}) - Guía completa sobre modos de inicialización y recuperabilidad
 
 ### 2. 🔧 Aprender las Operaciones
 
@@ -69,7 +69,7 @@ Para entender las diferencias entre validadores y full nodes en cuanto a la gest
 
 **Rutas recomendadas:**
 - **Si eres Validador:** Lee [Entender las Claves]({{< relref "understanding-keys" >}}), aprende las [Mejores Prácticas de Seguridad]({{< relref "security" >}}), y luego sigue el [Workflow para Validadores]({{< relref "validator-workflow" >}})
-- **Si eres Full Node:** Puedes usar [Operaciones de Gestión]({{< relref "operations" >}}) si necesitas claves de cuenta para operaciones, o continuar con [Inicializar Nodo]({{< relref "../initialize-node" >}}) si solo quieres ejecutar el nodo
+- **Si eres Full Node:** Puedes usar [Operaciones de Gestión]({{< relref "operations" >}}) si necesitas claves de cuenta para operaciones, o continuar con [Inicialización de Nodo]({{< relref "../initialization" >}}) si solo quieres ejecutar el nodo
 
 ## Solución de Problemas
 
@@ -89,10 +89,10 @@ Si encuentras problemas al gestionar claves, consulta:
 - [Keyring]({{< relref "../../../../../concepts/keyring" >}}) - Qué es un keyring y cómo funciona
 - [Private Validator Key]({{< relref "../../../../../concepts/private-validator-key" >}}) - Qué es el Private Validator Key
 - [Keyring vs Private Validator Key]({{< relref "../../../../../concepts/keyring-vs-validator-key" >}}) - Diferencias detalladas entre ambos componentes
-- [Inicializar Nodo]({{< relref "../initialize-node" >}}) - Guía completa sobre modos de inicialización y recuperabilidad
+- [Inicialización de Nodo]({{< relref "../initialization" >}}) - Guía completa sobre modos de inicialización y recuperabilidad
 
 ### Guías Relacionadas
 
 - [Interfaz Gráfica]({{< relref "../graphical-interface" >}}) - Usa la interfaz gráfica para gestionar claves
-- [Inicializar Nodo]({{< relref "../initialize-node" >}}) - Cómo inicializar un nodo usando tus claves
+- [Inicialización de Nodo]({{< relref "../initialization" >}}) - Cómo inicializar un nodo usando tus claves
 - [Iniciar/Detener Nodo]({{< relref "../start-stop-node" >}}) - Cómo iniciar y detener tu nodo después de configurar las claves

@@ -34,7 +34,7 @@ El Private Validator Key se genera durante la inicialización del nodo. El modo 
 - **Inicialización Simple:** Genera una clave aleatoria y única que **no se puede recuperar**
 - **Inicialización con Recovery:** Genera siempre la misma clave usando una frase semilla, **recuperable en cualquier momento**
 
-Para más detalles, consulta [Inicializar Nodo]({{< relref "../drive/guides/blockchain-nodes/initialize-node" >}}).
+Para más detalles, consulta [Inicialización de Nodo]({{< relref "../drive/guides/blockchain-nodes/initialization" >}}).
 
 ## Ubicación
 
@@ -47,5 +47,5 @@ El Private Validator Key se almacena en:
 
 - [Keyring vs Private Validator Key]({{< relref "keyring-vs-validator-key" >}}) - Diferencias detalladas entre keyring y Private Validator Key
 - [Keyring]({{< relref "keyring" >}}) - Qué es un keyring y cómo funciona
-- [Inicializar Nodo]({{< relref "../drive/guides/blockchain-nodes/initialize-node" >}}) - Guía completa sobre modos de inicialización y recuperabilidad
+- [Inicialización de Nodo]({{< relref "../drive/guides/blockchain-nodes/initialization" >}}) - Guía completa sobre modos de inicialización y recuperabilidad
 - [Entender las Claves]({{< relref "../drive/guides/blockchain-nodes/keys/understanding-keys" >}}) - Guía aplicada sobre cómo se relacionan estos conceptos

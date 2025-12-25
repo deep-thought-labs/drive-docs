@@ -28,7 +28,7 @@ El **Private Validator Key** (`priv_validator_key.json`) es la identidad criptog
 - **Se genera automáticamente** - Durante la inicialización del nodo
 - **Firma bloques** - Usada automáticamente por el nodo para firmar bloques que propone o valida
 - **Identidad permanente** - Una vez registrado en la blockchain, está permanentemente ligada a tu validador
-- **Recuperabilidad depende del modo** - Solo recuperable si usaste [inicialización con recovery]({{< relref "../drive/guides/blockchain-nodes/initialize-node#inicialización-con-recovery" >}})
+- **Recuperabilidad depende del modo** - Solo recuperable si usaste [inicialización con recovery]({{< relref "../drive/guides/blockchain-nodes/initialization/recovery-initialization" >}})
 
 ### Cuándo se Usa
 
@@ -75,7 +75,7 @@ Aunque son componentes separados, **es altamente recomendable usar la misma fras
 
 Cuando creas un validador, necesitas:
 
-1. **Inicializar el nodo con [recovery mode]({{< relref "../drive/guides/blockchain-nodes/initialize-node#inicialización-con-recovery" >}})** usando tu frase semilla → Genera tu `priv_validator_key`
+1. **Inicializar el nodo con [recovery mode]({{< relref "../drive/guides/blockchain-nodes/initialization/recovery-initialization" >}})** usando tu frase semilla → Genera tu `priv_validator_key`
 2. **Agregar la misma frase semilla al keyring** → Para poder firmar la transacción `create-validator`
 
 Si usas la misma semilla para ambos, todo funciona de manera coherente y sencilla.
@@ -93,7 +93,7 @@ Es importante entender que son **procesos separados**:
 
 Si estás configurando un validador:
 
-- **Private Validator Key:** DEBES inicializar con [recovery mode]({{< relref "../drive/guides/blockchain-nodes/initialize-node#inicialización-con-recovery" >}}) para que sea recuperable
+- **Private Validator Key:** DEBES inicializar con [recovery mode]({{< relref "../drive/guides/blockchain-nodes/initialization/recovery-initialization" >}}) para que sea recuperable
 - **Keyring:** Recomendado agregar la misma frase semilla para operaciones on-chain
 - **Misma semilla:** Usa la misma frase semilla para ambos para simplicidad y consistencia
 
@@ -109,6 +109,6 @@ Si estás ejecutando un full node (no validador):
 
 - [Keyring]({{< relref "keyring" >}}) - Qué es un keyring y cómo funciona
 - [Private Validator Key]({{< relref "private-validator-key" >}}) - Qué es el Private Validator Key y su importancia
-- [Inicializar Nodo]({{< relref "../drive/guides/blockchain-nodes/initialize-node" >}}) - Guía completa sobre modos de inicialización y recuperabilidad
+- [Inicialización de Nodo]({{< relref "../drive/guides/blockchain-nodes/initialization" >}}) - Guía completa sobre modos de inicialización y recuperabilidad
 - [Entender las Claves]({{< relref "../drive/guides/blockchain-nodes/keys/understanding-keys" >}}) - Guía aplicada sobre cómo se relacionan estos conceptos
 

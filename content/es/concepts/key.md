@@ -78,6 +78,6 @@ Las claves criptográficas son fundamentales para la seguridad:
 - [Keyring]({{< relref "keyring" >}}) - Almacén seguro de múltiples claves
 - [Private Validator Key]({{< relref "private-validator-key" >}}) - Clave específica para validadores
 - [Keyring vs Private Validator Key]({{< relref "keyring-vs-validator-key" >}}) - Diferencias entre tipos de claves
-- [Inicializar Nodo]({{< relref "../drive/guides/blockchain-nodes/initialize-node" >}}) - Cómo se generan las claves durante la inicialización
+- [Inicialización de Nodo]({{< relref "../drive/guides/blockchain-nodes/initialization" >}}) - Cómo se generan las claves durante la inicialización
 - [Gestión de Claves]({{< relref "../drive/guides/blockchain-nodes/keys" >}}) - Guía práctica para gestionar claves
 

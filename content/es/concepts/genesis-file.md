@@ -84,5 +84,5 @@ cat persistent-data/config/genesis.json | grep chain_id
 
 - [Inicialización de Nodo]({{< relref "node-initialization" >}}) - Qué es la inicialización y qué componentes crea
 - [Data del Nodo]({{< relref "node-data" >}}) - Qué es la data del nodo y dónde se almacena
-- [Inicializar Nodo]({{< relref "../drive/guides/blockchain-nodes/initialize-node" >}}) - Guía práctica para inicializar un nodo
+- [Inicialización de Nodo]({{< relref "../drive/guides/blockchain-nodes/initialization" >}}) - Guía práctica para inicializar un nodo
 

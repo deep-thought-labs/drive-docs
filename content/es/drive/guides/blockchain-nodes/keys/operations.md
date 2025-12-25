@@ -47,7 +47,7 @@ Genera una clave criptográfica y muestra tu frase semilla **sin guardarla** en 
 - **NO guarda** la clave en el keyring (por eso se llama "dry-run")
 - Te permite respaldar la frase semilla antes de comprometerte
 
-**Diferencia clave:** A diferencia de "Generate and Save Key", este método **no guarda** la clave en el [keyring]({{< relref "../../../../../concepts/keyring" >}}). Tú resguardas la frase semilla de manera directa y la usas para inicializar el nodo en [modo recovery]({{< relref "../initialize-node#inicialización-con-recovery" >}}).
+**Diferencia clave:** A diferencia de "Generate and Save Key", este método **no guarda** la clave en el [keyring]({{< relref "../../../../../concepts/keyring" >}}). Tú resguardas la frase semilla de manera directa y la usas para inicializar el nodo en [modo recovery]({{< relref "../initialization/recovery-initialization" >}}).
 
 #### Usando Línea de Comandos
 
@@ -75,7 +75,7 @@ cd services/node0-infinite  # O cualquier otro servicio
 3. El sistema generará y **mostrará tu frase semilla** (12 o 24 palabras)
 4. **⚠️ CRÍTICO:** Escribe y respalda esta frase semilla inmediatamente
 5. La clave **NO se guarda** en el keyring
-6. Usa esta frase semilla para inicializar tu nodo en [modo recovery]({{< relref "../initialize-node#inicialización-con-recovery" >}})
+6. Usa esta frase semilla para inicializar tu nodo en [modo recovery]({{< relref "../initialization/recovery-initialization" >}})
 
 **Cuándo usar:** Cuando quieras crear una nueva clave y tener control completo sobre tu frase semilla antes de usarla.
 

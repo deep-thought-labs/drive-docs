@@ -55,7 +55,7 @@ Existen dos modos de inicialización disponibles:
 - **Inicialización Simple** - Genera claves aleatorias que no se pueden recuperar
 - **Inicialización con Recovery** - Usa una frase semilla para generar claves recuperables
 
-Para más detalles sobre cómo inicializar un nodo y cuándo usar cada modo, consulta la guía práctica [Inicializar Nodo]({{< relref "../drive/guides/blockchain-nodes/initialize-node" >}}).
+Para más detalles sobre cómo inicializar un nodo y cuándo usar cada modo, consulta la guía práctica [Inicialización de Nodo]({{< relref "../drive/guides/blockchain-nodes/initialization" >}}).
 
 ## Importancia de la Inicialización
 
@@ -71,5 +71,5 @@ La inicialización es un paso crítico porque:
 - [Archivo Génesis]({{< relref "genesis-file" >}}) - Qué es el archivo génesis y su propósito
 - [Data del Nodo]({{< relref "node-data" >}}) - Qué es la data del nodo y dónde se almacena
 - [Private Validator Key]({{< relref "private-validator-key" >}}) - Qué es el Private Validator Key
-- [Inicializar Nodo]({{< relref "../drive/guides/blockchain-nodes/initialize-node" >}}) - Guía práctica para inicializar un nodo
+- [Inicialización de Nodo]({{< relref "../drive/guides/blockchain-nodes/initialization" >}}) - Guía práctica para inicializar un nodo
 

@@ -41,5 +41,5 @@ Las claves almacenadas en el keyring se utilizan para:
 
 - [Keyring vs Private Validator Key]({{< relref "keyring-vs-validator-key" >}}) - Diferencias detalladas entre keyring y Private Validator Key
 - [Private Validator Key]({{< relref "private-validator-key" >}}) - Qué es el Private Validator Key
-- [Inicializar Nodo]({{< relref "../drive/guides/blockchain-nodes/initialize-node" >}}) - Guía completa sobre modos de inicialización
+- [Inicialización de Nodo]({{< relref "../drive/guides/blockchain-nodes/initialization" >}}) - Guía completa sobre modos de inicialización
 - [Gestión de Claves]({{< relref "../drive/guides/blockchain-nodes/keys" >}}) - Guía práctica para gestionar claves en el keyring

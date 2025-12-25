@@ -101,9 +101,19 @@ main:
                   - name: "Validator Workflow"
                     ref: "/drive/guides/blockchain-nodes/keys/validator-workflow"
                     weight: 52223
-              - name: "Initialize Node"
-                ref: "/drive/guides/blockchain-nodes/initialize-node"
+              - name: "Initialization"
+                ref: "/drive/guides/blockchain-nodes/initialization"
                 weight: 5223
+                sub:
+                  - name: "Simple Initialization"
+                    ref: "/drive/guides/blockchain-nodes/initialization/simple-initialization"
+                    weight: 52231
+                  - name: "Recovery Initialization"
+                    ref: "/drive/guides/blockchain-nodes/initialization/recovery-initialization"
+                    weight: 52232
+                  - name: "Verification"
+                    ref: "/drive/guides/blockchain-nodes/initialization/verification"
+                    weight: 52233
               - name: "Start/Stop Node"
                 ref: "/drive/guides/blockchain-nodes/start-stop-node"
                 weight: 5224

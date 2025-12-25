@@ -14,5 +14,5 @@ Guías específicas de acciones organizadas por categoría.
 
 - [Interfaz Gráfica]({{< relref "blockchain-nodes/graphical-interface" >}})
 - [Gestión de Claves]({{< relref "blockchain-nodes/keys" >}})
-- [Inicializar Nodo]({{< relref "blockchain-nodes/initialize-node" >}})
+- [Inicialización de Nodo]({{< relref "blockchain-nodes/initialization" >}})
 - [Iniciar/Detener Nodo]({{< relref "blockchain-nodes/start-stop-node" >}})

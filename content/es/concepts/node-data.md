@@ -120,6 +120,6 @@ Para full nodes, generalmente no es necesario respaldar la data, ya que puede se
 - [Inicialización de Nodo]({{< relref "node-initialization" >}}) - Qué es la inicialización y qué componentes crea
 - [Archivo Génesis]({{< relref "genesis-file" >}}) - Qué es el archivo génesis y su propósito
 - [Private Validator Key]({{< relref "private-validator-key" >}}) - Qué es el Private Validator Key
-- [Inicializar Nodo]({{< relref "../drive/guides/blockchain-nodes/initialize-node" >}}) - Guía práctica para inicializar un nodo
+- [Inicialización de Nodo]({{< relref "../drive/guides/blockchain-nodes/initialization" >}}) - Guía práctica para inicializar un nodo
 - [Iniciar/Detener Nodo]({{< relref "../drive/guides/blockchain-nodes/start-stop-node" >}}) - Cómo gestionar el nodo
 

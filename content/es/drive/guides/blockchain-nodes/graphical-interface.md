@@ -134,5 +134,5 @@ Al salir, la interfaz se cerrará inmediatamente y volverás a la línea de coma
 ## Ver También
 
 - [Gestión de Claves]({{< relref "keys" >}}) - Guía completa sobre gestión de claves usando la interfaz
-- [Inicializar Nodo]({{< relref "initialize-node" >}}) - Cómo inicializar un nodo usando la interfaz
+- [Inicialización de Nodo]({{< relref "initialization" >}}) - Cómo inicializar un nodo usando la interfaz
 - [Iniciar/Detener Nodo]({{< relref "start-stop-node" >}}) - Operaciones básicas del nodo

@@ -9,5 +9,5 @@ Guías para operaciones de nodos blockchain.
 
 - [Interfaz Gráfica]({{< relref "graphical-interface" >}}) - Guía de la interfaz gráfica
 - [Gestión de Claves]({{< relref "keys" >}}) - Gestión completa de claves criptográficas
-- [Inicializar Nodo]({{< relref "initialize-node" >}}) - Cómo inicializar un nodo
+- [Inicialización de Nodo]({{< relref "initialization" >}}) - Cómo inicializar un nodo
 - [Iniciar/Detener Nodo]({{< relref "start-stop-node" >}}) - Operaciones básicas del nodo
