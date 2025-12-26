@@ -11,29 +11,17 @@ Después de inicializar tu nodo, necesitas iniciarlo para que comience a sincron
 
 ### Usando Interfaz Gráfica (Recomendado)
 
-1. Abre la interfaz gráfica:
+1. Abre la interfaz gráfica (ver [Interfaz Gráfica]({{< relref "graphical-interface" >}}))
 
-   ```bash
-   cd services/node0-infinite  # O cualquier otro servicio
-   ./drive.sh up -d            # Asegúrate de que el contenedor esté ejecutándose
-   ./drive.sh exec infinite node-ui
-   ```
+2. Navega: Menú Principal → **"Node Operations"** → **"Start Node"**
 
-2. En el menú principal, selecciona **"Node Operations"**
+   ![Start Node seleccionada](/images/node-ui-operations-op1-start.png)
 
-   ![Menú Principal - Node Operations seleccionada](/images/node-ui-op2-operations.png)
-
-3. Selecciona **"Start Node"**
-
-   ![Node Operations - Start Node seleccionada](/images/node-ui-operations-op1-start.png)
-
-4. La interfaz mostrará el proceso de inicio y confirmará cuando el nodo esté ejecutándose
+3. La interfaz mostrará el proceso de inicio y confirmará cuando el nodo esté ejecutándose
 
 ### Usando Línea de Comandos
 
 ```bash
-cd services/node0-infinite  # O cualquier otro servicio
-./drive.sh up -d            # Asegúrate de que el contenedor esté ejecutándose
 ./drive.sh exec infinite node-start
 ```
 
@@ -46,14 +34,10 @@ cd services/node0-infinite  # O cualquier otro servicio
 - Mensaje de éxito: `✅ Node started successfully (PID: 123)`
 - Instrucciones para ver logs y detener el nodo
 
-**Qué sucede internamente:**
-1. Verifica que el nodo esté inicializado (comprueba la existencia de `genesis.json`)
-2. Verifica que no haya otra instancia ejecutándose
-3. Inicia el proceso del nodo en segundo plano usando `setsid` para aislamiento
-4. Redirige toda la salida a `/var/log/node/node.log`
-5. Guarda el ID del proceso (PID) para seguimiento
-6. Crea el flag de auto-start para reinicio automático
-7. Inicia el supervisor para monitoreo y reinicio automático
+> [!NOTE]
+> **Detalles Técnicos**
+>
+> Para información detallada sobre cómo funciona internamente el inicio del nodo, consulta [Gestión de Procesos Interna]({{< relref "../../internal-workings/process-management" >}}) y [Sistema de Supervisor y Auto-Start]({{< relref "../../internal-workings/supervisor-auto-start" >}}).
 
 **Si el nodo ya está ejecutándose:** El comando mostrará una advertencia con el PID existente y saldrá sin iniciar una instancia duplicada.
 
@@ -63,27 +47,17 @@ Detener el nodo de forma controlada es importante para mantener la integridad de
 
 ### Usando Interfaz Gráfica (Recomendado)
 
-1. Abre la interfaz gráfica:
+1. Abre la interfaz gráfica (ver [Interfaz Gráfica]({{< relref "graphical-interface" >}}))
 
-   ```bash
-   cd services/node0-infinite  # O cualquier otro servicio
-   ./drive.sh exec infinite node-ui
-   ```
+2. Navega: Menú Principal → **"Node Operations"** → **"Stop Node"**
 
-2. En el menú principal, selecciona **"Node Operations"**
+   ![Stop Node seleccionada](/images/node-ui-operations-op2-stop.png)
 
-   ![Menú Principal - Node Operations seleccionada](/images/node-ui-op2-operations.png)
-
-3. Selecciona **"Stop Node"**
-
-   ![Node Operations - Stop Node seleccionada](/images/node-ui-operations-op2-stop.png)
-
-4. Confirma la operación
+3. Confirma la operación
 
 ### Usando Línea de Comandos
 
 ```bash
-cd services/node0-infinite  # O cualquier otro servicio
 ./drive.sh exec infinite node-stop
 ```
 

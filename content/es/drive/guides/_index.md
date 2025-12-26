@@ -12,7 +12,10 @@ Guías específicas de acciones organizadas por categoría.
 
 ## Nodos Blockchain
 
-- [Interfaz Gráfica]({{< relref "blockchain-nodes/graphical-interface" >}})
-- [Gestión de Claves]({{< relref "blockchain-nodes/keys" >}})
-- [Inicialización de Nodo]({{< relref "blockchain-nodes/initialization" >}})
-- [Iniciar/Detener Nodo]({{< relref "blockchain-nodes/start-stop-node" >}})
+- [Interfaz Gráfica]({{< relref "blockchain-nodes/graphical-interface" >}}) - Guía de la interfaz gráfica
+- [Gestión de Claves]({{< relref "blockchain-nodes/keys" >}}) - Gestión completa de claves criptográficas
+- [Inicialización de Nodo]({{< relref "blockchain-nodes/initialization" >}}) - Cómo inicializar un nodo
+- [Iniciar/Detener Nodo]({{< relref "blockchain-nodes/start-stop-node" >}}) - Operaciones básicas del nodo
+- [Reiniciar Nodo]({{< relref "blockchain-nodes/restart-node" >}}) - Cómo reiniciar el nodo
+- [Monitoreo del Nodo]({{< relref "blockchain-nodes/node-monitoring" >}}) - Monitorear estado, logs y sincronización
+- [Borrar Data del Nodo]({{< relref "blockchain-nodes/delete-node-data" >}}) - Cómo eliminar la data del nodo

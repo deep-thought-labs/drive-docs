@@ -24,58 +24,24 @@ La inicialización simple genera una [Private Validator Key]({{< relref "../../.
 
 ## Usando Interfaz Gráfica
 
-1. Abre la interfaz gráfica:
+1. Abre la interfaz gráfica (ver [Interfaz Gráfica]({{< relref "../graphical-interface" >}}))
 
-   ```bash
-   cd services/node0-infinite  # O cualquier otro servicio
-   ./drive.sh up -d            # Asegúrate de que el contenedor esté ejecutándose
-   ./drive.sh exec infinite node-ui
-   ```
+2. Navega: Menú Principal → **"Node Operations"** → **"Advanced Operations"** → **"Initialize Node (Simple)"**
 
-2. En el menú principal, selecciona **"Node Operations"**
+   ![Initialize Node (Simple) seleccionada](/images/node-ui-advanced-operations-op1-init-simple.png)
 
-   ![Menú Principal - Node Operations seleccionada](/images/node-ui-op2-operations.png)
-
-3. Selecciona **"Advanced Operations"**
-
-   ![Node Operations - Advanced Operations seleccionada](/images/node-ui-operations-op4-advanced-operations.png)
-
-4. Selecciona **"Initialize Node (Simple)"**
-
-   ![Advanced Operations - Initialize Node (Simple) seleccionada](/images/node-ui-advanced-operations-op1-init-simple.png)
-
-   Esta opción inicializa el nodo generando una clave aleatoria que no se puede recuperar.
-
-5. Sigue las instrucciones en pantalla para completar la inicialización
+3. Sigue las instrucciones en pantalla para completar la inicialización
 
 ## Usando Línea de Comandos
 
 ```bash
-cd services/node0-infinite  # O cualquier otro servicio
-./drive.sh up -d            # Asegúrate de que el contenedor esté ejecutándose
 ./drive.sh exec infinite node-init
 ```
 
-### Qué Hace el Comando
-
-El comando de inicialización simple realiza las siguientes operaciones:
-
-- **Crea los archivos de configuración del nodo:**
-  - `config.toml` - Configuración general del nodo
-  - `app.toml` - Configuración de la aplicación blockchain
-  - `client.toml` - Configuración del cliente
-
-- **Genera una [Private Validator Key]({{< relref "../../../../../concepts/private-validator-key" >}}) aleatoria y única:**
-  - El archivo `priv_validator_key.json` se crea con una clave aleatoria
-  - Esta clave **no se puede recuperar** si la pierdes
-  - Cada vez que inicializas de forma simple, obtienes una clave diferente
-
-- **Descarga el [archivo génesis]({{< relref "../../../../../concepts/genesis-file" >}}) oficial de la red:**
-  - El archivo `genesis.json` se descarga desde el repositorio oficial
-  - Contiene el estado inicial de la blockchain
-
-- **Establece el Chain ID basado en la configuración del servicio:**
-  - El Chain ID se configura automáticamente según el servicio
+> [!NOTE]
+> **Qué Hace el Comando**
+>
+> El comando crea los archivos de configuración, genera una [Private Validator Key]({{< relref "../../../../../concepts/private-validator-key" >}}) aleatoria (no recuperable), y descarga el [archivo génesis]({{< relref "../../../../../concepts/genesis-file" >}}) oficial. Para detalles técnicos del proceso, consulta [Flujo de Inicialización Técnico]({{< relref "../../../internal-workings/initialization-flow" >}}).
 
 ### Salida Esperada
 
@@ -85,16 +51,10 @@ Después de ejecutar el comando, deberías ver:
 ✅ Node initialized successfully!
 ```
 
-**Ubicación de configuración:**
-- **Ruta en el host:** `./persistent-data/config/` (relativa al directorio del servicio)
-- **Ruta en el contenedor:** `/home/ubuntu/.infinited/config/`
-
-**Archivos creados:**
-- `config.toml`
-- `app.toml`
-- `client.toml`
-- `genesis.json`
-- `priv_validator_key.json`
+> [!NOTE]
+> **Archivos Creados**
+>
+> Los archivos de configuración se crean en `./persistent-data/config/` (host) o `/home/ubuntu/.infinited/config/` (contenedor). Para más detalles sobre la estructura de datos, consulta [Data del Nodo]({{< relref "../../../../../concepts/node-data" >}}).
 
 ## Verificación
 

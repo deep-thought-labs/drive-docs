@@ -11,19 +11,9 @@ Todas las opciones de monitoreo están disponibles a través de la interfaz grá
 
 ### Usando Interfaz Gráfica (Recomendado)
 
-1. Abre la interfaz gráfica:
+1. Abre la interfaz gráfica (ver [Interfaz Gráfica]({{< relref "graphical-interface" >}}))
 
-   ```bash
-   cd services/node0-infinite  # O cualquier otro servicio
-   ./drive.sh up -d            # Asegúrate de que el contenedor esté ejecutándose
-   ./drive.sh exec infinite node-ui
-   ```
-
-2. En el menú principal, selecciona **"Node Monitoring"**
-
-   ![Menú Principal - Node Monitoring seleccionada](/images/node-ui-op3-monitoring.png)
-
-3. Accederás al submenú de monitoreo:
+2. Navega: Menú Principal → **"Node Monitoring"**
 
    ![Submenú Node Monitoring](/images/node-ui-monitoring.png)
 
@@ -53,7 +43,6 @@ Verifica si el proceso del nodo está ejecutándose y obtén información sobre 
 ### Usando Línea de Comandos
 
 ```bash
-cd services/node0-infinite  # O cualquier otro servicio
 ./drive.sh exec infinite node-process-status
 ```
 
@@ -91,8 +80,6 @@ Muestra las últimas N líneas de logs del nodo.
 #### Usando Línea de Comandos
 
 ```bash
-cd services/node0-infinite  # O cualquier otro servicio
-
 # Últimas 50 líneas (por defecto)
 ./drive.sh exec infinite node-logs
 
@@ -127,7 +114,6 @@ Muestra los logs del nodo en tiempo real, actualizándose automáticamente a med
 #### Usando Línea de Comandos
 
 ```bash
-cd services/node0-infinite  # O cualquier otro servicio
 ./drive.sh exec infinite node-logs -f
 # o
 ./drive.sh exec infinite node-logs --follow
@@ -155,7 +141,6 @@ Después de iniciar tu nodo, comenzará a sincronizar con la red blockchain. Nec
 ### Usando Línea de Comandos
 
 ```bash
-cd services/node0-infinite  # O cualquier otro servicio
 ./drive.sh exec infinite infinited status
 ```
 

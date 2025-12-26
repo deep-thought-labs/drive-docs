@@ -21,48 +21,32 @@ Para reiniciar el nodo (detener y volver a iniciar):
 
 ### Usando Interfaz Gráfica (Recomendado)
 
-1. Abre la interfaz gráfica:
+1. Abre la interfaz gráfica (ver [Interfaz Gráfica]({{< relref "graphical-interface" >}}))
 
-   ```bash
-   cd services/node0-infinite  # O cualquier otro servicio
-   ./drive.sh exec infinite node-ui
-   ```
+2. Navega: Menú Principal → **"Node Operations"** → **"Restart Node"**
 
-2. En el menú principal, selecciona **"Node Operations"**
+   ![Restart Node seleccionada](/images/node-ui-operations-op3-restart.png)
 
-   ![Menú Principal - Node Operations seleccionada](/images/node-ui-op2-operations.png)
-
-3. Selecciona **"Restart Node"**
-
-   ![Node Operations - Restart Node seleccionada](/images/node-ui-operations-op3-restart.png)
-
-4. La interfaz detendrá y reiniciará el nodo automáticamente
+3. La interfaz detendrá y reiniciará el nodo automáticamente
 
 ### Usando Línea de Comandos
 
-1. **Detén el nodo** usando `node-stop`:
-
+1. **Detén el nodo:**
    ```bash
-   cd services/node0-infinite  # O cualquier otro servicio
    ./drive.sh exec infinite node-stop
    ```
 
-2. **Espera unos segundos** para que el proceso se cierre completamente
+2. **Espera unos segundos** para que el proceso se cierre completamente (hasta 30 segundos)
 
-   El cierre controlado puede tomar hasta 30 segundos. Es importante esperar para asegurar que el nodo se detenga correctamente.
-
-3. **Inicia el nodo** nuevamente usando `node-start`:
-
+3. **Inicia el nodo nuevamente:**
    ```bash
    ./drive.sh exec infinite node-start
    ```
 
 **Ejemplo completo:**
-
 ```bash
-cd services/node0-infinite
 ./drive.sh exec infinite node-stop
-sleep 5  # Esperar 5 segundos para que el proceso se cierre
+sleep 5  # Esperar 5 segundos
 ./drive.sh exec infinite node-start
 ```
 

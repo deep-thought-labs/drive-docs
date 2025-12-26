@@ -54,39 +54,21 @@ La interfaz gráfica es la forma más segura y clara de borrar la data del nodo,
 
 Primero, asegúrate de que el nodo esté detenido:
 
-1. Abre la interfaz gráfica:
+1. Abre la interfaz gráfica (ver [Interfaz Gráfica]({{< relref "graphical-interface" >}}))
 
-   ```bash
-   cd services/node0-infinite  # O cualquier otro servicio
-   ./drive.sh up -d            # Asegúrate de que el contenedor esté ejecutándose
-   ./drive.sh exec infinite node-ui
-   ```
+2. Navega: Menú Principal → **"Node Operations"** → **"Stop Node"** (si el nodo está ejecutándose)
 
-2. En el menú principal, selecciona **"Node Operations"**
-
-   ![Menú Principal - Node Operations seleccionada](/images/node-ui-op2-operations.png)
-
-3. Selecciona **"Stop Node"** si el nodo está ejecutándose
-
-   ![Node Operations - Stop Node seleccionada](/images/node-ui-operations-op2-stop.png)
+   ![Stop Node seleccionada](/images/node-ui-operations-op2-stop.png)
 
 ### Paso 2: Borrar la Data del Nodo
 
 Una vez que el nodo esté detenido:
 
-1. En el menú principal, selecciona **"Node Operations"**
+1. Navega: Menú Principal → **"Node Operations"** → **"Advanced Operations"** → **"Delete Node Data"**
 
-   ![Menú Principal - Node Operations seleccionada](/images/node-ui-op2-operations.png)
+   ![Delete Node Data seleccionada](/images/node-ui-advanced-operations-op4-clean-data.png)
 
-2. Selecciona **"Advanced Operations"**
-
-   ![Node Operations - Advanced Operations seleccionada](/images/node-ui-operations-op4-advanced-operations.png)
-
-3. Selecciona **"Delete Node Data"** (o "Clean Node Data")
-
-   ![Advanced Operations - Delete Node Data seleccionada](/images/node-ui-advanced-operations-op4-clean-data.png)
-
-4. **Lee cuidadosamente la advertencia** que se muestra sobre la pérdida permanente de datos
+2. **Lee cuidadosamente la advertencia** que se muestra sobre la pérdida permanente de datos
 
 5. Confirma la operación cuando se solicite
 
@@ -101,7 +83,6 @@ Si prefieres usar la línea de comandos, puedes borrar la data del nodo manualme
 Primero, asegúrate de que el nodo esté detenido:
 
 ```bash
-cd services/node0-infinite  # O cualquier otro servicio
 ./drive.sh exec infinite node-stop
 ```
 
@@ -120,8 +101,6 @@ Tienes dos opciones para eliminar la data:
 Esta es la forma más directa y recomendada:
 
 ```bash
-cd services/node0-infinite  # O cualquier otro servicio
-
 # Eliminar todo el contenido del directorio persistent-data
 rm -rf ./persistent-data/*
 
@@ -135,8 +114,6 @@ rm -rf ./persistent-data/config
 Si prefieres hacerlo desde dentro del contenedor:
 
 ```bash
-cd services/node0-infinite  # O cualquier otro servicio
-
 # Acceder al shell del contenedor
 ./drive.sh exec infinite bash
 

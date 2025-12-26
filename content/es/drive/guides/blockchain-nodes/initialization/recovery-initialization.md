@@ -28,66 +28,28 @@ Para más información sobre cómo crear y respaldar una frase semilla, consulta
 
 ## Usando Interfaz Gráfica
 
-1. Abre la interfaz gráfica:
+1. Abre la interfaz gráfica (ver [Interfaz Gráfica]({{< relref "../graphical-interface" >}}))
 
-   ```bash
-   cd services/node0-infinite  # O cualquier otro servicio
-   ./drive.sh up -d            # Asegúrate de que el contenedor esté ejecutándose
-   ./drive.sh exec infinite node-ui
-   ```
+2. Navega: Menú Principal → **"Node Operations"** → **"Advanced Operations"** → **"Initialize with Recovery (Validator)"**
 
-2. En el menú principal, selecciona **"Node Operations"**
+   ![Initialize with Recovery seleccionada](/images/node-ui-advanced-operations-op2-init-revery.png)
 
-   ![Menú Principal - Node Operations seleccionada](/images/node-ui-op2-operations.png)
+3. Cuando se solicite, ingresa tu frase semilla (12 o 24 palabras)
 
-3. Selecciona **"Advanced Operations"**
-
-   ![Node Operations - Advanced Operations seleccionada](/images/node-ui-operations-op4-advanced-operations.png)
-
-4. Selecciona **"Initialize with Recovery (Validator)"**
-
-   ![Advanced Operations - Initialize with Recovery (Validator) seleccionada](/images/node-ui-advanced-operations-op2-init-revery.png)
-
-   Esta opción inicializa el nodo usando una frase semilla, asegurando que siempre generes la misma Private Validator Key.
-
-5. Cuando se solicite, ingresa tu frase semilla (12 o 24 palabras)
-
-6. Sigue las instrucciones en pantalla para completar la inicialización
+4. Sigue las instrucciones en pantalla para completar la inicialización
 
 ## Usando Línea de Comandos
 
 ```bash
-cd services/node0-infinite  # O cualquier otro servicio
-./drive.sh up -d            # Asegúrate de que el contenedor esté ejecutándose
 ./drive.sh exec -it infinite node-init --recover
 ```
 
 **Nota:** Usa `-it` (interactive) para poder ingresar la frase semilla.
 
-### Qué Hace el Comando
-
-El comando de inicialización con recovery realiza las siguientes operaciones:
-
-- **Te solicita ingresar tu frase semilla (12 o 24 palabras):**
-  - El sistema valida que la frase semilla sea válida (formato BIP39)
-  - Debes ingresar exactamente la misma frase semilla que usaste para crear tu clave
-
-- **Genera siempre la misma [Private Validator Key]({{< relref "../../../../../concepts/private-validator-key" >}}):**
-  - Usando esa frase semilla, genera **siempre la misma** clave
-  - Puedes inicializar el nodo múltiples veces con la misma semilla y obtendrás **exactamente la misma clave**
-  - El archivo `priv_validator_key.json` se crea con el contenido determinístico
-
-- **Crea los archivos de configuración del nodo:**
-  - `config.toml` - Configuración general del nodo
-  - `app.toml` - Configuración de la aplicación blockchain
-  - `client.toml` - Configuración del cliente
-
-- **Descarga el [archivo génesis]({{< relref "../../../../../concepts/genesis-file" >}}) oficial de la red:**
-  - El archivo `genesis.json` se descarga desde el repositorio oficial
-  - Contiene el estado inicial de la blockchain
-
-- **Establece el Chain ID basado en la configuración del servicio:**
-  - El Chain ID se configura automáticamente según el servicio
+> [!NOTE]
+> **Qué Hace el Comando**
+>
+> El comando solicita tu frase semilla, genera siempre la misma [Private Validator Key]({{< relref "../../../../../concepts/private-validator-key" >}}) usando tu frase semilla, crea los archivos de configuración, y descarga el [archivo génesis]({{< relref "../../../../../concepts/genesis-file" >}}) oficial. Para detalles técnicos del proceso, consulta [Flujo de Inicialización Técnico]({{< relref "../../../internal-workings/initialization-flow" >}}).
 
 ### Salida Esperada
 
@@ -105,16 +67,10 @@ Después de ingresar la frase semilla correctamente:
 ✅ Node initialized successfully!
 ```
 
-**Ubicación de configuración:**
-- **Ruta en el host:** `./persistent-data/config/` (relativa al directorio del servicio)
-- **Ruta en el contenedor:** `/home/ubuntu/.infinited/config/`
-
-**Archivos creados:**
-- `config.toml`
-- `app.toml`
-- `client.toml`
-- `genesis.json`
-- `priv_validator_key.json` (contenido determinístico basado en tu frase semilla)
+> [!NOTE]
+> **Archivos Creados**
+>
+> Los archivos de configuración se crean en `./persistent-data/config/` (host) o `/home/ubuntu/.infinited/config/` (contenedor). Para más detalles sobre la estructura de datos, consulta [Data del Nodo]({{< relref "../../../../../concepts/node-data" >}}). (contenido determinístico basado en tu frase semilla)
 
 ## Ventajas para Validadores
 

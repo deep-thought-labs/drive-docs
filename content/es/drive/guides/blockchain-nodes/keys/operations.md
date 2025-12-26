@@ -16,15 +16,7 @@ Esto significa que:
 
 ## Submenú de Gestión de Claves
 
-Para acceder a la gestión de claves, abre la interfaz gráfica y navega al submenú "Key Management":
-
-```bash
-cd services/node0-infinite  # O cualquier otro servicio
-./drive.sh up -d            # Asegúrate de que el contenedor esté ejecutándose
-./drive.sh exec infinite node-ui
-```
-
-En el menú principal, selecciona **"Key Management"** (Gestión de Claves). Verás el siguiente submenú:
+Para acceder a la gestión de claves, abre la interfaz gráfica (ver [Interfaz Gráfica]({{< relref "../graphical-interface" >}})) y navega: Menú Principal → **"Key Management"**
 
 ![Submenú Key Management](/images/node-ui-keys.png)
 
@@ -52,7 +44,6 @@ Genera una clave criptográfica y muestra tu frase semilla **sin guardarla** en 
 #### Usando Línea de Comandos
 
 ```bash
-cd services/node0-infinite  # O cualquier otro servicio
 ./drive.sh exec infinite node-keys create my-validator --dry-run
 ```
 
@@ -67,9 +58,7 @@ cd services/node0-infinite  # O cualquier otro servicio
 
 1. En el submenú "Key Management", selecciona **"Generate Key (Dry-Run - Recommended)"**
 
-   ![Generate Key (Dry-Run) - Opción seleccionada](/images/node-ui-key-op1-generate-key-dryrun.png)
-
-   Esta opción genera una clave y muestra tu frase semilla **sin guardarla** en el keyring.
+   ![Generate Key (Dry-Run) seleccionada](/images/node-ui-key-op1-generate-key-dryrun.png)
 
 2. Ingresa un nombre para tu clave (ej: `my-validator`)
 3. El sistema generará y **mostrará tu frase semilla** (12 o 24 palabras)
@@ -95,7 +84,6 @@ Genera una clave nueva y la guarda automáticamente en el keyring en un solo pas
 #### Usando Línea de Comandos
 
 ```bash
-cd services/node0-infinite
 ./drive.sh exec -it infinite node-keys create my-validator
 ```
 
@@ -110,9 +98,7 @@ cd services/node0-infinite
 
 1. En el submenú "Key Management", selecciona **"Generate and Save Key"**
 
-   ![Generate and Save Key - Opción seleccionada](/images/node-ui-key-op2-generate-key-save.png)
-
-   Esta opción genera una clave y la guarda automáticamente en el keyring.
+   ![Generate and Save Key seleccionada](/images/node-ui-key-op2-generate-key-save.png)
 
 2. Ingresa un nombre para tu clave
 3. Ingresa una contraseña para proteger el keyring (si es la primera vez)
@@ -133,7 +119,6 @@ Si ya tienes una frase semilla (de un nodo anterior, de otro sistema, o de una c
 #### Usando Línea de Comandos
 
 ```bash
-cd services/node0-infinite
 ./drive.sh exec -it infinite node-keys add my-validator
 ```
 
@@ -148,9 +133,7 @@ cd services/node0-infinite
 
 1. En el submenú "Key Management", selecciona **"Add Existing Key from Seed Phrase"**
 
-   ![Add Existing Key from Seed Phrase - Opción seleccionada](/images/node-ui-key-op3-add-key.png)
-
-   Esta opción te permite agregar una clave existente al keyring usando su frase semilla.
+   ![Add Existing Key from Seed Phrase seleccionada](/images/node-ui-key-op3-add-key.png)
 
 2. Ingresa un nombre para la clave
 3. Ingresa tu frase semilla (12 o 24 palabras) cuando se solicite
@@ -169,7 +152,6 @@ Muestra todas las claves que tienes almacenadas en tu keyring.
 #### Usando Línea de Comandos
 
 ```bash
-cd services/node0-infinite
 ./drive.sh exec infinite node-keys list
 ```
 
@@ -179,9 +161,7 @@ cd services/node0-infinite
 
 1. En el submenú "Key Management", selecciona **"List All Keys"**
 
-   ![List All Keys - Opción seleccionada](/images/node-ui-key-op4-list.png)
-
-   Esta opción muestra todas las claves almacenadas en tu keyring.
+   ![List All Keys seleccionada](/images/node-ui-key-op4-list.png)
 
 2. Verás una lista de todos los nombres de claves almacenadas
 
@@ -197,7 +177,6 @@ Muestra información detallada sobre una clave específica almacenada en tu keyr
 #### Usando Línea de Comandos
 
 ```bash
-cd services/node0-infinite
 ./drive.sh exec infinite node-keys show my-validator
 ```
 
@@ -211,9 +190,7 @@ cd services/node0-infinite
 
 1. En el submenú "Key Management", selecciona **"Show Key Details"**
 
-   ![Show Key Details - Opción seleccionada](/images/node-ui-key-op5-show-key-details.png)
-
-   Esta opción muestra información detallada sobre una clave específica.
+   ![Show Key Details seleccionada](/images/node-ui-key-op5-show-key-details.png)
 
 2. Ingresa el nombre de la clave
 3. Verás información como la dirección, tipo de clave, etc.
@@ -232,7 +209,6 @@ Elimina permanentemente una clave del keyring.
 #### Usando Línea de Comandos
 
 ```bash
-cd services/node0-infinite
 ./drive.sh exec infinite node-keys delete my-validator --yes
 ```
 
@@ -242,9 +218,7 @@ cd services/node0-infinite
 
 1. En el submenú "Key Management", selecciona **"Delete Key"**
 
-   ![Delete Key - Opción seleccionada](/images/node-ui-key-op6-delete-key.png)
-
-   Esta opción elimina permanentemente una clave del keyring.
+   ![Delete Key seleccionada](/images/node-ui-key-op6-delete-key.png)
 
 2. Ingresa el nombre de la clave a eliminar
 3. Confirma la eliminación
@@ -280,9 +254,7 @@ Permite cambiar la contraseña que protege tu keyring. **Importante:** Esta oper
 
 1. En el submenú "Key Management", selecciona **"Reset Keyring Password"**
 
-   ![Reset Keyring Password - Opción seleccionada](/images/node-ui-key-op7-reset-keyring-password.png)
-
-   Esta opción restablece la contraseña del keyring, creando un nuevo keyring y perdiendo acceso a las claves anteriores.
+   ![Reset Keyring Password seleccionada](/images/node-ui-key-op7-reset-keyring-password.png)
 
 2. **Lee la advertencia** que se muestra sobre la pérdida de acceso a las claves anteriores
 3. Confirma que entiendes las consecuencias
@@ -300,9 +272,6 @@ Para más información sobre la ubicación del keyring y cómo funciona, consult
 
 **Ejemplo:**
 ```bash
-# Asegúrate de estar en el directorio del servicio
-cd services/node0-infinite
-
 # Verifica que el keyring existe y contiene tu clave
 ./drive.sh exec infinite node-keys list
 
