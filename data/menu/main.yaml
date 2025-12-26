@@ -42,6 +42,26 @@ main:
     ref: "/blockchain"
     weight: 40
     icon: "gdoc_link"
+    sub:
+      - name: "Genesis"
+        ref: "/blockchain/genesis"
+        weight: 401
+        sub:
+          - name: "Create Gentx"
+            ref: "/blockchain/genesis/create-gentx"
+            weight: 4011
+      - name: "Transactions"
+        ref: "/blockchain/transactions"
+        weight: 402
+      - name: "Governance"
+        ref: "/blockchain/governance"
+        weight: 403
+      - name: "Chain Operations"
+        ref: "/blockchain/chain-operations"
+        weight: 404
+      - name: "Queries"
+        ref: "/blockchain/queries"
+        weight: 405
 
   - name: "Drive"
     ref: "/drive"
