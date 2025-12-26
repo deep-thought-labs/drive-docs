@@ -2,9 +2,7 @@
 title: "Referencia de Puertos: Nodos Blockchain"
 ---
 
-# Referencia de Puertos Guide: Nodos Blockchain
-
-This document provides detailed descriptions of all port types that blockchain node services use. This is a reference guide for understanding what each port does and when it might be needed.
+Este documento proporciona descripciones detalladas de todos los tipos de puertos que utilizan los servicios de nodos blockchain. This is a reference guide for understanding what each port does and when it might be needed.
 
 ## Tabla de Contenidos
 

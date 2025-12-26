@@ -2,8 +2,6 @@
 title: "Port Reference: Blockchain Nodes"
 ---
 
-# Port Reference Guide: Blockchain Nodes
-
 This document provides detailed descriptions of all port types that blockchain node services use. This is a reference guide for understanding what each port does and when it might be needed.
 
 ## Table of Contents
