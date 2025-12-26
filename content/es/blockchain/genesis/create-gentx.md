@@ -30,9 +30,16 @@ Cuando participas en el lanzamiento de una cadena, creas tu gentx a partir de un
 Antes de comenzar, asegúrate de tener:
 
 - ✅ **Drive instalado y configurado** con al menos un servicio de nodo blockchain
-- ✅ **Nodo inicializado** (el proceso de inicialización crea las carpetas necesarias)
+- ✅ **Nodo inicializado** usando el proceso de recuperación (recovery) con tu seed phrase de validador
+- ✅ **Llave agregada al keyring** usando la misma seed phrase de validador que usaste para inicializar el nodo
+- ✅ **Conocer el nombre de la llave** que agregaste al keyring (este nombre lo elegiste cuando agregaste la llave)
 - ✅ **Acceso al bash del contenedor** del servicio correspondiente
-- ✅ **Seed phrase** de tu cuenta de validador guardada de forma segura
+
+**⚠️ Importante sobre la llave:**
+- Debes haber inicializado tu nodo usando el proceso de recuperación con tu seed phrase de validador
+- Debes haber agregado esa misma seed phrase como una llave al keyring con un nombre específico (por ejemplo: `validator`, `my-validator`, etc.)
+- **Debes recordar y tener claro cuál es el nombre de esa llave**, ya que lo necesitarás en todos los comandos de este documento
+- Este nombre de llave es el que usarás en los comandos `add-genesis-account` y `genesis gentx`
 
 **Sobre el binario `infinited`**: Aunque puedes revisar el código fuente en el [repositorio oficial de Infinite](https://github.com/deep-thought-labs/infinite), **no es necesario compilar el binario por ti mismo**. El binario `infinited` ya está incluido dentro de cada servicio de Drive. Solo necesitas acceder al bash del contenedor y ejecutar los comandos desde ahí:
 
@@ -99,26 +106,33 @@ Si la validación es exitosa, puedes proceder con confianza a crear tu gentx. Si
 
 ---
 
-## Paso 2: Crear o Recuperar tu Cuenta
+## Paso 2: Verificar tu Llave en el Keyring
 
-### 2-1. Recuperar tu Cuenta desde Seed Phrase
-
-⚠️ **Continúa solo si ya tienes un mnemónico (seed phrase) almacenado de forma segura.**
+Antes de continuar, verifica que tu llave existe en el keyring y recuerda su nombre:
 
 ```bash
-infinited keys add validator --recover --keyring-backend file --home ~/.infinited
+infinited keys list --keyring-backend file --home ~/.infinited
 ```
 
-- `validator`: Nombre de la cuenta (puedes usar cualquier nombre)
-- `--recover`: Modo de recuperación usando seed phrase
-- `--keyring-backend file`: Usar keyring basado en archivos
-- `--home ~/.infinited`: Directorio home del nodo
+Este comando mostrará todas las llaves que tienes en el keyring. **Identifica y anota el nombre de la llave** que corresponde a tu validador (la que agregaste usando tu seed phrase de validador).
 
-El sistema te pedirá ingresar tu seed phrase. Asegúrate de tenerla a mano y de ingresarla correctamente.
+**Ejemplo de salida:**
+```
+- name: validator
+  type: local
+  address: infinite1abc123...
+  pubkey: '{"@type":"/cosmos.crypto.secp256k1.PubKey","key":"..."}'
+```
+
+En este ejemplo, el nombre de la llave es `validator`. **Usa este mismo nombre** en los siguientes pasos.
 
 > 📖 **Gestión de Keys**: Para más información sobre cómo gestionar claves, consulta [Gestión de Claves]({{< relref "../../../drive/guides/blockchain-nodes/keys" >}}) en la documentación de Drive.
 
-### 2-2. Agregar Fondos a la Cuenta en Genesis
+---
+
+## Paso 3: Agregar Fondos a la Cuenta en Genesis
+
+**💡 Sugerencia:** Antes de ejecutar el comando, puedes prepararlo en un editor de texto plano para mayor facilidad. Esto te permitirá revisar y editar el comando completo (incluyendo el nombre de tu llave y el monto) antes de copiarlo y pegarlo en la consola.
 
 Agrega tu cuenta al genesis con el saldo inicial necesario para crear el validador. **El equipo de desarrollo te especificará el monto exacto** que debes usar durante el proceso de lanzamiento. Los valores mostrados aquí son ejemplos generales:
 
@@ -126,23 +140,23 @@ Agrega tu cuenta al genesis con el saldo inicial necesario para crear el validad
 
 ```bash
 # Mainnet (ejemplo)
-infinited genesis add-genesis-account validator 1000000000000000000000drop \
+infinited genesis add-genesis-account <nombre-de-tu-llave> 1000000000000000000000drop \
   --keyring-backend file \
   --home ~/.infinited
 
 # Testnet (ejemplo)
-infinited genesis add-genesis-account validator 1000000000000000000000tdrop \
+infinited genesis add-genesis-account <nombre-de-tu-llave> 1000000000000000000000tdrop \
   --keyring-backend file \
   --home ~/.infinited
 
 # Creative (ejemplo)
-infinited genesis add-genesis-account validator 1000000000000000000000cdrop \
+infinited genesis add-genesis-account <nombre-de-tu-llave> 1000000000000000000000cdrop \
   --keyring-backend file \
   --home ~/.infinited
 ```
 
 **Parámetros:**
-- `validator`: Nombre de la cuenta que acabas de crear/recuperar
+- `<nombre-de-tu-llave>`: **Usa el nombre exacto de tu llave** que verificaste en el Paso 2 (por ejemplo: `validator`, `my-validator`, etc.). Reemplaza `<nombre-de-tu-llave>` con el nombre real de tu llave.
 - **Cantidad**: El equipo de desarrollo te indicará el monto exacto a usar (en unidades atómicas)
 - Denominaciones:
   - Mainnet: `drop`
@@ -155,9 +169,87 @@ infinited genesis add-genesis-account validator 1000000000000000000000cdrop \
 - **Usa los montos específicos proporcionados por el equipo de desarrollo** para el lanzamiento en curso
 - Asegúrate de tener suficientes tokens para la autodelegación mínima requerida
 
+### Verificar que la Cuenta fue Agregada Correctamente
+
+Antes de generar la gentx, es recomendable verificar que tu cuenta fue agregada correctamente al genesis. Puedes hacerlo consultando el contenido del genesis:
+
+```bash
+cat ~/.infinited/config/genesis.json | jq '.app_state.bank.balances'
+```
+
+Este comando mostrará todos los balances en el genesis. Busca tu dirección pública (la misma que viste cuando listaste tus llaves) y verifica que tiene el monto correcto.
+
+**Ejemplo de salida esperada para Mainnet:**
+```json
+[
+  {
+    "address": "infinite1rs3s0jx0rvnsjwfjch59lg9ypp6k3vmg2cn68j",
+    "coins": [
+      {
+        "denom": "drop",
+        "amount": "1000000000000000000000"
+      }
+    ]
+  }
+]
+```
+
+**Ejemplo de salida esperada para Testnet:**
+```json
+[
+  {
+    "address": "infinite1rs3s0jx0rvnsjwfjch59lg9ypp6k3vmg2cn68j",
+    "coins": [
+      {
+        "denom": "tdrop",
+        "amount": "1000000000000000000000"
+      }
+    ]
+  }
+]
+```
+
+**Ejemplo de salida esperada para Creative:**
+```json
+[
+  {
+    "address": "infinite1rs3s0jx0rvnsjwfjch59lg9ypp6k3vmg2cn68j",
+    "coins": [
+      {
+        "denom": "cdrop",
+        "amount": "1000000000000000000000"
+      }
+    ]
+  }
+]
+```
+
+También puedes verificar la información de la cuenta en la sección de accounts:
+
+```bash
+cat ~/.infinited/config/genesis.json | jq '.app_state.auth.accounts'
+```
+
+**Ejemplo de salida esperada:**
+```json
+[
+  {
+    "@type": "/cosmos.auth.v1beta1.BaseAccount",
+    "address": "infinite1rs3s0jx0rvnsjwfjch59lg9ypp6k3vmg2cn68j",
+    "pub_key": null,
+    "account_number": "0",
+    "sequence": "0"
+  }
+]
+```
+
+Si ves tu dirección con el monto correcto y la denominación adecuada según la network (Mainnet: `drop`, Testnet: `tdrop`, Creative: `cdrop`), puedes proceder con confianza a generar tu gentx.
+
 ---
 
-## Paso 3: Generar la Gentx
+## Paso 4: Generar la Gentx
+
+**💡 Sugerencia:** Antes de ejecutar el comando, puedes prepararlo en un editor de texto plano para mayor facilidad. Esto te permitirá revisar y editar el comando completo (incluyendo el nombre de tu llave y todos los parámetros) antes de copiarlo y pegarlo en la consola.
 
 ### 3-1. Crear la Gentx del Validador
 
@@ -165,7 +257,7 @@ Genera tu gentx con los parámetros de tu validador. **El equipo de desarrollo p
 
 **Ejemplo general para Mainnet:**
 ```bash
-infinited genesis gentx validator 10000000000000000000drop \
+infinited genesis gentx <nombre-de-tu-llave> 10000000000000000000drop \
   --chain-id infinite_421018-1 \
   --commission-rate "0.10" \
   --commission-max-rate "0.20" \
@@ -177,7 +269,7 @@ infinited genesis gentx validator 10000000000000000000drop \
 
 **Ejemplo general para Testnet:**
 ```bash
-infinited genesis gentx validator 10000000000000000000tdrop \
+infinited genesis gentx <nombre-de-tu-llave> 10000000000000000000tdrop \
   --chain-id infinite_421018001-1 \
   --commission-rate "0.10" \
   --commission-max-rate "0.20" \
@@ -189,7 +281,7 @@ infinited genesis gentx validator 10000000000000000000tdrop \
 
 **Ejemplo general para Creative:**
 ```bash
-infinited genesis gentx validator 10000000000000000000cdrop \
+infinited genesis gentx <nombre-de-tu-llave> 10000000000000000000cdrop \
   --chain-id infinite_421018002-1 \
   --commission-rate "0.01" \
   --commission-max-rate "0.05" \
@@ -199,8 +291,10 @@ infinited genesis gentx validator 10000000000000000000cdrop \
   --home ~/.infinited
 ```
 
+**⚠️ Importante:** Reemplaza `<nombre-de-tu-llave>` con el nombre exacto de tu llave que verificaste en el Paso 2.
+
 **Parámetros explicados:**
-- `validator`: Nombre de la cuenta (debe existir en el keyring y tener fondos en genesis)
+- `<nombre-de-tu-llave>`: **Usa el nombre exacto de tu llave** que verificaste en el Paso 2 (debe existir en el keyring y tener fondos en genesis)
 - **Cantidad de autodelegación**: El equipo de desarrollo te indicará el monto exacto a usar
   - Ejemplos generales:
     - Mainnet: `10000000000000000000drop` (10 tokens)
@@ -213,11 +307,13 @@ infinited genesis gentx validator 10000000000000000000cdrop \
 - `--min-self-delegation`: Autodelegación mínima requerida (el equipo puede especificar valores particulares)
 
 **Ubicación de la gentx generada:**
-La gentx se generará en: `~/.infinited/config/gentx/gentx-<moniker>.json`
+La gentx se generará en: `~/.infinited/config/gentx/` con un formato de hash único, similar a: `gentx-adba573456c82908c3221163185703c421a2dd1f.json`
+
+**⚠️ Importante:** El nombre del archivo NO incluye tu moniker, sino un hash único generado automáticamente. **NO debes renombrar este archivo JSON**.
 
 ---
 
-## Paso 4: Validar la Gentx
+## Paso 5: Validar la Gentx
 
 ### 4-1. Verificar que la Gentx se Creó Correctamente
 
@@ -250,27 +346,89 @@ Si la validación es exitosa, tu gentx está lista para entregar.
 
 ---
 
-## Paso 5: Entregar tu Gentx
+## Paso 6: Entregar tu Gentx
 
-### 5-1. Localizar tu Archivo Gentx
+### 6-1. Localizar tu Archivo Gentx
 
-Tu gentx está en:
+Tu gentx se generó en:
 ```bash
-~/.infinited/config/gentx/gentx-<moniker>.json
+~/.infinited/config/gentx/
 ```
 
-### 5-2. Entregar al Equipo de Desarrollo
+El archivo gentx tiene un formato con un hash único, similar a: `gentx-adba573456c82908c3221163185703c421a2dd1f.json`
+
+**⚠️ Importante:** El nombre del archivo NO incluye tu moniker, sino un hash único generado automáticamente. **NO debes renombrar este archivo JSON**.
+
+Para ver el nombre exacto de tu archivo:
+```bash
+ls -la ~/.infinited/config/gentx/
+```
+
+### 6-2. Preparar el Archivo para Entrega
+
+**Si necesitas extraer el archivo del servidor:**
+
+El archivo gentx está almacenado en el volumen persistente de Docker, por lo que es accesible desde el sistema host:
+
+```bash
+# Desde el sistema host, navega al directorio del servicio
+cd services/<nombre-del-servicio>
+
+# Copia el archivo manteniendo su nombre original (reemplaza <hash> con el hash real)
+cp persistent-data/.infinited/config/gentx/gentx-<hash>.json ~/
+```
+
+**Si estás en un servidor remoto**, puedes usar `scp` para descargarlo a tu computadora local:
+
+```bash
+# Desde tu computadora local (reemplaza <hash> con el hash real de tu archivo)
+scp usuario@servidor:/ruta/a/drive/services/<nombre-del-servicio>/persistent-data/.infinited/config/gentx/gentx-<hash>.json ~/
+```
+
+**Explicación del comando `scp`:**
+- `usuario`: Es el nombre de usuario con el que inicias sesión en tu servidor
+- `@servidor`: Se refiere a la dirección IP o el nombre de dominio de tu servidor (por ejemplo: `@192.168.1.100` o `@mi-servidor.com`)
+- La ruta después de los dos puntos (`:`) es la ruta completa al archivo en el servidor
+- `~/` es el directorio destino en tu computadora local (tu directorio home)
+
+**⚠️ Importante:** Al ejecutar este comando, es muy probable que el sistema te solicite credenciales o autorización para realizar la transferencia. Estas son las mismas credenciales que usas cuando inicias sesión en tu servidor (contraseña o clave SSH).
+
+**Ejemplo completo:** Si tu usuario es `ubuntu`, tu servidor tiene la IP `192.168.1.100`, el servicio es `node2-infinite-creative`, y tu archivo se llama `gentx-adba573456c82908c3221163185703c421a2dd1f.json`:
+```bash
+scp ubuntu@192.168.1.100:/home/ubuntu/drive/services/node2-infinite-creative/persistent-data/.infinited/config/gentx/gentx-adba573456c82908c3221163185703c421a2dd1f.json ~/gentx-round-1/
+```
+
+**Si necesitas comprimir el archivo:**
+
+**⚠️ Importante:** 
+- El archivo JSON gentx debe mantener su nombre original (con el hash, no lo renombres)
+- El archivo comprimido SÍ puede incluir tu moniker en su nombre para facilitar la identificación
+
+```bash
+# Crear un archivo comprimido con tu moniker (reemplaza <moniker> con tu moniker y <hash> con el hash del archivo)
+tar -czf gentx-<moniker>.tar.gz gentx-<hash>.json
+
+# O usando zip
+zip gentx-<moniker>.zip gentx-<hash>.json
+```
+
+**Estructura del archivo comprimido:**
+- **Nombre del archivo comprimido:** `gentx-<tu-moniker>.tar.gz` (puede incluir tu moniker para identificación)
+- **Contenido del archivo comprimido:** `gentx-<hash>.json` (el archivo JSON original con su nombre original)
+
+### 6-3. Entregar al Equipo de Desarrollo
 
 Sigue las instrucciones del equipo de desarrollo para entregar tu gentx. Esto puede ser:
 
 - Subir el archivo a un repositorio específico
-- Enviarlo por un canal de comunicación seguro
+- Enviarlo por un canal de comunicación seguro (como Telegram)
 - Otra forma indicada por el equipo
 
 **⚠️ Importante:**
 - Solo entrega el archivo gentx, NO el genesis completo
 - Verifica que estás entregando el archivo correcto
 - Mantén una copia de seguridad de tu gentx
+- Si comprimes el archivo, el archivo comprimido puede tener tu moniker, pero el JSON dentro debe mantener su nombre original
 
 ---
 
@@ -281,11 +439,11 @@ Sigue las instrucciones del equipo de desarrollo para entregar tu gentx. Esto pu
    ↓
 2. Verificar Chain ID del genesis descargado
    ↓
-3. Recuperar cuenta desde seed phrase
+3. Verificar que tu llave existe en el keyring y recordar su nombre
    ↓
-4. Agregar cuenta con fondos al genesis (montos especificados por el equipo)
+4. Agregar cuenta con fondos al genesis usando el nombre de tu llave (montos especificados por el equipo)
    ↓
-5. Generar gentx con parámetros del validador (valores especificados por el equipo)
+5. Generar gentx usando el nombre de tu llave con parámetros del validador (valores especificados por el equipo)
    ↓
 6. Validar gentx y genesis
    ↓

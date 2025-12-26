@@ -30,9 +30,16 @@ When you participate in a chain launch, you create your gentx from a base genesi
 Before starting, make sure you have:
 
 - ✅ **Drive installed and configured** with at least one blockchain node service
-- ✅ **Node initialized** (the initialization process creates the necessary folders)
+- ✅ **Node initialized** using the recovery process with your validator seed phrase
+- ✅ **Key added to the keyring** using the same validator seed phrase you used to initialize the node
+- ✅ **Know the name of your key** that you added to the keyring (this is the name you chose when adding the key)
 - ✅ **Access to the container's bash** of the corresponding service
-- ✅ **Seed phrase** of your validator account stored securely
+
+**⚠️ Important about the key:**
+- You must have initialized your node using the recovery process with your validator seed phrase
+- You must have added that same seed phrase as a key to the keyring with a specific name (for example: `validator`, `my-validator`, etc.)
+- **You must remember and be clear about what the name of that key is**, as you will need it in all commands in this document
+- This key name is what you will use in the `add-genesis-account` and `genesis gentx` commands
 
 **About the `infinited` binary**: Although you can review the source code in the [official Infinite repository](https://github.com/deep-thought-labs/infinite), **you don't need to compile the binary yourself**. The `infinited` binary is already included within each Drive service. You just need to access the container's bash and run the commands from there:
 
@@ -99,26 +106,33 @@ If validation is successful, you can proceed with confidence to create your gent
 
 ---
 
-## Step 2: Create or Recover your Account
+## Step 2: Verify your Key in the Keyring
 
-### 2-1. Recover your Account from Seed Phrase
-
-⚠️ **Continue only if you already have a mnemonic (seed phrase) stored securely.**
+Before continuing, verify that your key exists in the keyring and remember its name:
 
 ```bash
-infinited keys add validator --recover --keyring-backend file --home ~/.infinited
+infinited keys list --keyring-backend file --home ~/.infinited
 ```
 
-- `validator`: Account name (you can use any name)
-- `--recover`: Recovery mode using seed phrase
-- `--keyring-backend file`: Use file-based keyring
-- `--home ~/.infinited`: Node home directory
+This command will show all the keys you have in the keyring. **Identify and note the name of the key** that corresponds to your validator (the one you added using your validator seed phrase).
 
-The system will ask you to enter your seed phrase. Make sure you have it handy and enter it correctly.
+**Example output:**
+```
+- name: validator
+  type: local
+  address: infinite1abc123...
+  pubkey: '{"@type":"/cosmos.crypto.secp256k1.PubKey","key":"..."}'
+```
+
+In this example, the key name is `validator`. **Use this same name** in the following steps.
 
 > 📖 **Key Management**: For more information on how to manage keys, see [Key Management]({{< relref "../../../drive/guides/blockchain-nodes/keys" >}}) in the Drive documentation.
 
-### 2-2. Add Funds to the Account in Genesis
+---
+
+## Step 3: Add Funds to the Account in Genesis
+
+**💡 Tip:** Before executing the command, you can prepare it in a plain text editor for easier editing. This will allow you to review and edit the complete command (including your key name and amount) before copying and pasting it into the console.
 
 Add your account to the genesis with the initial balance needed to create the validator. **The development team will specify the exact amount** you should use during the launch process. The values shown here are general examples:
 
@@ -126,23 +140,23 @@ Add your account to the genesis with the initial balance needed to create the va
 
 ```bash
 # Mainnet (example)
-infinited genesis add-genesis-account validator 1000000000000000000000drop \
+infinited genesis add-genesis-account <your-key-name> 1000000000000000000000drop \
   --keyring-backend file \
   --home ~/.infinited
 
 # Testnet (example)
-infinited genesis add-genesis-account validator 1000000000000000000000tdrop \
+infinited genesis add-genesis-account <your-key-name> 1000000000000000000000tdrop \
   --keyring-backend file \
   --home ~/.infinited
 
 # Creative (example)
-infinited genesis add-genesis-account validator 1000000000000000000000cdrop \
+infinited genesis add-genesis-account <your-key-name> 1000000000000000000000cdrop \
   --keyring-backend file \
   --home ~/.infinited
 ```
 
 **Parameters:**
-- `validator`: Name of the account you just created/recovered
+- `<your-key-name>`: **Use the exact name of your key** that you verified in Step 2 (for example: `validator`, `my-validator`, etc.). Replace `<your-key-name>` with your actual key name.
 - **Amount**: The development team will indicate the exact amount to use (in atomic units)
 - Denominations:
   - Mainnet: `drop`
@@ -155,9 +169,87 @@ infinited genesis add-genesis-account validator 1000000000000000000000cdrop \
 - **Use the specific amounts provided by the development team** for the ongoing launch
 - Make sure you have enough tokens for the minimum required self-delegation
 
+### Verify that the Account was Added Correctly
+
+Before generating the gentx, it's recommended to verify that your account was added correctly to the genesis. You can do this by checking the genesis content:
+
+```bash
+cat ~/.infinited/config/genesis.json | jq '.app_state.bank.balances'
+```
+
+This command will show all balances in the genesis. Look for your public address (the same one you saw when listing your keys) and verify that it has the correct amount.
+
+**Example expected output for Mainnet:**
+```json
+[
+  {
+    "address": "infinite1rs3s0jx0rvnsjwfjch59lg9ypp6k3vmg2cn68j",
+    "coins": [
+      {
+        "denom": "drop",
+        "amount": "1000000000000000000000"
+      }
+    ]
+  }
+]
+```
+
+**Example expected output for Testnet:**
+```json
+[
+  {
+    "address": "infinite1rs3s0jx0rvnsjwfjch59lg9ypp6k3vmg2cn68j",
+    "coins": [
+      {
+        "denom": "tdrop",
+        "amount": "1000000000000000000000"
+      }
+    ]
+  }
+]
+```
+
+**Example expected output for Creative:**
+```json
+[
+  {
+    "address": "infinite1rs3s0jx0rvnsjwfjch59lg9ypp6k3vmg2cn68j",
+    "coins": [
+      {
+        "denom": "cdrop",
+        "amount": "1000000000000000000000"
+      }
+    ]
+  }
+]
+```
+
+You can also verify the account information in the accounts section:
+
+```bash
+cat ~/.infinited/config/genesis.json | jq '.app_state.auth.accounts'
+```
+
+**Example expected output:**
+```json
+[
+  {
+    "@type": "/cosmos.auth.v1beta1.BaseAccount",
+    "address": "infinite1rs3s0jx0rvnsjwfjch59lg9ypp6k3vmg2cn68j",
+    "pub_key": null,
+    "account_number": "0",
+    "sequence": "0"
+  }
+]
+```
+
+If you see your address with the correct amount and the appropriate denomination according to the network (Mainnet: `drop`, Testnet: `tdrop`, Creative: `cdrop`), you can proceed with confidence to generate your gentx.
+
 ---
 
-## Step 3: Generate the Gentx
+## Step 4: Generate the Gentx
+
+**💡 Tip:** Before executing the command, you can prepare it in a plain text editor for easier editing. This will allow you to review and edit the complete command (including your key name and all parameters) before copying and pasting it into the console.
 
 ### 3-1. Create the Validator's Gentx
 
@@ -165,7 +257,7 @@ Generate your gentx with your validator's parameters. **The development team may
 
 **General example for Mainnet:**
 ```bash
-infinited genesis gentx validator 10000000000000000000drop \
+infinited genesis gentx <your-key-name> 10000000000000000000drop \
   --chain-id infinite_421018-1 \
   --commission-rate "0.10" \
   --commission-max-rate "0.20" \
@@ -177,7 +269,7 @@ infinited genesis gentx validator 10000000000000000000drop \
 
 **General example for Testnet:**
 ```bash
-infinited genesis gentx validator 10000000000000000000tdrop \
+infinited genesis gentx <your-key-name> 10000000000000000000tdrop \
   --chain-id infinite_421018001-1 \
   --commission-rate "0.10" \
   --commission-max-rate "0.20" \
@@ -189,7 +281,7 @@ infinited genesis gentx validator 10000000000000000000tdrop \
 
 **General example for Creative:**
 ```bash
-infinited genesis gentx validator 10000000000000000000cdrop \
+infinited genesis gentx <your-key-name> 10000000000000000000cdrop \
   --chain-id infinite_421018002-1 \
   --commission-rate "0.01" \
   --commission-max-rate "0.05" \
@@ -199,8 +291,10 @@ infinited genesis gentx validator 10000000000000000000cdrop \
   --home ~/.infinited
 ```
 
+**⚠️ Important:** Replace `<your-key-name>` with the exact name of your key that you verified in Step 2.
+
 **Parameters explained:**
-- `validator`: Account name (must exist in the keyring and have funds in genesis)
+- `<your-key-name>`: **Use the exact name of your key** that you verified in Step 2 (must exist in the keyring and have funds in genesis). Replace `<your-key-name>` with your actual key name.
 - **Self-delegation amount**: The development team will indicate the exact amount to use
   - General examples:
     - Mainnet: `10000000000000000000drop` (10 tokens)
@@ -217,7 +311,7 @@ The gentx will be generated at: `~/.infinited/config/gentx/gentx-<moniker>.json`
 
 ---
 
-## Step 4: Validate the Gentx
+## Step 5: Validate the Gentx
 
 ### 4-1. Verify that the Gentx was Created Correctly
 
@@ -226,7 +320,9 @@ The gentx will be generated at: `~/.infinited/config/gentx/gentx-<moniker>.json`
 ls -la ~/.infinited/config/gentx/
 ```
 
-You should see a file with the format `gentx-<moniker>.json`.
+You should see a file with a hash format, similar to: `gentx-adba573456c82908c3221163185703c421a2dd1f.json`
+
+**⚠️ Important:** The file name does NOT include your moniker, but a unique hash generated automatically. **You should NOT rename this JSON file**.
 
 ### 4-2. Validate the Genesis with your Gentx
 
@@ -250,27 +346,69 @@ If validation is successful, your gentx is ready to deliver.
 
 ---
 
-## Step 5: Deliver your Gentx
+## Step 6: Deliver your Gentx
 
-### 5-1. Locate your Gentx File
+### 6-1. Locate your Gentx File
 
-Your gentx is at:
+Your gentx was generated in:
 ```bash
-~/.infinited/config/gentx/gentx-<moniker>.json
+~/.infinited/config/gentx/
 ```
 
-### 5-2. Deliver to the Development Team
+The gentx file has a format with a unique hash, similar to: `gentx-adba573456c82908c3221163185703c421a2dd1f.json`
+
+**⚠️ Important:** The file name does NOT include your moniker, but a unique hash generated automatically. **You should NOT rename this JSON file**.
+
+To see the exact name of your file:
+```bash
+ls -la ~/.infinited/config/gentx/
+```
+
+### 6-2. Prepare the File for Delivery
+
+**If you need to extract the file from the server:**
+
+The gentx file is stored in the Docker persistent volume, so it's accessible from the host system:
+
+```bash
+# From the host system, navigate to the service directory
+cd services/<service-name>
+
+# Copy the file maintaining its original name (replace <hash> with the actual hash)
+cp persistent-data/.infinited/config/gentx/gentx-<hash>.json ~/
+```
+
+**If you need to compress the file:**
+
+**⚠️ Important:** 
+- The JSON gentx file must maintain its original name (with the hash, don't rename it)
+- The compressed file CAN include your moniker in its name to facilitate identification
+
+```bash
+# Create a compressed file with your moniker (replace <moniker> with your moniker and <hash> with the file hash)
+tar -czf gentx-<moniker>.tar.gz gentx-<hash>.json
+
+# Or using zip
+zip gentx-<moniker>.zip gentx-<hash>.json
+```
+
+**Compressed file structure:**
+- **Compressed file name:** `gentx-<your-moniker>.tar.gz` (can include your moniker for identification)
+- **Content of compressed file:** `gentx-<hash>.json` (the original JSON file with its original name)
+
+### 6-3. Deliver to Development Team
 
 Follow the development team's instructions to deliver your gentx. This may be:
 
 - Upload the file to a specific repository
-- Send it through a secure communication channel
+- Send it through a secure communication channel (such as Telegram)
 - Another method indicated by the team
 
 **⚠️ Important:**
 - Only deliver the gentx file, NOT the complete genesis
-- Verify that you're delivering the correct file
-- Keep a backup of your gentx
+- Verify that you are delivering the correct file
+- Keep a backup copy of your gentx
+- If you compress the file, the compressed file can have your moniker, but the JSON inside must maintain its original name
 
 ---
 
@@ -281,11 +419,11 @@ Follow the development team's instructions to deliver your gentx. This may be:
    ↓
 2. Verify Chain ID of the downloaded genesis
    ↓
-3. Recover account from seed phrase
+3. Verify that your key exists in the keyring and remember its name
    ↓
-4. Add account with funds to genesis (amounts specified by the team)
+4. Add account with funds to genesis using your key name (amounts specified by the team)
    ↓
-5. Generate gentx with validator parameters (values specified by the team)
+5. Generate gentx using your key name with validator parameters (values specified by the team)
    ↓
 6. Validate gentx and genesis
    ↓
