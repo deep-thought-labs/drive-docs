@@ -1,0 +1,26 @@
+{{- /*
+Shortcode compatible con la sintaxis de hugo-geekdoc para el tema hextra.
+Crea una pestaña individual dentro de un grupo de pestañas.
+
+Uso: {{< tab "Nombre de la pestaña" >}}Contenido{{< /tab >}}
+
+@param {string} 0 El nombre de la pestaña (primer parámetro posicional)
+*/ -}}
+
+{{- if .Parent -}}
+  {{- $name := .Get 0 | default (printf "Tab %d" .Ordinal) -}}
+  {{- $groupID := .Parent.Get 0 | default (printf "tabs-%d" .Parent.Ordinal) -}}
+  {{- $groupKey := printf "tabs-%s" $groupID -}}
+  
+  {{- $tabs := .Parent.Scratch.Get $groupKey | default slice -}}
+  {{- $tabs = $tabs | append (dict
+      "id" .Ordinal
+      "name" $name
+      "content" .InnerDeindent
+      "selected" (eq .Ordinal 0)
+    ) -}}
+  {{- .Parent.Scratch.Set $groupKey $tabs -}}
+{{- else -}}
+  {{- errorf "%q: 'tab' shortcode must be inside 'tabs' shortcode" .Page.Path -}}
+{{- end -}}
+

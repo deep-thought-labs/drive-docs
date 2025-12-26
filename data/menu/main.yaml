@@ -5,10 +5,33 @@ main:
     weight: 10
     icon: "gdoc_home"
 
-  - name: "Concepts"
+  - identifier: "concepts"
+    name: "Concepts"
     ref: "/concepts"
     weight: 20
     icon: "gdoc_extension"
+    sub:
+      - name: "Key"
+        ref: "/concepts/key"
+        weight: 201
+      - name: "Keyring"
+        ref: "/concepts/keyring"
+        weight: 202
+      - name: "Keyring vs Validator Key"
+        ref: "/concepts/keyring-vs-validator-key"
+        weight: 203
+      - name: "Node Initialization"
+        ref: "/concepts/node-initialization"
+        weight: 204
+      - name: "Genesis File"
+        ref: "/concepts/genesis-file"
+        weight: 205
+      - name: "Node Data"
+        ref: "/concepts/node-data"
+        weight: 206
+      - name: "Private Validator Key"
+        ref: "/concepts/private-validator-key"
+        weight: 207
 
   - name: "Ecosystem"
     ref: "/ecosystem"
@@ -32,54 +55,77 @@ main:
           - name: "Architecture Overview"
             ref: "/drive/quick-start/architecture"
             weight: 510
-          - name: "Installation"
+          - name: "Prerequisites"
             ref: "/drive/quick-start/installation"
             weight: 511
           - name: "Git Clone"
             ref: "/drive/quick-start/git-clone"
             weight: 512
-          - name: "Managing Services"
+          - name: "Verify Installation"
             ref: "/drive/quick-start/managing-services"
             weight: 513
       - name: "Guides"
         ref: "/drive/guides"
         weight: 52
         sub:
-          - name: "Blockchain Nodes"
-            ref: "/drive/guides/blockchain-nodes"
-            weight: 521
-            sub:
-              - name: "Initialize Node"
-                ref: "/drive/guides/blockchain-nodes/initialize-node"
-                weight: 5211
-              - name: "Start/Stop Node"
-                ref: "/drive/guides/blockchain-nodes/start-stop-node"
-                weight: 5212
-              - name: "Manage Keys"
-                ref: "/drive/guides/blockchain-nodes/manage-keys"
-                weight: 5213
-              - name: "Graphical Interface"
-                ref: "/drive/guides/blockchain-nodes/graphical-interface"
-                weight: 5214
           - name: "General"
             ref: "/drive/guides/general"
-            weight: 522
+            weight: 521
             sub:
               - name: "Container Management"
                 ref: "/drive/guides/general/container-management"
-                weight: 5221
+                weight: 5211
               - name: "System Update"
                 ref: "/drive/guides/general/system-update"
+                weight: 5212
+          - name: "Blockchain Nodes"
+            ref: "/drive/guides/blockchain-nodes"
+            weight: 522
+            sub:
+              - name: "Graphical Interface"
+                ref: "/drive/guides/blockchain-nodes/graphical-interface"
+                weight: 5221
+              - name: "Keys"
+                ref: "/drive/guides/blockchain-nodes/keys"
                 weight: 5222
+                sub:
+                  - name: "Understanding Keys"
+                    ref: "/drive/guides/blockchain-nodes/keys/understanding-keys"
+                    weight: 52220
+                  - name: "Operations"
+                    ref: "/drive/guides/blockchain-nodes/keys/operations"
+                    weight: 52221
+                  - name: "Security"
+                    ref: "/drive/guides/blockchain-nodes/keys/security"
+                    weight: 52222
+                  - name: "Validator Workflow"
+                    ref: "/drive/guides/blockchain-nodes/keys/validator-workflow"
+                    weight: 52223
+              - name: "Initialization"
+                ref: "/drive/guides/blockchain-nodes/initialization"
+                weight: 5223
+                sub:
+                  - name: "Simple Initialization"
+                    ref: "/drive/guides/blockchain-nodes/initialization/simple-initialization"
+                    weight: 52231
+                  - name: "Recovery Initialization"
+                    ref: "/drive/guides/blockchain-nodes/initialization/recovery-initialization"
+                    weight: 52232
+                  - name: "Verification"
+                    ref: "/drive/guides/blockchain-nodes/initialization/verification"
+                    weight: 52233
+              - name: "Start/Stop Node"
+                ref: "/drive/guides/blockchain-nodes/start-stop-node"
+                weight: 5224
       - name: "Services"
         ref: "/drive/services"
         weight: 53
         sub:
-          - name: "Service Catalog"
-            ref: "/drive/services/catalog"
-            weight: 530
           - name: "Service Structure"
             ref: "/drive/services/service-structure"
+            weight: 530
+          - name: "Service Catalog"
+            ref: "/drive/services/catalog"
             weight: 531
           - name: "Environment Variables"
             ref: "/drive/services/environment"
@@ -107,6 +153,22 @@ main:
           - name: "Blockchain Nodes"
             ref: "/drive/services/blockchain-nodes"
             weight: 534
+          - name: "Nginx"
+            ref: "/drive/services/nginx"
+            weight: 535
+          - name: "Technical Reference"
+            ref: "/drive/services/technical"
+            weight: 536
+            sub:
+              - name: "Docker Compose Structure"
+                ref: "/drive/services/technical/docker-compose-structure"
+                weight: 5361
+              - name: "drive.sh Script Analysis"
+                ref: "/drive/services/technical/drive-script-analysis"
+                weight: 5362
+              - name: "Permission Handling"
+                ref: "/drive/services/technical/permission-handling"
+                weight: 5363
       - name: "Troubleshooting"
         ref: "/drive/troubleshooting"
         weight: 54
@@ -117,3 +179,9 @@ main:
           - name: "Network Diagnosis"
             ref: "/drive/troubleshooting/network-diagnosis"
             weight: 542
+          - name: "Permission Issues"
+            ref: "/drive/troubleshooting/permission-issues"
+            weight: 543
+          - name: "Key Management Issues"
+            ref: "/drive/troubleshooting/key-management-issues"
+            weight: 544

@@ -1,6 +1,13 @@
 baseURL = "/"
 title = "Drive Documentation"
-theme = "hugo-geekdoc"
+theme = "hextra"
+
+# Idioma por defecto
+defaultContentLanguage = "es"
+# Poner el idioma por defecto en subdirectorio (para URLs consistentes)
+defaultContentLanguageInSubdir = true
+# Mostrar placeholders para traducciones faltantes
+enableMissingTranslationPlaceholders = true
 
 # Required to get well formatted code blocks
 pygmentsUseClasses = true
@@ -22,6 +29,30 @@ enableRobotsTXT = true
 
 [taxonomies]
   tag = "tags"
+
+[menu]
+  [[menu.main]]
+    identifier = "drive"
+    name = "Drive"
+    pageRef = "/drive"
+    weight = 1
+  [[menu.main]]
+    identifier = "concepts"
+    name = "Concepts"
+    pageRef = "/concepts"
+    weight = 2
+  [[menu.main]]
+    name = "Search"
+    weight = 10
+    [menu.main.params]
+      type = "search"
+  [[menu.main]]
+    name = "Language"
+    weight = 20
+    [menu.main.params]
+      type = "language-switch"
+      icon = "globe-alt"
+      label = true
 
 [params]
   # (Optional, default none) Set a subtitle used in the page header.
@@ -123,3 +154,129 @@ enableRobotsTXT = true
   #[params.geekdocContentLicense]
   #  name = "CC BY-SA 4.0"
   #  link = "https://creativecommons.org/licenses/by-sa/4.0/"
+
+  # Configuración de Hextra (valores por defecto, pueden ser sobrescritos por idioma)
+  description = "Documentación de Drive - Herramienta de gestión de infraestructura descentralizada"
+
+  [params.navbar]
+    displayTitle = true
+    displayLogo = false
+    width = "wide"
+
+  [params.theme]
+    default = "system"
+    displayToggle = true
+
+  [params.footer]
+    enable = true
+    displayCopyright = true
+    displayPoweredBy = true
+    width = "normal"
+
+  [params.search]
+    enable = true
+    type = "flexsearch"
+    [params.search.flexsearch]
+      index = "content"
+      tokenize = "forward"
+
+  [params.toc]
+    displayTags = true
+
+  [params.page]
+    width = "normal"
+
+  [params.highlight]
+    [params.highlight.copy]
+      enable = true
+      display = "hover"
+
+# Configuración de idiomas
+[languages]
+  [languages.es]
+    languageName = "Español"
+    languageCode = "es"
+    languageDirection = "ltr"
+    weight = 1
+    title = "Drive Documentation"
+    contentDir = "content/es"
+    
+    [languages.es.params]
+      description = "Documentación de Drive - Herramienta de gestión de infraestructura descentralizada"
+    
+    [languages.es.params.navbar]
+      displayTitle = true
+      displayLogo = false
+      width = "wide"
+    
+    [languages.es.params.theme]
+      default = "system"
+      displayToggle = true
+    
+    [languages.es.params.footer]
+      enable = true
+      displayCopyright = true
+      displayPoweredBy = true
+      width = "normal"
+    
+    [languages.es.params.search]
+      enable = true
+      type = "flexsearch"
+      [languages.es.params.search.flexsearch]
+        index = "content"
+        tokenize = "forward"
+    
+    [languages.es.params.toc]
+      displayTags = true
+    
+    [languages.es.params.page]
+      width = "normal"
+    
+    [languages.es.params.highlight]
+      [languages.es.params.highlight.copy]
+        enable = true
+        display = "hover"
+
+  [languages.en]
+    languageName = "English"
+    languageCode = "en"
+    languageDirection = "ltr"
+    weight = 2
+    title = "Drive Documentation"
+    contentDir = "content/en"
+    
+    [languages.en.params]
+      description = "Drive Documentation - Decentralized infrastructure management tool"
+    
+    [languages.en.params.navbar]
+      displayTitle = true
+      displayLogo = false
+      width = "wide"
+    
+    [languages.en.params.theme]
+      default = "system"
+      displayToggle = true
+    
+    [languages.en.params.footer]
+      enable = true
+      displayCopyright = true
+      displayPoweredBy = true
+      width = "normal"
+    
+    [languages.en.params.search]
+      enable = true
+      type = "flexsearch"
+      [languages.en.params.search.flexsearch]
+        index = "content"
+        tokenize = "forward"
+    
+    [languages.en.params.toc]
+      displayTags = true
+    
+    [languages.en.params.page]
+      width = "normal"
+    
+    [languages.en.params.highlight]
+      [languages.en.params.highlight.copy]
+        enable = true
+        display = "hover"
