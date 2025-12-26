@@ -45,8 +45,15 @@ Se descarga el [archivo génesis]({{< relref "genesis-file" >}}) oficial de la r
 
 Todos los componentes creados durante la inicialización se almacenan en la [data del nodo]({{< relref "node-data" >}}):
 
-- **Ruta en el host:** `./persistent-data/config/` (relativa al directorio del servicio)
-- **Ruta en el contenedor:** `/home/ubuntu/.infinited/config/`
+- **Archivos de configuración y Private Validator Key:**
+  - **Ruta en el host:** `./persistent-data/config/` (relativa al directorio del servicio)
+  - **Ruta en el contenedor:** `/home/ubuntu/.infinited/config/`
+
+- **Keyring (claves de cuenta):**
+  - **Ruta en el host:** `./persistent-data/keyring-file/` (relativa al directorio del servicio)
+  - **Ruta en el contenedor:** `/home/ubuntu/.infinited/keyring-file/`
+  
+  **Nota:** El keyring se crea cuando agregas tu primera clave de cuenta, no durante la inicialización del nodo.
 
 ## Modos de Inicialización
 

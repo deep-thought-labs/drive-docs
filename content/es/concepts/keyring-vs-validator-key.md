@@ -11,7 +11,7 @@ Este documento explica las diferencias fundamentales entre el **Keyring** y el *
 |---------|----------------------|---------|
 | **Propósito** | Identificar y firmar bloques como validador | Firmar transacciones y operaciones on-chain |
 | **Cuándo se usa** | Automáticamente por el nodo al validar bloques | Manualmente al ejecutar transacciones |
-| **Ubicación** | `persistent-data/config/priv_validator_key.json` | `persistent-data/` (keyring encriptado) |
+| **Ubicación** | `persistent-data/config/priv_validator_key.json` | `persistent-data/keyring-file/` (keyring encriptado) |
 | **Recuperación** | Depende del modo de inicialización | Siempre recuperable con frase semilla |
 | **Gestión** | Se genera automáticamente durante la inicialización | Se gestiona manualmente agregando claves |
 | **Múltiples claves** | Solo una clave por nodo | Múltiples claves pueden coexistir |

@@ -233,41 +233,9 @@ Información sobre:
 
 ## Solución de Problemas con Logs
 
-### El Nodo No Muestra Logs
+Si encuentras problemas con los logs del nodo, consulta la guía centralizada de troubleshooting:
 
-Si no ves logs o los logs están vacíos:
-
-1. **Verifica que el nodo esté ejecutándose:**
-   ```bash
-   ./drive.sh exec infinite node-process-status
-   ```
-
-2. **Verifica que el archivo de logs existe:**
-   ```bash
-   ./drive.sh exec infinite ls -la /var/log/node/node.log
-   ```
-
-3. **Verifica permisos del archivo de logs:**
-   ```bash
-   ./drive.sh exec infinite ls -la /var/log/node/
-   ```
-
-### Los Logs Muestran Errores
-
-Si los logs muestran errores:
-
-1. **Revisa los errores específicos** en los logs
-2. **Busca patrones** - ¿Los errores son repetitivos?
-3. **Verifica la configuración** del nodo
-4. **Consulta la documentación de troubleshooting** para errores específicos
-
-### Los Logs Son Demasiado Largos
-
-Si los logs son muy largos y difíciles de revisar:
-
-1. **Usa filtros** - Especifica cuántas líneas quieres ver
-2. **Usa seguimiento en tiempo real** - Para ver solo los logs nuevos
-3. **Busca términos específicos** - Usa herramientas como `grep` para filtrar
+- **[Problemas con Logs del Nodo]({{< relref "../../troubleshooting/node-log-issues" >}})** - Soluciones a problemas comunes relacionados con logs
 
 ## Próximos Pasos
 

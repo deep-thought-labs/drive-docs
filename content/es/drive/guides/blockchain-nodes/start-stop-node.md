@@ -47,11 +47,13 @@ cd services/node0-infinite  # O cualquier otro servicio
 - Instrucciones para ver logs y detener el nodo
 
 **Qué sucede internamente:**
-1. Verifica que el nodo esté inicializado (comprueba la existencia de `config.toml`)
+1. Verifica que el nodo esté inicializado (comprueba la existencia de `genesis.json`)
 2. Verifica que no haya otra instancia ejecutándose
-3. Inicia el proceso del nodo en segundo plano
+3. Inicia el proceso del nodo en segundo plano usando `setsid` para aislamiento
 4. Redirige toda la salida a `/var/log/node/node.log`
 5. Guarda el ID del proceso (PID) para seguimiento
+6. Crea el flag de auto-start para reinicio automático
+7. Inicia el supervisor para monitoreo y reinicio automático
 
 **Si el nodo ya está ejecutándose:** El comando mostrará una advertencia con el PID existente y saldrá sin iniciar una instancia duplicada.
 
@@ -117,87 +119,15 @@ Para verificar el estado del nodo y su sincronización, consulta la guía comple
 
 ## Reiniciar Nodo
 
-Para reiniciar el nodo (detener y volver a iniciar):
+Para reiniciar el nodo (detener y volver a iniciar), consulta la guía completa:
 
-### Usando Interfaz Gráfica (Recomendado)
-
-1. Abre la interfaz gráfica:
-
-   ```bash
-   cd services/node0-infinite  # O cualquier otro servicio
-   ./drive.sh exec infinite node-ui
-   ```
-
-2. En el menú principal, selecciona **"Node Operations"**
-
-   ![Menú Principal - Node Operations seleccionada](/images/node-ui-op2-operations.png)
-
-3. Selecciona **"Restart Node"**
-
-   ![Node Operations - Restart Node seleccionada](/images/node-ui-operations-op3-restart.png)
-
-4. La interfaz detendrá y reiniciará el nodo automáticamente
-
-### Usando Línea de Comandos
-
-1. **Detén el nodo** usando uno de los métodos anteriores
-2. **Espera unos segundos** para que el proceso se cierre completamente
-3. **Inicia el nodo** nuevamente usando uno de los métodos anteriores
-
-**Ejemplo:**
-
-```bash
-cd services/node0-infinite
-./drive.sh exec infinite node-stop
-sleep 5  # Esperar 5 segundos
-./drive.sh exec infinite node-start
-```
+- **[Reiniciar Nodo]({{< relref "restart-node" >}})** - Guía completa sobre cómo reiniciar el nodo
 
 ## Solución de Problemas
 
-### El Nodo No Inicia
+Si encuentras problemas al iniciar o detener el nodo, consulta la guía centralizada de troubleshooting:
 
-Si el nodo no inicia:
-
-1. **Verifica que el nodo esté inicializado:**
-   ```bash
-   ls -la ./persistent-data/config/config.toml
-   ```
-   Si el archivo no existe, necesitas inicializar el nodo primero.
-
-2. **Verifica que no haya otra instancia ejecutándose:**
-   ```bash
-   ./drive.sh exec infinite node-process-status
-   ```
-   Si hay una instancia ejecutándose, detén la instancia anterior primero.
-
-3. **Revisa los logs del contenedor:**
-   ```bash
-   ./drive.sh logs
-   ```
-
-### El Nodo No Se Detiene
-
-Si el nodo no se detiene correctamente:
-
-1. **Espera unos segundos** - El cierre controlado puede tomar tiempo
-2. **Verifica el estado:**
-   ```bash
-   ./drive.sh exec infinite node-process-status
-   ```
-3. **Si es necesario, fuerza el cierre:**
-   ```bash
-   # Encontrar el PID del proceso
-   ./drive.sh exec infinite node-process-status
-   
-   # Usar kill si es necesario (último recurso)
-   ./drive.sh exec infinite kill <PID>
-   ```
-
-> [!WARNING]
-> **⚠️ Advertencia: Forzar el Cierre**
->
-> Forzar el cierre del nodo puede causar pérdida de datos o problemas de sincronización. Solo úsalo como último recurso.
+- **[Problemas de Inicio y Detención del Nodo]({{< relref "../../troubleshooting/node-start-stop-issues" >}})** - Soluciones a problemas comunes relacionados con iniciar y detener el nodo
 
 
 ## Próximos Pasos

@@ -16,12 +16,12 @@ Piensa en el keyring como una **billetera (wallet)** donde puedes tener múltipl
 
 ## Ubicación del Keyring
 
-El keyring se guarda en la carpeta de datos persistentes del nodo:
+El keyring se guarda en un subdirectorio específico dentro de la carpeta de datos persistentes del nodo:
 
-- **Ruta en el host:** `./persistent-data` (relativa al directorio del servicio)
-- **Ruta en el contenedor:** `/home/ubuntu/.infinited`
+- **Ruta en el host:** `./persistent-data/keyring-file/` (relativa al directorio del servicio)
+- **Ruta en el contenedor:** `/home/ubuntu/.infinited/keyring-file/`
 
-Cuando uses comandos que requieren claves (como transacciones u operaciones on-chain), el sistema buscará las claves en esta ubicación. Si el comando no puede encontrar la clave, verifica que estés trabajando desde el directorio correcto del servicio y que el keyring exista en `persistent-data`.
+Cuando uses comandos que requieren claves (como transacciones u operaciones on-chain), el sistema buscará las claves en esta ubicación. Si el comando no puede encontrar la clave, verifica que estés trabajando desde el directorio correcto del servicio y que el keyring exista en `persistent-data/keyring-file/`.
 
 ## Protección del Keyring
 

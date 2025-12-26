@@ -53,11 +53,18 @@ El archivo génesis define el **Chain ID**, que es un identificador único para 
 
 ## Descarga Durante la Inicialización
 
-Durante la [inicialización del nodo]({{< relref "node-initialization" >}}), el sistema descarga automáticamente el archivo génesis oficial de la red desde el repositorio oficial.
+Durante la [inicialización del nodo]({{< relref "node-initialization" >}}), el sistema:
+
+1. **Genera un archivo génesis inicial** usando el comando `infinited init`
+2. **Descarga automáticamente el archivo génesis oficial** de la red desde el repositorio oficial
+3. **Reemplaza el génesis generado** con el oficial si la descarga es exitosa y el archivo es JSON válido
+4. **Mantiene el génesis generado** si la descarga falla o el archivo descargado no es válido
 
 **Ubicación:**
 - **Ruta en el host:** `./persistent-data/config/genesis.json` (relativa al directorio del servicio)
 - **Ruta en el contenedor:** `/home/ubuntu/.infinited/config/genesis.json`
+
+**Nota:** El sistema verifica que el archivo descargado sea JSON válido antes de reemplazar el génesis generado. Si la descarga falla, el nodo puede funcionar con el génesis generado inicialmente, aunque es recomendable tener el génesis oficial.
 
 ## Importancia del Archivo Génesis
 

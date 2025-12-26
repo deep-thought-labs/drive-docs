@@ -34,9 +34,16 @@ persistent-data/
 │   ├── genesis.json     # Archivo génesis de la red
 │   └── priv_validator_key.json  # Clave del validador
 ├── data/                # Base de datos de la blockchain
+│   ├── blocks/          # Bloques descargados
+│   ├── state.db/        # Base de datos de estado
 │   └── application.db   # Base de datos de la aplicación
-└── logs/                # Logs del nodo (si aplica)
+└── keyring-file/        # Keyring (claves criptográficas de cuenta)
+    └── ...              # Archivos de claves encriptadas
 ```
+
+**Nota:** Los logs del nodo se almacenan en un directorio separado:
+- **Ruta en el contenedor:** `/var/log/node/`
+- **Ruta en el host:** `./persistent-data/logs/` (si está mapeado como volumen)
 
 ## Componentes de la Data del Nodo
 
@@ -52,9 +59,11 @@ Los archivos de configuración se crean durante la [inicialización del nodo]({{
 
 Las claves se generan durante la inicialización y son críticas para la identidad del nodo:
 
-- **[Private Validator Key]({{< relref "private-validator-key" >}})** (`priv_validator_key.json`) - Identifica al validador
-- **Node Key** - Identifica al nodo en la red P2P
-- **Consensus Key** - Clave para el consenso
+- **[Private Validator Key]({{< relref "private-validator-key" >}})** (`priv_validator_key.json`) - Identifica al validador, ubicada en `config/`
+- **Node Key** - Identifica al nodo en la red P2P, generada automáticamente
+- **Consensus Key** - Clave para el consenso, generada automáticamente
+
+**Nota:** Las claves de cuenta (account keys) se almacenan en el [keyring]({{< relref "keyring" >}}) en `keyring-file/`, no en `config/`.
 
 ### Archivo Génesis
 
