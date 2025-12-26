@@ -2,8 +2,6 @@
 title: "Firewall Configuration"
 ---
 
-# Firewall Configuration Guide
-
 This guide explains how to configure your system's firewall to allow incoming connections to Drive services. These instructions are for your local host system where Drive is running.
 
 ## Important Notes

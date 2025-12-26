@@ -1,9 +1,7 @@
 ---
-title: "Ports"
+title: "Port Allocation Strategy"
 weight: 533
 ---
-
-# Port Allocation Strategy
 
 This document explains the port allocation strategy and logic for running multiple services simultaneously on the same host. For detailed port descriptions and service-specific configurations, see the related documents.
 

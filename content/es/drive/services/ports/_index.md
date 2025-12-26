@@ -1,9 +1,7 @@
 ---
-title: "Puertos"
+title: "Estrategia de Asignación de Puertos"
 weight: 533
 ---
-
-# Port Allocation Strategy
 
 Este documento explica la estrategia y lógica de asignación de puertos para ejecutar múltiples servicios simultáneamente en el mismo host. Para descripciones detalladas de puertos y configuraciones específicas de servicios, consulta los documentos relacionados.
 
