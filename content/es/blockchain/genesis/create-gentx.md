@@ -5,13 +5,19 @@ weight: 4011
 
 Guía paso a paso para crear una gentx (transacción genesis) a partir de un archivo genesis base proporcionado por el equipo de desarrollo.
 
-> [!NOTE]
-> **Conceptos Previos**
+> [!IMPORTANT]
+> **Contexto y Uso de esta Guía**
 > 
-> Antes de continuar, asegúrate de entender:
-> - [Genesis File]({{< relref "../../../concepts/genesis-file" >}}) - Qué es un archivo genesis
-> - [Key]({{< relref "../../../concepts/key" >}}) - Qué son las claves criptográficas
-> - [Keyring]({{< relref "../../../concepts/keyring" >}}) - Sistema de almacenamiento de claves
+> Las operaciones relacionadas con gentx se utilizan exclusivamente durante **el lanzamiento o creación de una cadena de bloques**. Este proceso no forma parte del ciclo de vida diario de una blockchain, sino que ocurre únicamente cuando se está lanzando una nueva cadena, ya sea una cadena de prueba o la mainnet definitiva.
+> 
+> Si estás leyendo esta guía, es porque estás participando activamente en el lanzamiento de una cadena. Esta guía proporciona una explicación global del flujo completo, pero **el equipo de desarrollo te proporcionará instrucciones específicas** para cada lanzamiento, incluyendo:
+> - URL y comando específico para descargar el genesis base
+> - Montos específicos para la creación de cuentas
+> - Parámetros específicos para la gentx según el contexto
+> 
+> **Siempre sigue las instrucciones específicas proporcionadas por el equipo de desarrollo para cada lanzamiento particular.**
+
+Antes de continuar, asegúrate de entender los conceptos fundamentales: [Genesis File]({{< relref "../../../concepts/genesis-file" >}}), [Key]({{< relref "../../../concepts/key" >}}), y [Keyring]({{< relref "../../../concepts/keyring" >}}).
 
 ## ¿Qué es una Gentx?
 
@@ -23,35 +29,46 @@ Cuando participas en el lanzamiento de una cadena, creas tu gentx a partir de un
 
 Antes de comenzar, asegúrate de tener:
 
-- ✅ **Binario `infinited`** instalado y disponible en tu PATH
-- ✅ **Archivo genesis base** proporcionado por el equipo de desarrollo
+- ✅ **Drive instalado y configurado** con al menos un servicio de nodo blockchain
+- ✅ **Nodo inicializado** (el proceso de inicialización crea las carpetas necesarias)
+- ✅ **Acceso al bash del contenedor** del servicio correspondiente
 - ✅ **Seed phrase** de tu cuenta de validador guardada de forma segura
-- ✅ **Comprensión básica** de cómo funcionan las claves y el keyring
 
-> 📖 **Instalación del binario**: Si necesitas instalar el binario `infinited`, consulta la documentación del repositorio [Infinite](https://github.com/deep-thought-labs/infinite).
-
-## Paso 1: Preparar el Entorno
-
-### 1-1. Copiar el Genesis Base
-
-El equipo de desarrollo te proporcionará un archivo genesis base. Copia este archivo a la ubicación donde trabajarás:
+**Sobre el binario `infinited`**: Aunque puedes revisar el código fuente en el [repositorio oficial de Infinite](https://github.com/deep-thought-labs/infinite), **no es necesario compilar el binario por ti mismo**. El binario `infinited` ya está incluido dentro de cada servicio de Drive. Solo necesitas acceder al bash del contenedor y ejecutar los comandos desde ahí:
 
 ```bash
-# Crear directorio de trabajo (si no existe)
-mkdir -p ~/.infinited/config
+# Mainnet
+cd services/node0-infinite
+./drive.sh exec infinite bash
 
-# Copiar el genesis base proporcionado
-cp /ruta/al/genesis-base.json ~/.infinited/config/genesis.json
+# Testnet
+cd services/node1-infinite-testnet
+./drive.sh exec infinite-testnet bash
+
+# Creative
+cd services/node2-infinite-creative
+./drive.sh exec infinite-creative bash
 ```
 
+Una vez dentro del bash del contenedor, el binario `infinited` estará disponible directamente. Todas las operaciones descritas en este documento se realizarán desde dentro del contenedor. Para más información, consulta [Gestión de Contenedores]({{< relref "../../../drive/guides/general/container-management#acceder-a-la-shell-del-contenedor" >}}).
+
+## Paso 1: Obtener el Genesis Base
+
+El equipo de desarrollo te proporcionará el archivo genesis base necesario para crear tu gentx. El equipo se encargará de proporcionar:
+
+- **URL específica** desde donde descargar el genesis base
+- **Comando específico** para descargar el archivo que ya especificará la ruta final donde debe estar el genesis
+
+El comando proporcionado por el equipo descargará el genesis base directamente a la ubicación correcta (`~/.infinited/config/genesis.json` o la ruta que uses con `--home`), reemplazando el archivo genesis que se generó durante la inicialización de tu nodo.
+
 **⚠️ Importante:**
-- El archivo debe llamarse exactamente `genesis.json`
-- Debe estar en `~/.infinited/config/genesis.json` (o la ruta que uses con `--home`)
-- Verifica que el archivo sea válido JSON antes de continuar
+- Asegúrate de estar dentro del bash del contenedor antes de ejecutar el comando
+- El archivo descargado reemplazará el genesis existente
+- Verifica que el archivo sea válido JSON después de descargarlo
 
-### 1-2. Verificar el Chain ID
+### Verificar el Chain ID
 
-Verifica el Chain ID del genesis base:
+Después de descargar el genesis base, verifica el Chain ID para asegurarte de que es el correcto:
 
 ```bash
 cat ~/.infinited/config/genesis.json | jq -r '.chain_id'
@@ -62,7 +79,23 @@ cat ~/.infinited/config/genesis.json | jq -r '.chain_id'
 - **Testnet:** `infinite_421018001-1`
 - **Creative:** `infinite_421018002-1`
 
-Anota el Chain ID, lo necesitarás más adelante.
+Anota el Chain ID, lo necesitarás más adelante al generar tu gentx.
+
+### Validar el Genesis Base
+
+Antes de proceder a crear tu gentx, valida que el genesis base descargado es correcto:
+
+```bash
+infinited genesis validate-genesis --home ~/.infinited
+```
+
+**Esto verifica:**
+- ✅ Consistencia de las denominaciones
+- ✅ El suministro total coincide con la suma de todos los saldos
+- ✅ La estructura JSON es correcta
+- ✅ La configuración básica del genesis es válida
+
+Si la validación es exitosa, puedes proceder con confianza a crear tu gentx. Si hay errores, contacta al equipo de desarrollo antes de continuar.
 
 ---
 
@@ -87,20 +120,22 @@ El sistema te pedirá ingresar tu seed phrase. Asegúrate de tenerla a mano y de
 
 ### 2-2. Agregar Fondos a la Cuenta en Genesis
 
-Agrega tu cuenta al genesis con el saldo inicial necesario para crear el validador:
+Agrega tu cuenta al genesis con el saldo inicial necesario para crear el validador. **El equipo de desarrollo te especificará el monto exacto** que debes usar durante el proceso de lanzamiento. Los valores mostrados aquí son ejemplos generales:
+
+**Ejemplo general:**
 
 ```bash
-# Mainnet
+# Mainnet (ejemplo)
 infinited genesis add-genesis-account validator 1000000000000000000000drop \
   --keyring-backend file \
   --home ~/.infinited
 
-# Testnet
+# Testnet (ejemplo)
 infinited genesis add-genesis-account validator 1000000000000000000000tdrop \
   --keyring-backend file \
   --home ~/.infinited
 
-# Creative
+# Creative (ejemplo)
 infinited genesis add-genesis-account validator 1000000000000000000000cdrop \
   --keyring-backend file \
   --home ~/.infinited
@@ -108,7 +143,7 @@ infinited genesis add-genesis-account validator 1000000000000000000000cdrop \
 
 **Parámetros:**
 - `validator`: Nombre de la cuenta que acabas de crear/recuperar
-- `1000000000000000000000drop`: Cantidad en unidades atómicas (100 tokens × 10¹⁸)
+- **Cantidad**: El equipo de desarrollo te indicará el monto exacto a usar (en unidades atómicas)
 - Denominaciones:
   - Mainnet: `drop`
   - Testnet: `tdrop`
@@ -117,6 +152,7 @@ infinited genesis add-genesis-account validator 1000000000000000000000cdrop \
 **⚠️ Importante:**
 - Utiliza siempre unidades atómicas (10¹⁸)
 - Incluye el sufijo de denominación correcto según la red
+- **Usa los montos específicos proporcionados por el equipo de desarrollo** para el lanzamiento en curso
 - Asegúrate de tener suficientes tokens para la autodelegación mínima requerida
 
 ---
@@ -125,9 +161,9 @@ infinited genesis add-genesis-account validator 1000000000000000000000cdrop \
 
 ### 3-1. Crear la Gentx del Validador
 
-Genera tu gentx con los parámetros de tu validador:
+Genera tu gentx con los parámetros de tu validador. **El equipo de desarrollo puede especificar valores particulares** para algunos parámetros (como tasas de comisión, autodelegación mínima, etc.) según el contexto del lanzamiento. Los valores mostrados aquí son ejemplos generales:
 
-**Mainnet:**
+**Ejemplo general para Mainnet:**
 ```bash
 infinited genesis gentx validator 10000000000000000000drop \
   --chain-id infinite_421018-1 \
@@ -139,7 +175,7 @@ infinited genesis gentx validator 10000000000000000000drop \
   --home ~/.infinited
 ```
 
-**Testnet:**
+**Ejemplo general para Testnet:**
 ```bash
 infinited genesis gentx validator 10000000000000000000tdrop \
   --chain-id infinite_421018001-1 \
@@ -151,7 +187,7 @@ infinited genesis gentx validator 10000000000000000000tdrop \
   --home ~/.infinited
 ```
 
-**Creative:**
+**Ejemplo general para Creative:**
 ```bash
 infinited genesis gentx validator 10000000000000000000cdrop \
   --chain-id infinite_421018002-1 \
@@ -165,15 +201,16 @@ infinited genesis gentx validator 10000000000000000000cdrop \
 
 **Parámetros explicados:**
 - `validator`: Nombre de la cuenta (debe existir en el keyring y tener fondos en genesis)
-- **Cantidad de autodelegación:**
-  - Mainnet: `10000000000000000000drop` (10 tokens)
-  - Testnet: `10000000000000000000tdrop` (10 tokens)
-  - Creative: `10000000000000000000cdrop` (10 tokens)
-- `--chain-id`: Debe coincidir exactamente con el Chain ID del genesis base
-- `--commission-rate`: Tasa de comisión inicial (ej: 10% = "0.10")
-- `--commission-max-rate`: Tasa de comisión máxima permitida (ej: 20% = "0.20")
-- `--commission-max-change-rate`: Cambio máximo de tasa por actualización (ej: 1% = "0.01")
-- `--min-self-delegation`: Autodelegación mínima requerida (en unidades atómicas)
+- **Cantidad de autodelegación**: El equipo de desarrollo te indicará el monto exacto a usar
+  - Ejemplos generales:
+    - Mainnet: `10000000000000000000drop` (10 tokens)
+    - Testnet: `10000000000000000000tdrop` (10 tokens)
+    - Creative: `10000000000000000000cdrop` (10 tokens)
+- `--chain-id`: Debe coincidir exactamente con el Chain ID del genesis base proporcionado por el equipo
+- `--commission-rate`: Tasa de comisión inicial (el equipo puede especificar valores particulares)
+- `--commission-max-rate`: Tasa de comisión máxima permitida (el equipo puede especificar valores particulares)
+- `--commission-max-change-rate`: Cambio máximo de tasa por actualización (el equipo puede especificar valores particulares)
+- `--min-self-delegation`: Autodelegación mínima requerida (el equipo puede especificar valores particulares)
 
 **Ubicación de la gentx generada:**
 La gentx se generará en: `~/.infinited/config/gentx/gentx-<moniker>.json`
@@ -240,15 +277,15 @@ Sigue las instrucciones del equipo de desarrollo para entregar tu gentx. Esto pu
 ## Resumen del Proceso
 
 ```
-1. Recibir genesis base del equipo
+1. Descargar genesis base usando comando proporcionado por el equipo
    ↓
-2. Copiar genesis base a ~/.infinited/config/genesis.json
+2. Verificar Chain ID del genesis descargado
    ↓
 3. Recuperar cuenta desde seed phrase
    ↓
-4. Agregar cuenta con fondos al genesis
+4. Agregar cuenta con fondos al genesis (montos especificados por el equipo)
    ↓
-5. Generar gentx con parámetros del validador
+5. Generar gentx con parámetros del validador (valores especificados por el equipo)
    ↓
 6. Validar gentx y genesis
    ↓
@@ -300,8 +337,13 @@ Una vez que el equipo de desarrollo compile todas las gentxs en el genesis final
 
 1. Recibirás el genesis final compilado
 2. Reemplazarás tu genesis local con el genesis final
-3. Iniciarás tu nodo con el genesis final
-4. Tu validador estará activo desde el bloque 1
+3. **Valida el genesis final antes de iniciar el nodo:**
+   ```bash
+   infinited genesis validate-genesis --home ~/.infinited
+   ```
+   Esta validación verifica que el genesis es correcto y está listo para usar. Es importante ejecutarla antes de iniciar el nodo para evitar problemas.
+4. Iniciarás tu nodo con el genesis final
+5. Tu validador estará activo desde el bloque 1
 
 > 📖 **Iniciar Nodo**: Para información sobre cómo iniciar tu nodo, consulta [Iniciar/Detener Nodo]({{< relref "../../../drive/guides/blockchain-nodes/start-stop-node" >}}) en la documentación de Drive.
 
