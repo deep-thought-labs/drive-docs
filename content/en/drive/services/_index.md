@@ -1,6 +1,6 @@
 ---
 title: "Services"
-weight: 53
+weight: 530
 ---
 
 Service structure documentation, service type descriptions, and service catalogs. This is the single source of truth for all service information including their configurations, ports, and environment variables.

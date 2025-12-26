@@ -28,6 +28,16 @@ To get the most out of this documentation, we recommend following this order:
    - [Environment Variables]({{< relref "services/environment" >}}) - Service configuration
    - [Port Strategy]({{< relref "services/ports" >}}) - Network configuration
 
-4. **[Troubleshooting]({{< relref "troubleshooting" >}})** - When you encounter problems
+4. **[Internal Workings]({{< relref "internal-workings" >}})** - Technical documentation of the internal system
+   - [Supervisor and Auto-Start System]({{< relref "internal-workings/supervisor-auto-start" >}}) - Monitoring and automatic restart
+   - [Internal Process Management]({{< relref "internal-workings/process-management" >}}) - Daemonization and process tracking
+   - [Internal Directory Structure]({{< relref "internal-workings/directory-structure" >}}) - File and directory organization
+   - [Internal Configuration System]({{< relref "internal-workings/configuration-system" >}}) - Variables and centralized configuration
+   - [Internal Logging System]({{< relref "internal-workings/logging-system" >}}) - Log structure and management
+   - [Container Architecture]({{< relref "internal-workings/container-architecture" >}}) - Dockerfile build and configuration
+   - [Technical Initialization Flow]({{< relref "internal-workings/initialization-flow" >}}) - Internal initialization process
+   - [Container Internal Scripts]({{< relref "internal-workings/internal-scripts" >}}) - Description of all scripts
+
+5. **[Troubleshooting]({{< relref "troubleshooting" >}})** - When you encounter problems
    - [Common Issues]({{< relref "troubleshooting/common-issues" >}}) - Solutions to frequent errors
    - [Network Diagnosis]({{< relref "troubleshooting/network-diagnosis" >}}) - Diagnostic tools
