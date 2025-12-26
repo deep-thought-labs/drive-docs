@@ -1,6 +1,6 @@
 ---
 title: "Servicios"
-weight: 53
+weight: 530
 ---
 
 Documentación de estructura de servicios, descripciones de tipos de servicios y catálogos de servicios. Esta es la única fuente de verdad para toda la información de servicios, incluyendo sus configuraciones, puertos y variables de entorno.

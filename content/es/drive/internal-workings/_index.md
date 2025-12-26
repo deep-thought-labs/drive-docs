@@ -1,6 +1,6 @@
 ---
 title: "Funcionamiento Interno"
-weight: 40
+weight: 535
 ---
 
 Esta sección documenta el funcionamiento interno técnico del sistema Drive. Aquí encontrarás información detallada sobre cómo funciona el sistema a nivel técnico, incluyendo mecanismos internos, arquitectura de componentes, y flujos de ejecución.
