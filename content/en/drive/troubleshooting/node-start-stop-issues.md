@@ -31,6 +31,10 @@ The node must be initialized before it can be started. Verify that the genesis f
 The system doesn't allow multiple instances of the same node. Check the status:
 
 ```bash
+# Simplified syntax (recommended)
+./drive.sh node-process-status
+
+# Complete syntax (alternative)
 ./drive.sh exec infinite node-process-status
 ```
 
@@ -61,6 +65,10 @@ Container logs may show startup errors:
 If the node attempted to start but failed, review node logs:
 
 ```bash
+# Simplified syntax (recommended)
+./drive.sh node-logs
+
+# Complete syntax (alternative)
 ./drive.sh exec infinite node-logs 50
 ```
 
@@ -99,6 +107,10 @@ Controlled shutdown can take up to 30 seconds. Wait a few moments before taking 
 Verify if the process is still running:
 
 ```bash
+# Simplified syntax (recommended)
+./drive.sh node-process-status
+
+# Complete syntax (alternative)
 ./drive.sh exec infinite node-process-status
 ```
 
@@ -138,6 +150,10 @@ If it's absolutely necessary to force shutdown:
 
 ```bash
 # 1. Find the process PID
+# Simplified syntax (recommended)
+./drive.sh node-process-status
+
+# Complete syntax (alternative)
 ./drive.sh exec infinite node-process-status
 
 # 2. Remove auto-start flag to prevent restart
@@ -167,6 +183,10 @@ The node has an auto-start flag that indicates it should restart automatically. 
 
 1. **Stop the node correctly:**
    ```bash
+   # Simplified syntax (recommended)
+   ./drive.sh node-stop
+   
+   # Complete syntax (alternative)
    ./drive.sh exec infinite node-stop
    ```
    
@@ -213,12 +233,20 @@ If the node has synchronization problems after restarting it:
 ### Verify Synchronization Status
 
 ```bash
+# Simplified syntax (recommended)
+./drive.sh node-process-status
+
+# Complete syntax (alternative)
 ./drive.sh exec infinite node-process-status
 ```
 
 ### Review Logs
 
 ```bash
+# Simplified syntax (recommended)
+./drive.sh node-logs
+
+# Complete syntax (alternative)
 ./drive.sh exec infinite node-logs -f
 ```
 

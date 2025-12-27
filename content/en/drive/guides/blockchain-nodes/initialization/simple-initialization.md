@@ -34,6 +34,22 @@ Simple initialization generates a [Private Validator Key]({{< relref "../../../.
 
 ## Using Command Line
 
+### Simplified Syntax (Recommended)
+
+```bash
+./drive.sh node-init
+```
+
+The script automatically:
+- Detects that it's a `node-init` command
+- Gets the service name from the `docker-compose.yml` in the current directory
+- Adds `exec` and the service name
+- Adds `-it` automatically if necessary (to request the moniker)
+
+### Complete Syntax (Alternative)
+
+If you prefer to explicitly specify the service name:
+
 ```bash
 ./drive.sh exec infinite node-init
 ```

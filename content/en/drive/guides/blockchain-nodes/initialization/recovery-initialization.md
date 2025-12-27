@@ -40,11 +40,32 @@ For more information on how to create and backup a seed phrase, see:
 
 ## Using Command Line
 
+### Simplified Syntax (Recommended)
+
 ```bash
-./drive.sh exec -it infinite node-init --recover
+./drive.sh node-init --recover
 ```
 
-**Note:** Use `-it` (interactive) to be able to enter the seed phrase.
+The script automatically:
+- Detects that it's a `node-init` command
+- Gets the service name from the `docker-compose.yml` in the current directory
+- Adds `exec` and the service name
+- Adds `-it` automatically (since `--recover` requires interactive mode)
+
+### Complete Syntax (Alternative)
+
+If you prefer to explicitly specify the service name:
+
+```bash
+./drive.sh exec infinite node-init --recover
+```
+
+The script will also add `-it` automatically if you don't specify it.
+
+> [!TIP]
+> **You Don't Need to Specify `-it`**
+>
+> The `drive.sh` script automatically detects that `node-init --recover` requires interactive mode and adds `-it` for you. You can omit it completely.
 
 > [!NOTE]
 > **What the Command Does**

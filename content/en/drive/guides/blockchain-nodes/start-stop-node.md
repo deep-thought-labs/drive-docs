@@ -21,6 +21,14 @@ After initializing your node, you need to start it so it begins synchronizing wi
 
 ### Using Command Line
 
+#### Simplified Syntax (Recommended)
+
+```bash
+./drive.sh node-start
+```
+
+#### Complete Syntax (Alternative)
+
 ```bash
 ./drive.sh exec infinite node-start
 ```
@@ -56,6 +64,14 @@ Stopping the node in a controlled manner is important to maintain data integrity
 3. Confirm the operation
 
 ### Using Command Line
+
+#### Simplified Syntax (Recommended)
+
+```bash
+./drive.sh node-stop
+```
+
+#### Complete Syntax (Alternative)
 
 ```bash
 ./drive.sh exec infinite node-stop

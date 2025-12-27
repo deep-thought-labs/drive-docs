@@ -76,6 +76,10 @@ If you receive a "key not found" error when using commands that require keys:
 
 3. **List available keys:**
    ```bash
+   # Simplified syntax (recommended)
+   ./drive.sh node-keys list
+   
+   # Complete syntax (alternative)
    ./drive.sh exec infinite node-keys list
    ```
 
@@ -99,12 +103,25 @@ If you receive a "key not found" error when using commands that require keys:
 
 2. Verify the keyring exists and list keys:
    ```bash
+   # Simplified syntax (recommended)
+   ./drive.sh node-keys list
+   
+   # Complete syntax (alternative)
    ./drive.sh exec infinite node-keys list
    ```
 
 3. If the key is not in the list, add it:
    ```bash
-   ./drive.sh exec -it infinite node-keys add my-validator
+   # Simplified syntax (recommended)
+   ./drive.sh node-keys add my-validator
+   
+   # Complete syntax (alternative)
+   ./drive.sh exec infinite node-keys add my-validator
+   
+   > [!TIP]
+   > **You Don't Need to Specify `-it`**
+   >
+   > The `drive.sh` script automatically detects that `node-keys add` requires interactive mode and adds `-it` for you.
    ```
 
 4. If you don't have the seed phrase, you won't be able to add the key. In this case, you'll need to generate a new key.
