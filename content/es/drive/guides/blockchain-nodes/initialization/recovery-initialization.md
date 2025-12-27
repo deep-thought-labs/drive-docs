@@ -40,11 +40,32 @@ Para más información sobre cómo crear y respaldar una frase semilla, consulta
 
 ## Usando Línea de Comandos
 
+### Sintaxis Simplificada (Recomendada)
+
 ```bash
-./drive.sh exec -it infinite node-init --recover
+./drive.sh node-init --recover
 ```
 
-**Nota:** Usa `-it` (interactive) para poder ingresar la frase semilla.
+El script automáticamente:
+- Detecta que es un comando `node-init`
+- Obtiene el nombre del servicio del `docker-compose.yml` del directorio actual
+- Agrega `exec` y el nombre del servicio
+- Agrega `-it` automáticamente (ya que `--recover` requiere modo interactivo)
+
+### Sintaxis Completa (Alternativa)
+
+Si prefieres especificar explícitamente el nombre del servicio:
+
+```bash
+./drive.sh exec infinite node-init --recover
+```
+
+El script también agregará `-it` automáticamente si no lo especificas.
+
+> [!TIP]
+> **No necesitas especificar `-it`**
+>
+> El script `drive.sh` detecta automáticamente que `node-init --recover` requiere modo interactivo y agrega `-it` por ti. Puedes omitirlo completamente.
 
 > [!NOTE]
 > **Qué Hace el Comando**

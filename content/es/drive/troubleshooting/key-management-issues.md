@@ -76,6 +76,10 @@ Si recibes un error de "clave no encontrada" al usar comandos que requieren clav
 
 3. **Lista las claves disponibles:**
    ```bash
+   # Sintaxis simplificada (recomendada)
+   ./drive.sh node-keys list
+   
+   # Sintaxis completa (alternativa)
    ./drive.sh exec infinite node-keys list
    ```
 
@@ -99,13 +103,26 @@ Si recibes un error de "clave no encontrada" al usar comandos que requieren clav
 
 2. Verifica que el keyring existe y lista las claves:
    ```bash
+   # Sintaxis simplificada (recomendada)
+   ./drive.sh node-keys list
+   
+   # Sintaxis completa (alternativa)
    ./drive.sh exec infinite node-keys list
    ```
 
 3. Si la clave no está en la lista, agrégala:
    ```bash
-   ./drive.sh exec -it infinite node-keys add my-validator
+   # Sintaxis simplificada (recomendada)
+   ./drive.sh node-keys add my-validator
+   
+   # Sintaxis completa (alternativa)
+   ./drive.sh exec infinite node-keys add my-validator
    ```
+   
+   > [!TIP]
+   > **No necesitas especificar `-it`**
+   >
+   > El script `drive.sh` detecta automáticamente que `node-keys add` requiere modo interactivo y agrega `-it` por ti.
 
 4. Si no tienes la frase semilla, no podrás agregar la clave. En este caso, necesitarás generar una nueva clave.
 

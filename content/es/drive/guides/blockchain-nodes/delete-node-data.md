@@ -83,12 +83,20 @@ Si prefieres usar la línea de comandos, puedes borrar la data del nodo manualme
 Primero, asegúrate de que el nodo esté detenido:
 
 ```bash
+# Sintaxis simplificada (recomendada)
+./drive.sh node-stop
+
+# Sintaxis completa (alternativa)
 ./drive.sh exec infinite node-stop
 ```
 
 Verifica que el nodo esté detenido:
 
 ```bash
+# Sintaxis simplificada (recomendada)
+./drive.sh node-process-status
+
+# Sintaxis completa (alternativa)
 ./drive.sh exec infinite node-process-status
 ```
 
@@ -192,7 +200,7 @@ Esta práctica te permite verificar que siempre puedes recuperar exactamente la 
 
 2. **Detén el nodo:**
    - Usa la interfaz gráfica: **"Node Operations"** → **"Stop Node"**
-   - O usa línea de comandos: `./drive.sh exec infinite node-stop`
+   - O usa línea de comandos: `./drive.sh node-stop` (sintaxis simplificada) o `./drive.sh exec infinite node-stop` (sintaxis completa)
 
 3. **Borra la data del nodo:**
    - Usa la interfaz gráfica: **"Node Operations"** → **"Advanced Operations"** → **"Delete Node Data"**
@@ -227,6 +235,10 @@ Si tienes problemas para borrar la data:
 
 1. **Asegúrate de que el nodo esté detenido:**
    ```bash
+   # Sintaxis simplificada (recomendada)
+   ./drive.sh node-process-status
+   
+   # Sintaxis completa (alternativa)
    ./drive.sh exec infinite node-process-status
    ```
    Si el nodo está ejecutándose, deténlo primero.

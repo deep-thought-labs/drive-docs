@@ -14,6 +14,10 @@ Si no ves logs o los logs están vacíos:
 Los logs solo se generan cuando el nodo está en ejecución. Verifica el estado:
 
 ```bash
+# Sintaxis simplificada (recomendada)
+./drive.sh node-process-status
+
+# Sintaxis completa (alternativa)
 ./drive.sh exec infinite node-process-status
 ```
 
@@ -79,6 +83,10 @@ Si los logs muestran errores:
 Revisa los logs para identificar el tipo de error:
 
 ```bash
+# Sintaxis simplificada (recomendada)
+./drive.sh node-logs 100 | grep -i error
+
+# Sintaxis completa (alternativa)
 ./drive.sh exec infinite node-logs 100 | grep -i error
 ```
 
@@ -93,6 +101,10 @@ Revisa los logs para identificar el tipo de error:
 Los errores repetitivos pueden indicar un problema sistemático:
 
 ```bash
+# Sintaxis simplificada (recomendada)
+./drive.sh node-logs 500 | grep -i error | sort | uniq -c
+
+# Sintaxis completa (alternativa)
 ./drive.sh exec infinite node-logs 500 | grep -i error | sort | uniq -c
 ```
 
@@ -180,6 +192,10 @@ Si los logs no se actualizan:
 ### 1. Verificar que el Nodo Esté Activo
 
 ```bash
+# Sintaxis simplificada (recomendada)
+./drive.sh node-process-status
+
+# Sintaxis completa (alternativa)
 ./drive.sh exec infinite node-process-status
 ```
 

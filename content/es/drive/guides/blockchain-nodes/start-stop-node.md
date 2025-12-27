@@ -21,6 +21,14 @@ Después de inicializar tu nodo, necesitas iniciarlo para que comience a sincron
 
 ### Usando Línea de Comandos
 
+#### Sintaxis Simplificada (Recomendada)
+
+```bash
+./drive.sh node-start
+```
+
+#### Sintaxis Completa (Alternativa)
+
 ```bash
 ./drive.sh exec infinite node-start
 ```
@@ -56,6 +64,14 @@ Detener el nodo de forma controlada es importante para mantener la integridad de
 3. Confirma la operación
 
 ### Usando Línea de Comandos
+
+#### Sintaxis Simplificada (Recomendada)
+
+```bash
+./drive.sh node-stop
+```
+
+#### Sintaxis Completa (Alternativa)
 
 ```bash
 ./drive.sh exec infinite node-stop

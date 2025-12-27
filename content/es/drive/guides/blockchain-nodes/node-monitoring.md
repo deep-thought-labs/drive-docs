@@ -42,6 +42,12 @@ Verifica si el proceso del nodo está ejecutándose y obtén información sobre 
 
 ### Usando Línea de Comandos
 
+**Sintaxis simplificada (recomendada):**
+```bash
+./drive.sh node-process-status
+```
+
+**Sintaxis completa (alternativa):**
 ```bash
 ./drive.sh exec infinite node-process-status
 ```
@@ -79,11 +85,19 @@ Muestra las últimas N líneas de logs del nodo.
 
 #### Usando Línea de Comandos
 
+**Sintaxis simplificada (recomendada):**
 ```bash
 # Últimas 50 líneas (por defecto)
-./drive.sh exec infinite node-logs
+./drive.sh node-logs
 
 # Últimas N líneas (especificar número)
+./drive.sh node-logs 100
+./drive.sh node-logs 200
+```
+
+**Sintaxis completa (alternativa):**
+```bash
+./drive.sh exec infinite node-logs
 ./drive.sh exec infinite node-logs 100
 ./drive.sh exec infinite node-logs 200
 ```
@@ -113,11 +127,24 @@ Muestra los logs del nodo en tiempo real, actualizándose automáticamente a med
 
 #### Usando Línea de Comandos
 
+**Sintaxis simplificada (recomendada):**
+```bash
+./drive.sh node-logs -f
+# o
+./drive.sh node-logs --follow
+```
+
+**Sintaxis completa (alternativa):**
 ```bash
 ./drive.sh exec infinite node-logs -f
 # o
 ./drive.sh exec infinite node-logs --follow
 ```
+
+> [!TIP]
+> **No necesitas especificar `-it`**
+>
+> El script `drive.sh` detecta automáticamente que `node-logs -f` requiere modo interactivo y agrega `-it` por ti.
 
 **Qué hace:** Transmite las entradas de logs en tiempo real a medida que se escriben en el archivo de logs (similar a `tail -f`).
 

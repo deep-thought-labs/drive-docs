@@ -43,6 +43,12 @@ Genera una clave criptográfica y muestra tu frase semilla **sin guardarla** en 
 
 #### Usando Línea de Comandos
 
+**Sintaxis simplificada (recomendada):**
+```bash
+./drive.sh node-keys create my-validator --dry-run
+```
+
+**Sintaxis completa (alternativa):**
 ```bash
 ./drive.sh exec infinite node-keys create my-validator --dry-run
 ```
@@ -83,8 +89,14 @@ Genera una clave nueva y la guarda automáticamente en el keyring en un solo pas
 
 #### Usando Línea de Comandos
 
+**Sintaxis simplificada (recomendada):**
 ```bash
-./drive.sh exec -it infinite node-keys create my-validator
+./drive.sh node-keys create my-validator
+```
+
+**Sintaxis completa (alternativa):**
+```bash
+./drive.sh exec infinite node-keys create my-validator
 ```
 
 **Qué hace:**
@@ -92,7 +104,10 @@ Genera una clave nueva y la guarda automáticamente en el keyring en un solo pas
 - Genera y guarda la clave en el keyring automáticamente
 - Puede mostrar la frase semilla (dependiendo de la configuración)
 
-**Nota:** Usa `-it` (interactive) para poder ingresar la contraseña del keyring si es necesario.
+> [!TIP]
+> **No necesitas especificar `-it`**
+>
+> El script `drive.sh` detecta automáticamente que `node-keys create` requiere modo interactivo y agrega `-it` por ti. Puedes omitirlo completamente.
 
 #### Usando Interfaz Gráfica
 
@@ -118,14 +133,25 @@ Si ya tienes una frase semilla (de un nodo anterior, de otro sistema, o de una c
 
 #### Usando Línea de Comandos
 
+**Sintaxis simplificada (recomendada):**
 ```bash
-./drive.sh exec -it infinite node-keys add my-validator
+./drive.sh node-keys add my-validator
+```
+
+**Sintaxis completa (alternativa):**
+```bash
+./drive.sh exec infinite node-keys add my-validator
 ```
 
 **Qué hace:**
 - Te solicita ingresar tu frase semilla (12 o 24 palabras)
 - Te solicita la contraseña del keyring si es necesario
 - Agrega la clave al keyring
+
+> [!TIP]
+> **No necesitas especificar `-it`**
+>
+> El script `drive.sh` detecta automáticamente que `node-keys add` requiere modo interactivo y agrega `-it` por ti.
 
 **Cuándo usar:** Cuando quieras restaurar una clave existente o agregar una clave de otro nodo.
 
@@ -151,6 +177,12 @@ Muestra todas las claves que tienes almacenadas en tu keyring.
 
 #### Usando Línea de Comandos
 
+**Sintaxis simplificada (recomendada):**
+```bash
+./drive.sh node-keys list
+```
+
+**Sintaxis completa (alternativa):**
 ```bash
 ./drive.sh exec infinite node-keys list
 ```
@@ -176,6 +208,12 @@ Muestra información detallada sobre una clave específica almacenada en tu keyr
 
 #### Usando Línea de Comandos
 
+**Sintaxis simplificada (recomendada):**
+```bash
+./drive.sh node-keys show my-validator
+```
+
+**Sintaxis completa (alternativa):**
 ```bash
 ./drive.sh exec infinite node-keys show my-validator
 ```
@@ -208,6 +246,12 @@ Elimina permanentemente una clave del keyring.
 
 #### Usando Línea de Comandos
 
+**Sintaxis simplificada (recomendada):**
+```bash
+./drive.sh node-keys delete my-validator --yes
+```
+
+**Sintaxis completa (alternativa):**
 ```bash
 ./drive.sh exec infinite node-keys delete my-validator --yes
 ```

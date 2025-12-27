@@ -14,12 +14,16 @@ Si el nodo no inicia, sigue estos pasos para diagnosticar y resolver el problema
 El nodo debe estar inicializado antes de poder iniciarlo. Verifica que el archivo genesis exista:
 
 ```bash
+# Sintaxis simplificada (para comandos node-*)
+./drive.sh node-init  # Si necesitas inicializar
+
+# Sintaxis completa (para comandos del sistema como ls)
 ./drive.sh exec infinite ls -la /home/ubuntu/.infinited/config/genesis.json
 ```
 
 **Si el archivo no existe:**
 - El nodo no ha sido inicializado
-- Necesitas ejecutar `node-init` primero
+- Necesitas ejecutar `./drive.sh node-init` primero
 - Consulta la guía de [Inicialización de Nodo]({{< relref "../guides/blockchain-nodes/initialization" >}})
 
 **Si el archivo existe:**
@@ -31,6 +35,10 @@ El nodo debe estar inicializado antes de poder iniciarlo. Verifica que el archiv
 El sistema no permite múltiples instancias del mismo nodo. Verifica el estado:
 
 ```bash
+# Sintaxis simplificada (recomendada)
+./drive.sh node-process-status
+
+# Sintaxis completa (alternativa)
 ./drive.sh exec infinite node-process-status
 ```
 
@@ -61,6 +69,10 @@ Los logs del contenedor pueden mostrar errores de inicio:
 Si el nodo intentó iniciar pero falló, revisa los logs del nodo:
 
 ```bash
+# Sintaxis simplificada (recomendada)
+./drive.sh node-logs 50
+
+# Sintaxis completa (alternativa)
 ./drive.sh exec infinite node-logs 50
 ```
 
@@ -99,6 +111,10 @@ El cierre controlado puede tomar hasta 30 segundos. Espera unos momentos antes d
 Verifica si el proceso aún está ejecutándose:
 
 ```bash
+# Sintaxis simplificada (recomendada)
+./drive.sh node-process-status
+
+# Sintaxis completa (alternativa)
 ./drive.sh exec infinite node-process-status
 ```
 
@@ -167,6 +183,10 @@ El nodo tiene un flag de auto-start que indica que debe reiniciarse automáticam
 
 1. **Detener el nodo correctamente:**
    ```bash
+   # Sintaxis simplificada (recomendada)
+   ./drive.sh node-stop
+   
+   # Sintaxis completa (alternativa)
    ./drive.sh exec infinite node-stop
    ```
    
@@ -213,6 +233,10 @@ Si el nodo tiene problemas de sincronización después de reiniciarlo:
 ### Verificar Estado de Sincronización
 
 ```bash
+# Sintaxis simplificada (recomendada)
+./drive.sh node-process-status
+
+# Sintaxis completa (alternativa)
 ./drive.sh exec infinite node-process-status
 ```
 
