@@ -240,25 +240,56 @@ Si **debes** usar una institución para custodia (solo en casos específicos):
 > [!IMPORTANT]
 > **Limitaciones de Wallets Multifirma en Genesis**
 >
-> Si una wallet multifirma está incluida en el archivo `genesis.json` de una nueva cadena blockchain, hay consideraciones importantes:
+> Si una wallet multifirma está incluida en el archivo `genesis.json` de una nueva cadena blockchain, hay consideraciones **críticas** que debes entender:
 >
 > **La dirección de la wallet multifirma está fija en el genesis:**
 > - La dirección pública de la wallet multifirma se calcula a partir de las claves públicas de los firmantes
 > - Una vez que el genesis está configurado y la cadena inicia, **no puedes modificar los firmantes** de esa wallet sin cambiar su dirección
-> - Si necesitas cambiar firmantes después del lanzamiento, debes crear una nueva wallet y migrar los fondos
+> - **Cambiar la dirección puede no ser viable** dependiendo del contexto y propósito de la wallet en el genesis
 >
 > **Consideraciones antes de incluir en Genesis:**
 > 1. **Selección cuidadosa de firmantes** - Elige firmantes que serán confiables a largo plazo
 > 2. **Planificación a futuro** - Considera si necesitarás cambiar firmantes después del lanzamiento
 > 3. **Umbral apropiado** - Configura un umbral que permita operaciones incluso si algunos firmantes no están disponibles
 > 4. **Documentación** - Documenta claramente quiénes son los firmantes y cómo contactarlos
+> 5. **Propósito y contexto** - Entiende completamente **por qué** y **cómo** se está usando la wallet en el genesis
+>
+> **⚠️ CRÍTICO: Dependiendo del Contexto, Cambiar la Dirección Puede NO Ser Posible**
+>
+> **No es simplemente "migrar fondos"** - Dependiendo del propósito de la wallet en el genesis, cambiar la dirección puede ser **imposible o no viable**:
+>
+> **Casos donde cambiar la dirección NO es viable:**
+>
+> 1. **Fondos de desbloqueo programado** - Si la wallet está configurada para recibir fondos de desbloqueo constante mediante un mecanismo programado en el genesis:
+>    - El protocolo seguirá enviando fondos a la dirección original configurada en el genesis
+>    - **No puedes modificar** el mecanismo para que envíe fondos a una dirección diferente
+>    - Los fondos seguirán llegando a la dirección original indefinidamente
+>
+> 2. **Contratos inteligentes vinculados** - Si hay contratos inteligentes que están programados para enviar fondos a esa dirección:
+>    - Los contratos no pueden modificarse fácilmente para apuntar a una nueva dirección
+>    - Requeriría desplegar nuevos contratos y migrar toda la lógica
+>
+> 3. **Mecanismos automáticos del protocolo** - Si la wallet está configurada para recibir:
+>    - Recompensas automáticas de validación
+>    - Distribuciones de gobernanza
+>    - Fondos de treasury o módulos
+>    - Estos mecanismos están hardcodeados en el genesis y no pueden cambiarse
+>
+> 4. **Cuentas de módulo o permisos especiales** - Si la wallet tiene permisos especiales o es una cuenta de módulo:
+>    - Los permisos están vinculados a la dirección específica
+>    - No puedes transferir permisos a una nueva dirección
 >
 > **Después del lanzamiento:**
-> - Si necesitas cambiar firmantes, debes crear una nueva wallet multifirma
-> - Debes migrar los fondos de la wallet del genesis a la nueva wallet
-> - Cualquier referencia a la dirección del genesis (contratos, configuraciones, etc.) debe actualizarse
 >
-> **Recomendación:** Si planeas cambiar firmantes frecuentemente, considera NO incluir la wallet en el genesis y crearla después del lanzamiento.
+> - Si necesitas cambiar firmantes, debes crear una nueva wallet multifirma
+> - **PERO:** Dependiendo del contexto, puede que **NO puedas migrar completamente** los fondos o funcionalidad
+> - Cualquier referencia a la dirección del genesis (contratos, configuraciones, mecanismos del protocolo) **permanecerá apuntando a la dirección original**
+> - La dirección original seguirá recibiendo fondos según lo configurado en el genesis
+>
+> **Recomendación:** 
+> - Si la wallet en el genesis tiene un propósito específico y crítico (desbloqueo programado, mecanismos automáticos, etc.), **NO cambies los firmantes** después del lanzamiento
+> - Si planeas cambiar firmantes frecuentemente, considera **NO incluir la wallet en el genesis** y crearla después del lanzamiento
+> - Si debes incluirla en el genesis, **asegúrate de que los firmantes sean permanentes y confiables a largo plazo**
 
 ## Ver También
 
