@@ -15,3 +15,6 @@ Archivos de conceptos atómicos que explican tecnologías y conceptos fundamenta
 - [Archivo Génesis]({{< relref "genesis-file" >}}) - Qué es el archivo génesis y su propósito
 - [Data del Nodo]({{< relref "node-data" >}}) - Qué es la data del nodo y dónde se almacena
 - [Private Validator Key]({{< relref "private-validator-key" >}}) - Identidad criptográfica del validador
+- [Wallet Multifirma]({{< relref "multisig-wallet" >}}) - Qué es una wallet multifirma y para qué se usa
+- [Umbral Multifirma]({{< relref "multisig-threshold" >}}) - Qué es el umbral M-of-N y cómo funciona
+- [Firmante Multifirma]({{< relref "multisig-signer" >}}) - Qué es un firmante y su rol en wallets multifirma
