@@ -31,12 +31,18 @@ Cuando creas una wallet multifirma, solo se comparten claves públicas, pero aú
 
 3. **Transparencia** - Todos los participantes deben poder ver todas las claves públicas que forman parte de la wallet
 
+4. **Verificación múltiple** - Verifica las claves públicas a través de múltiples canales o fuentes:
+   - Recibe la clave pública directamente del participante
+   - Verifica que la dirección de la wallet multifirma coincide cuando todos la recrean
+   - Compara las claves públicas recibidas con las que cada participante exportó
+   - No confíes solo en un intermediario o un solo canal de comunicación
+
 ### ⚠️ NUNCA
 
 - Compartas claves privadas o frases semilla
 - Compartas archivos del keyring
 - Uses canales de comunicación no encriptados
-- Confíes en una sola fuente para las claves públicas
+- Confíes en una sola fuente o intermediario para recibir las claves públicas sin verificación
 
 ## Gestión de Firmantes
 
@@ -66,9 +72,17 @@ Para remover un firmante:
 3. **Actualizar configuración** - Todos los participantes actualizan su configuración local
 
 > [!WARNING]
-> **Remover Firmantes Requiere Migración**
+> **Agregar o Remover Firmantes Crea una Nueva Wallet**
 >
-> Remover un firmante requiere crear una nueva wallet y migrar los fondos. No es posible simplemente "remover" una clave de una wallet existente.
+> ⚠️ **IMPORTANTE:** Agregar o remover firmantes **NO modifica** la wallet existente. En su lugar, se crea una **nueva wallet multifirma con una nueva dirección pública**.
+>
+> **Consecuencias:**
+> - La dirección de la wallet antigua permanece inalterada
+> - La nueva wallet tiene una dirección completamente diferente
+> - Debes migrar todos los fondos de la wallet antigua a la nueva
+> - Cualquier referencia a la dirección antigua (contratos, configuraciones, etc.) debe actualizarse
+>
+> **No es posible modificar firmantes de una wallet existente sin cambiar su dirección.**
 
 ## Protección Contra Compromiso Parcial
 
@@ -113,16 +127,41 @@ Si pierdes demasiadas claves y no puedes alcanzar el umbral:
 >
 > Si pierdes suficientes claves para no poder alcanzar el umbral, perderás acceso permanente a los fondos en la wallet multifirma. Asegúrate de tener un plan de respaldo.
 
-## Rotación de Claves
+## Rotación de Firmantes
+
+> [!NOTE]
+> **¿Qué es la Rotación de Firmantes?**
+>
+> La rotación de firmantes se refiere al proceso de **reemplazar algunos o todos los firmantes** de una wallet multifirma por nuevos firmantes. Esto puede implicar:
+> - Remover firmantes que ya no son confiables o disponibles
+> - Agregar nuevos firmantes para reemplazar a los removidos
+> - Cambiar el conjunto completo de firmantes por razones de seguridad
+>
+> **Importante:** La rotación **NO es recomendable hacerla frecuentemente** porque:
+> - Requiere crear una nueva wallet con nueva dirección
+> - Requiere migrar todos los fondos
+> - Puede interrumpir operaciones en curso
+> - Puede causar confusión si se hace demasiado seguido
 
 ### Cuándo Rotar
 
-Considera rotar firmantes o recrear la wallet multifirma cuando:
+Considera rotar firmantes o recrear la wallet multifirma **solo cuando sea necesario**:
 
-- Un firmante ya no es confiable
-- Un firmante ha sido comprometido
-- Cambios organizacionales requieren nuevos firmantes
-- Períodos regulares de rotación (ej: anualmente)
+- Un firmante ya no es confiable o ha sido comprometido
+- Un firmante ha perdido su clave y no puede recuperarla
+- Cambios organizacionales importantes requieren nuevos firmantes
+- **NO rotes periódicamente** a menos que haya una razón de seguridad específica
+
+> [!WARNING]
+> **Rotación Frecuente No es Recomendable**
+>
+> La rotación de firmantes debe ser un proceso **excepcional**, no rutinario. Cada rotación:
+> - Crea una nueva wallet con nueva dirección
+> - Requiere migración de fondos
+> - Puede interrumpir operaciones
+> - Aumenta el riesgo de errores
+>
+> **Mejor práctica:** Diseña tu wallet multifirma con firmantes confiables desde el inicio y solo rota cuando sea absolutamente necesario.
 
 ### Proceso de Rotación
 
@@ -131,6 +170,7 @@ Considera rotar firmantes o recrear la wallet multifirma cuando:
 3. **Recrear wallet** - Crea una nueva wallet multifirma con el nuevo conjunto
 4. **Migrar fondos** - Transfiere los fondos de la wallet antigua a la nueva
 5. **Actualizar configuración** - Todos los participantes actualizan su configuración
+6. **Actualizar referencias** - Actualiza cualquier referencia a la dirección antigua (contratos, configuraciones, etc.)
 
 ## Consideraciones de Custodia
 
@@ -142,11 +182,30 @@ Considera rotar firmantes o recrear la wallet multifirma cuando:
 
 ### Custodia Institucional
 
-Si usas una institución para custodia:
+> [!WARNING]
+> **Filosofía Cypherpunk: "No tus llaves, no tus criptos"**
+>
+> La filosofía cypherpunk promueve la **autocustodia** y la **desconfianza en instituciones centralizadas**. Se recomienda:
+>
+> - ✅ **Gestionar tus propias claves** de manera segura sin confiar en organizaciones externas
+> - ✅ **Usar custodia distribuida** entre participantes confiables
+> - ✅ **Mantener control total** sobre tus claves privadas
+> - ❌ **Evitar custodia institucional** a menos que sea absolutamente necesario
+>
+> La custodia institucional solo es recomendable en casos específicos donde:
+> - Requisitos regulatorios o legales lo exijan
+> - La organización no tiene capacidad técnica para gestionar claves de forma segura
+> - Se trata de fondos corporativos que requieren cumplimiento específico
+>
+> **En el mejor de los casos, sigue la filosofía cypherpunk y gestiona tus propias claves de manera segura.**
 
-- **Verificar reputación** - Asegúrate de que la institución es confiable
-- **Contratos claros** - Ten contratos claros sobre responsabilidades
-- **Auditoría** - Realiza auditorías regulares de las operaciones
+Si **debes** usar una institución para custodia (solo en casos específicos):
+
+- **Verificar reputación** - Asegúrate de que la institución es confiable y tiene un historial comprobado
+- **Contratos claros** - Ten contratos claros sobre responsabilidades, límites y procedimientos
+- **Auditoría** - Realiza auditorías regulares de las operaciones y verifica que la institución sigue las mejores prácticas
+- **Segregación de fondos** - Asegúrate de que tus fondos están segregados y no mezclados con otros
+- **Plan de salida** - Ten un plan claro para recuperar tus claves si decides cambiar de institución
 
 ## Auditoría y Monitoreo
 
@@ -175,6 +234,31 @@ Si usas una institución para custodia:
 1. **Transparencia** - Todos los firmantes deben poder ver las transacciones propuestas
 2. **Verificación** - Cada firmante debe verificar la transacción antes de firmar
 3. **Confirmación** - Confirma que recibiste y firmaste la transacción correcta
+
+## Wallets Multifirma en Genesis
+
+> [!IMPORTANT]
+> **Limitaciones de Wallets Multifirma en Genesis**
+>
+> Si una wallet multifirma está incluida en el archivo `genesis.json` de una nueva cadena blockchain, hay consideraciones importantes:
+>
+> **La dirección de la wallet multifirma está fija en el genesis:**
+> - La dirección pública de la wallet multifirma se calcula a partir de las claves públicas de los firmantes
+> - Una vez que el genesis está configurado y la cadena inicia, **no puedes modificar los firmantes** de esa wallet sin cambiar su dirección
+> - Si necesitas cambiar firmantes después del lanzamiento, debes crear una nueva wallet y migrar los fondos
+>
+> **Consideraciones antes de incluir en Genesis:**
+> 1. **Selección cuidadosa de firmantes** - Elige firmantes que serán confiables a largo plazo
+> 2. **Planificación a futuro** - Considera si necesitarás cambiar firmantes después del lanzamiento
+> 3. **Umbral apropiado** - Configura un umbral que permita operaciones incluso si algunos firmantes no están disponibles
+> 4. **Documentación** - Documenta claramente quiénes son los firmantes y cómo contactarlos
+>
+> **Después del lanzamiento:**
+> - Si necesitas cambiar firmantes, debes crear una nueva wallet multifirma
+> - Debes migrar los fondos de la wallet del genesis a la nueva wallet
+> - Cualquier referencia a la dirección del genesis (contratos, configuraciones, etc.) debe actualizarse
+>
+> **Recomendación:** Si planeas cambiar firmantes frecuentemente, considera NO incluir la wallet en el genesis y crearla después del lanzamiento.
 
 ## Ver También
 
