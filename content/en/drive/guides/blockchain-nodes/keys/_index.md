@@ -59,6 +59,14 @@ To get the best out of this documentation, we recommend following this order:
   - Initialize the node with recovery
   - Add keys to the keyring for operations
 
+### 5. 🔐 Multisig Wallets (Advanced)
+
+**For users who need additional security or shared control:**
+
+- **[Multisig Wallets Overview]({{< relref "multisig-overview" >}})** - Introduction and when to use multisig wallets
+- **[Multisig Operations]({{< relref "multisig-operations" >}})** - How to create and use multisig wallets
+- **[Multisig Security]({{< relref "multisig-security" >}})** - Specific security best practices
+
 ## Are You a Validator or Full Node?
 
 To understand the differences between validators and full nodes regarding key management, especially about when and why you need to worry about the recoverability of the Private Validator Key, see [Understanding Keys]({{< relref "understanding-keys" >}}).
@@ -90,6 +98,9 @@ If you encounter problems managing keys, see:
 - [Private Validator Key]({{< relref "../../../../../concepts/private-validator-key" >}}) - What is the Private Validator Key
 - [Keyring vs Private Validator Key]({{< relref "../../../../../concepts/keyring-vs-validator-key" >}}) - Detailed differences between both components
 - [Node Initialization]({{< relref "../initialization" >}}) - Complete guide on initialization modes and recoverability
+- [Multisig Wallet]({{< relref "../../../../../concepts/multisig-wallet" >}}) - What is a multisig wallet and what it's used for
+- [Multisig Threshold]({{< relref "../../../../../concepts/multisig-threshold" >}}) - What is the M-of-N threshold and how it works
+- [Multisig Signer]({{< relref "../../../../../concepts/multisig-signer" >}}) - What is a signer and their role in multisig wallets
 
 ### Related Guides
 

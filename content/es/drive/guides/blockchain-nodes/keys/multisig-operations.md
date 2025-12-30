@@ -199,7 +199,7 @@ El coordinador genera la transacción sin firmar:
 ```bash
 # Ejemplo: Transferencia de tokens
 infinited tx bank send \
-  $(infinited keys show mi_multisig -a --keyring-backend file --home /home/ubuntu/.infinited) \
+  $(infinited keys show mi_multisig -a --keyring-backend file --home ~/.infinited) \
   infinite1destinatario123... \
   1000000drop \
   --chain-id infinite_421018-1 \
@@ -223,7 +223,7 @@ cd drive/services/node0-infinite
 # Firmar la transacción con la clave del participante
 infinited tx sign tx_unsigned.json \
   --from participante1 \
-  --multisig $(infinited keys show mi_multisig -a --keyring-backend file --home /home/ubuntu/.infinited) \
+  --multisig $(infinited keys show mi_multisig -a --keyring-backend file --home ~/.infinited) \
   --sign-mode amino-json \
   --keyring-backend file \
   --home ~/.infinited \
