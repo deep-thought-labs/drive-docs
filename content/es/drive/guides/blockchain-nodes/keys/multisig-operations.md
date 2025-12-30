@@ -26,9 +26,25 @@ Antes de crear una wallet multifirma, cada participante debe tener su propia cla
 
 ### Paso 1: Cada Participante Crea su Clave
 
-Cada participante debe crear su propia clave individual. Puedes usar los comandos de Drive para esto:
+Cada participante debe crear su propia clave individual. **Esta operación está completamente soportada por la interfaz gráfica**, por lo que puedes elegir el método que prefieras.
 
-**Usando comandos de Drive (recomendado):**
+> [!NOTE]
+> **Interfaz Gráfica Disponible**
+>
+> A diferencia de las operaciones de multifirma (que requieren línea de comandos), **crear y agregar claves individuales SÍ está disponible en la interfaz gráfica**. Puedes usar cualquiera de los dos métodos según tu preferencia.
+
+#### Opción 1: Usando Interfaz Gráfica (Recomendado)
+
+1. Abre la interfaz gráfica: `./drive.sh exec infinite node-ui`
+2. Navega a **"Key Management"**
+3. Selecciona:
+   - **"Generate Key (Dry-Run - Recommended)"** - Para crear una clave nueva y respaldar la frase semilla
+   - **"Generate and Save Key"** - Para crear y guardar directamente
+   - **"Add Existing Key from Seed Phrase"** - Si ya tienes una frase semilla
+
+Para más información sobre cómo usar la interfaz gráfica, consulta [Operaciones de Gestión de Claves]({{< relref "operations" >}}).
+
+#### Opción 2: Usando Línea de Comandos
 
 ```bash
 cd drive/services/node0-infinite  # O tu servicio correspondiente
@@ -40,7 +56,7 @@ cd drive/services/node0-infinite  # O tu servicio correspondiente
 ./drive.sh node-keys create participante1
 ```
 
-Para más información sobre cómo crear claves, consulta [Operaciones de Gestión de Claves]({{< relref "operations" >}}).
+Para más información sobre cómo crear claves desde línea de comandos, consulta [Operaciones de Gestión de Claves]({{< relref "operations" >}}).
 
 > [!IMPORTANT]
 > **Respaldar Frase Semilla**
