@@ -14,6 +14,16 @@ Creative Network blockchain node. All ports have a +20 offset from default ports
 
 ---
 
+{{< callout type="info" >}}
+**Network Status: Beta Phase**
+
+This network is currently in a beta phase. The values configured in this document for P2P seeds (`NODE_P2P_SEEDS`), persistent peers (`NODE_PERSISTENT_PEERS`), and the genesis file URL (`NODE_GENESIS_URL`) correspond to the testing phase of this chain.
+
+**Important:** These values may change in the future when the testing phase ends and the network enters production. It is recommended to periodically check the official documentation to ensure you are using the most up-to-date values.
+{{< /callout >}}
+
+---
+
 ## Table of Contents
 
 - [Port Configuration](#port-configuration)
@@ -126,7 +136,7 @@ URL to download the official genesis file during node initialization.
 The genesis file contains the initial state of the blockchain.
 
 ```yaml
-NODE_GENESIS_URL: "https://raw.githubusercontent.com/deep-thought-labs/drive/refs/heads/main/services/node2-infinite-creative/genesis.json"
+NODE_GENESIS_URL: "https://assets.infinitedrive.xyz/tests-round1/genesis-final.json"
 ```
 {{< /expand >}}
 
@@ -135,30 +145,70 @@ NODE_GENESIS_URL: "https://raw.githubusercontent.com/deep-thought-labs/drive/ref
 {{< expand "Network P2P Configuration Variables" "↕" >}}
 This service uses the following P2P network configuration variables:
 
+**Trusted Node Details:**
+
+| # | Node ID | Address | Port | Persistent | Complete Seed |
+|---|---------|---------|------|------------|---------------|
+| 1 | `dd5689375610aaa35b69ed311d69e51ea5557474` | `server-red.infinitedrive.xyz` | `26676` | Yes | `dd5689375610aaa35b69ed311d69e51ea5557474@server-red.infinitedrive.xyz:26676` |
+| 2 | `e5c1b7423d098c660bb82b7f44f86e333cb6af9e` | `server-farmer.infinitedrive.xyz` | `26676` | Yes | `e5c1b7423d098c660bb82b7f44f86e333cb6af9e@server-farmer.infinitedrive.xyz:26676` |
+| 3 | `c55506b50d0442628308f2bfbc986b7d4b571784` | `server-pauline.infinitedrive.xyz` | `26676` | Yes | `c55506b50d0442628308f2bfbc986b7d4b571784@server-pauline.infinitedrive.xyz:26676` |
+| 4 | `9671910fe6fa13fc40c6fa53f8f6ebac2a5ece9e` | `server-gammaray.infinitedrive.xyz` | `26676` | Yes | `9671910fe6fa13fc40c6fa53f8f6ebac2a5ece9e@server-gammaray.infinitedrive.xyz:26676` |
+| 5 | `e40ed2462c8471b2e71b8d32f26fa962d376e2cb` | `server-phoenix.infinitedrive.xyz` | `26676` | Yes | `e40ed2462c8471b2e71b8d32f26fa962d376e2cb@server-phoenix.infinitedrive.xyz:26676` |
+| 6 | `02df0ae579b235f905b04f65217d112204bd2148` | `server-xenia.infinitedrive.xyz` | `26676` | Yes | `02df0ae579b235f905b04f65217d112204bd2148@server-xenia.infinitedrive.xyz:26676` |
+| 7 | `0ca29b243a2ae5baee08d993c9457d01ace8e0c3` | `server-panda.infinitedrive.xyz` | `26676` | Yes | `0ca29b243a2ae5baee08d993c9457d01ace8e0c3@server-panda.infinitedrive.xyz:26676` |
+| 8 | `93a42038e6adb8e7c2c6bc48d1cfaf5d7a2c26a0` | `server-mt.infinitedrive.xyz` | `26676` | Yes | `93a42038e6adb8e7c2c6bc48d1cfaf5d7a2c26a0@server-mt.infinitedrive.xyz:26676` |
+| 9 | `9e003452950262e5585b7bfcac04072db7e5ef7f` | `server-justdude.infinitedrive.xyz` | `26676` | Yes | `9e003452950262e5585b7bfcac04072db7e5ef7f@server-justdude.infinitedrive.xyz:26676` |
+| 10 | `e77165e145fce561add786a17316b6b686a5d864` | `server-luke.infinitedrive.xyz` | `26676` | Yes | `e77165e145fce561add786a17316b6b686a5d864@server-luke.infinitedrive.xyz:26676` |
+| 11 | `8a03cbe28a39da940df7247079a15ae1aa8e7680` | `server-viethawk.infinitedrive.xyz` | `26676` | Yes | `8a03cbe28a39da940df7247079a15ae1aa8e7680@server-viethawk.infinitedrive.xyz:26676` |
+| 12 | `e124f7b16b876abef4aa4837cf03123db622b61d` | `server-ayc.infinitedrive.xyz` | `26676` | Yes | `e124f7b16b876abef4aa4837cf03123db622b61d@server-ayc.infinitedrive.xyz:26676` |
+| 13 | `7460b57c1cc977d036e0f40c9c5f5ac946e26c04` | `server-kim.infinitedrive.xyz` | `26676` | Yes | `7460b57c1cc977d036e0f40c9c5f5ac946e26c04@server-kim.infinitedrive.xyz:26676` |
+
 **NODE_P2P_SEEDS**  
 Seed nodes for P2P discovery. These nodes help your node discover other peers in the network during initial connection.
 
 Seed nodes are used for network discovery but are not persistent connections.
 
-This service does not have a pre-configured value for this variable.
+Seeds are specified in `node-id@ip:port` format, separated by commas if there are multiple seeds.
+
+See the trusted node details table above for the complete list of nodes.
 
 ```yaml
-# NODE_P2P_SEEDS: ""  # No pre-configured value for this service
+NODE_P2P_SEEDS: "dd5689375610aaa35b69ed311d69e51ea5557474@server-red.infinitedrive.xyz:26676,e5c1b7423d098c660bb82b7f44f86e333cb6af9e@server-farmer.infinitedrive.xyz:26676,c55506b50d0442628308f2bfbc986b7d4b571784@server-pauline.infinitedrive.xyz:26676,9671910fe6fa13fc40c6fa53f8f6ebac2a5ece9e@server-gammaray.infinitedrive.xyz:26676,e40ed2462c8471b2e71b8d32f26fa962d376e2cb@server-phoenix.infinitedrive.xyz:26676,02df0ae579b235f905b04f65217d112204bd2148@server-xenia.infinitedrive.xyz:26676,0ca29b243a2ae5baee08d993c9457d01ace8e0c3@server-panda.infinitedrive.xyz:26676,93a42038e6adb8e7c2c6bc48d1cfaf5d7a2c26a0@server-mt.infinitedrive.xyz:26676,9e003452950262e5585b7bfcac04072db7e5ef7f@server-justdude.infinitedrive.xyz:26676,e77165e145fce561add786a17316b6b686a5d864@server-luke.infinitedrive.xyz:26676,8a03cbe28a39da940df7247079a15ae1aa8e7680@server-viethawk.infinitedrive.xyz:26676,e124f7b16b876abef4aa4837cf03123db622b61d@server-ayc.infinitedrive.xyz:26676,7460b57c1cc977d036e0f40c9c5f5ac946e26c04@server-kim.infinitedrive.xyz:26676"
 ```
 
 **NODE_PERSISTENT_PEERS**  
 Persistent peer nodes maintain continuous connections, unlike seed nodes which are only used for discovery.
 
-This service does not have a pre-configured value for this variable.
+In this service, all configured nodes are persistent, so this variable contains the same value as `NODE_P2P_SEEDS`.
+
+See the trusted node details table above for the complete list of nodes.
 
 ```yaml
-# NODE_PERSISTENT_PEERS: ""  # No pre-configured value for this service
+NODE_PERSISTENT_PEERS: "dd5689375610aaa35b69ed311d69e51ea5557474@server-red.infinitedrive.xyz:26676,e5c1b7423d098c660bb82b7f44f86e333cb6af9e@server-farmer.infinitedrive.xyz:26676,c55506b50d0442628308f2bfbc986b7d4b571784@server-pauline.infinitedrive.xyz:26676,9671910fe6fa13fc40c6fa53f8f6ebac2a5ece9e@server-gammaray.infinitedrive.xyz:26676,e40ed2462c8471b2e71b8d32f26fa962d376e2cb@server-phoenix.infinitedrive.xyz:26676,02df0ae579b235f905b04f65217d112204bd2148@server-xenia.infinitedrive.xyz:26676,0ca29b243a2ae5baee08d993c9457d01ace8e0c3@server-panda.infinitedrive.xyz:26676,93a42038e6adb8e7c2c6bc48d1cfaf5d7a2c26a0@server-mt.infinitedrive.xyz:26676,9e003452950262e5585b7bfcac04072db7e5ef7f@server-justdude.infinitedrive.xyz:26676,e77165e145fce561add786a17316b6b686a5d864@server-luke.infinitedrive.xyz:26676,8a03cbe28a39da940df7247079a15ae1aa8e7680@server-viethawk.infinitedrive.xyz:26676,e124f7b16b876abef4aa4837cf03123db622b61d@server-ayc.infinitedrive.xyz:26676,7460b57c1cc977d036e0f40c9c5f5ac946e26c04@server-kim.infinitedrive.xyz:26676"
 ```
 
 **NODE_P2P_EXTERNAL_ADDRESS**  
 External address to advertise to peers for them to dial. Used when the node is behind NAT or firewall.
 
+This variable specifies the address that other nodes should use to connect to your node. The format is `host:port`, where:
+- **host**: Can be an IP address (IPv4) or a domain name
+- **port**: The P2P host port (in this service, `26676`)
+
+**Note:** This variable contains only the host and port, without including the Node ID. Essentially, it corresponds to the `host:port` part of a complete P2P seed (which has the format `node-id@host:port`), but without the node identifier.
+
 This service does not have a pre-configured value for this variable. If needed, configure it with your node's public IP address or domain name.
+
+**Value examples:**
+
+```yaml
+# Example with IPv4 address
+NODE_P2P_EXTERNAL_ADDRESS: "192.168.1.100:26676"
+
+# Example with domain name
+NODE_P2P_EXTERNAL_ADDRESS: "my-node.example.com:26676"
+```
+
+**Configuration without pre-configured value:**
 
 ```yaml
 # NODE_P2P_EXTERNAL_ADDRESS: ""  # No pre-configured value for this service
@@ -203,8 +253,9 @@ services:
     environment:
       NODE_CHAIN_ID: "infinite_421018002-1"
       NODE_EVM_CHAIN_ID: "421018002"
-      NODE_GENESIS_URL: "https://raw.githubusercontent.com/deep-thought-labs/drive/refs/heads/main/services/node2-infinite-creative/genesis.json"
-      NODE_P2P_SEEDS: ""
+      NODE_GENESIS_URL: "https://assets.infinitedrive.xyz/tests-round1/genesis-final.json"
+      NODE_P2P_SEEDS: "dd5689375610aaa35b69ed311d69e51ea5557474@server-red.infinitedrive.xyz:26676,e5c1b7423d098c660bb82b7f44f86e333cb6af9e@server-farmer.infinitedrive.xyz:26676,c55506b50d0442628308f2bfbc986b7d4b571784@server-pauline.infinitedrive.xyz:26676,9671910fe6fa13fc40c6fa53f8f6ebac2a5ece9e@server-gammaray.infinitedrive.xyz:26676,e40ed2462c8471b2e71b8d32f26fa962d376e2cb@server-phoenix.infinitedrive.xyz:26676,02df0ae579b235f905b04f65217d112204bd2148@server-xenia.infinitedrive.xyz:26676,0ca29b243a2ae5baee08d993c9457d01ace8e0c3@server-panda.infinitedrive.xyz:26676,93a42038e6adb8e7c2c6bc48d1cfaf5d7a2c26a0@server-mt.infinitedrive.xyz:26676,9e003452950262e5585b7bfcac04072db7e5ef7f@server-justdude.infinitedrive.xyz:26676,e77165e145fce561add786a17316b6b686a5d864@server-luke.infinitedrive.xyz:26676,8a03cbe28a39da940df7247079a15ae1aa8e7680@server-viethawk.infinitedrive.xyz:26676,e124f7b16b876abef4aa4837cf03123db622b61d@server-ayc.infinitedrive.xyz:26676,7460b57c1cc977d036e0f40c9c5f5ac946e26c04@server-kim.infinitedrive.xyz:26676"
+      NODE_PERSISTENT_PEERS: "dd5689375610aaa35b69ed311d69e51ea5557474@server-red.infinitedrive.xyz:26676,e5c1b7423d098c660bb82b7f44f86e333cb6af9e@server-farmer.infinitedrive.xyz:26676,c55506b50d0442628308f2bfbc986b7d4b571784@server-pauline.infinitedrive.xyz:26676,9671910fe6fa13fc40c6fa53f8f6ebac2a5ece9e@server-gammaray.infinitedrive.xyz:26676,e40ed2462c8471b2e71b8d32f26fa962d376e2cb@server-phoenix.infinitedrive.xyz:26676,02df0ae579b235f905b04f65217d112204bd2148@server-xenia.infinitedrive.xyz:26676,0ca29b243a2ae5baee08d993c9457d01ace8e0c3@server-panda.infinitedrive.xyz:26676,93a42038e6adb8e7c2c6bc48d1cfaf5d7a2c26a0@server-mt.infinitedrive.xyz:26676,9e003452950262e5585b7bfcac04072db7e5ef7f@server-justdude.infinitedrive.xyz:26676,e77165e145fce561add786a17316b6b686a5d864@server-luke.infinitedrive.xyz:26676,8a03cbe28a39da940df7247079a15ae1aa8e7680@server-viethawk.infinitedrive.xyz:26676,e124f7b16b876abef4aa4837cf03123db622b61d@server-ayc.infinitedrive.xyz:26676,7460b57c1cc977d036e0f40c9c5f5ac946e26c04@server-kim.infinitedrive.xyz:26676"
 ```
 {{< /expand >}}
 
@@ -237,9 +288,10 @@ services:
     environment:
       NODE_CHAIN_ID: "infinite_421018002-1"
       NODE_EVM_CHAIN_ID: "421018002"
-      NODE_GENESIS_URL: "https://raw.githubusercontent.com/deep-thought-labs/drive/refs/heads/main/services/node2-infinite-creative/genesis.json"
-      NODE_P2P_SEEDS: ""
-      # NODE_PERSISTENT_PEERS: ""
+      NODE_GENESIS_URL: "https://assets.infinitedrive.xyz/tests-round1/genesis-final.json"
+      NODE_P2P_SEEDS: "dd5689375610aaa35b69ed311d69e51ea5557474@server-red.infinitedrive.xyz:26676,e5c1b7423d098c660bb82b7f44f86e333cb6af9e@server-farmer.infinitedrive.xyz:26676,c55506b50d0442628308f2bfbc986b7d4b571784@server-pauline.infinitedrive.xyz:26676,9671910fe6fa13fc40c6fa53f8f6ebac2a5ece9e@server-gammaray.infinitedrive.xyz:26676,e40ed2462c8471b2e71b8d32f26fa962d376e2cb@server-phoenix.infinitedrive.xyz:26676,02df0ae579b235f905b04f65217d112204bd2148@server-xenia.infinitedrive.xyz:26676,0ca29b243a2ae5baee08d993c9457d01ace8e0c3@server-panda.infinitedrive.xyz:26676,93a42038e6adb8e7c2c6bc48d1cfaf5d7a2c26a0@server-mt.infinitedrive.xyz:26676,9e003452950262e5585b7bfcac04072db7e5ef7f@server-justdude.infinitedrive.xyz:26676,e77165e145fce561add786a17316b6b686a5d864@server-luke.infinitedrive.xyz:26676,8a03cbe28a39da940df7247079a15ae1aa8e7680@server-viethawk.infinitedrive.xyz:26676,e124f7b16b876abef4aa4837cf03123db622b61d@server-ayc.infinitedrive.xyz:26676,7460b57c1cc977d036e0f40c9c5f5ac946e26c04@server-kim.infinitedrive.xyz:26676"
+      NODE_PERSISTENT_PEERS: "dd5689375610aaa35b69ed311d69e51ea5557474@server-red.infinitedrive.xyz:26676,e5c1b7423d098c660bb82b7f44f86e333cb6af9e@server-farmer.infinitedrive.xyz:26676,c55506b50d0442628308f2bfbc986b7d4b571784@server-pauline.infinitedrive.xyz:26676,9671910fe6fa13fc40c6fa53f8f6ebac2a5ece9e@server-gammaray.infinitedrive.xyz:26676,e40ed2462c8471b2e71b8d32f26fa962d376e2cb@server-phoenix.infinitedrive.xyz:26676,02df0ae579b235f905b04f65217d112204bd2148@server-xenia.infinitedrive.xyz:26676,0ca29b243a2ae5baee08d993c9457d01ace8e0c3@server-panda.infinitedrive.xyz:26676,93a42038e6adb8e7c2c6bc48d1cfaf5d7a2c26a0@server-mt.infinitedrive.xyz:26676,9e003452950262e5585b7bfcac04072db7e5ef7f@server-justdude.infinitedrive.xyz:26676,e77165e145fce561add786a17316b6b686a5d864@server-luke.infinitedrive.xyz:26676,8a03cbe28a39da940df7247079a15ae1aa8e7680@server-viethawk.infinitedrive.xyz:26676,e124f7b16b876abef4aa4837cf03123db622b61d@server-ayc.infinitedrive.xyz:26676,7460b57c1cc977d036e0f40c9c5f5ac946e26c04@server-kim.infinitedrive.xyz:26676"
+      NODE_PERSISTENT_PEERS: "dd5689375610aaa35b69ed311d69e51ea5557474@server-red.infinitedrive.xyz:26676,e5c1b7423d098c660bb82b7f44f86e333cb6af9e@server-farmer.infinitedrive.xyz:26676,c55506b50d0442628308f2bfbc986b7d4b571784@server-pauline.infinitedrive.xyz:26676,9671910fe6fa13fc40c6fa53f8f6ebac2a5ece9e@server-gammaray.infinitedrive.xyz:26676,e40ed2462c8471b2e71b8d32f26fa962d376e2cb@server-phoenix.infinitedrive.xyz:26676,02df0ae579b235f905b04f65217d112204bd2148@server-xenia.infinitedrive.xyz:26676,0ca29b243a2ae5baee08d993c9457d01ace8e0c3@server-panda.infinitedrive.xyz:26676,93a42038e6adb8e7c2c6bc48d1cfaf5d7a2c26a0@server-mt.infinitedrive.xyz:26676,9e003452950262e5585b7bfcac04072db7e5ef7f@server-justdude.infinitedrive.xyz:26676,e77165e145fce561add786a17316b6b686a5d864@server-luke.infinitedrive.xyz:26676,8a03cbe28a39da940df7247079a15ae1aa8e7680@server-viethawk.infinitedrive.xyz:26676,e124f7b16b876abef4aa4837cf03123db622b61d@server-ayc.infinitedrive.xyz:26676,7460b57c1cc977d036e0f40c9c5f5ac946e26c04@server-kim.infinitedrive.xyz:26676"
       # NODE_P2P_EXTERNAL_ADDRESS: ""
 ```
 {{< /expand >}}

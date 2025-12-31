@@ -33,6 +33,10 @@ Para reiniciar el nodo (detener y volver a iniciar):
 
 1. **Detén el nodo:**
    ```bash
+   # Sintaxis simplificada (recomendada)
+   ./drive.sh node-stop
+   
+   # Sintaxis completa (alternativa)
    ./drive.sh exec infinite node-stop
    ```
 
@@ -40,13 +44,23 @@ Para reiniciar el nodo (detener y volver a iniciar):
 
 3. **Inicia el nodo nuevamente:**
    ```bash
+   # Sintaxis simplificada (recomendada)
+   ./drive.sh node-start
+   
+   # Sintaxis completa (alternativa)
    ./drive.sh exec infinite node-start
    ```
 
 **Ejemplo completo:**
 ```bash
-./drive.sh exec infinite node-stop
+# Sintaxis simplificada (recomendada)
+./drive.sh node-stop
 sleep 5  # Esperar 5 segundos
+./drive.sh node-start
+
+# Sintaxis completa (alternativa)
+./drive.sh exec infinite node-stop
+sleep 5
 ./drive.sh exec infinite node-start
 ```
 
@@ -106,6 +120,10 @@ Después de reiniciar, verifica que el nodo esté funcionando correctamente:
 ### 1. Verificar Estado del Proceso
 
 ```bash
+# Sintaxis simplificada (recomendada)
+./drive.sh node-process-status
+
+# Sintaxis completa (alternativa)
 ./drive.sh exec infinite node-process-status
 ```
 
@@ -117,6 +135,10 @@ Después de reiniciar, verifica que el nodo esté funcionando correctamente:
 ### 2. Verificar Logs
 
 ```bash
+# Sintaxis simplificada (recomendada)
+./drive.sh node-logs -f
+
+# Sintaxis completa (alternativa)
 ./drive.sh exec infinite node-logs -f
 ```
 

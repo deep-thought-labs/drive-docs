@@ -21,6 +21,20 @@ Después de inicializar tu nodo, necesitas iniciarlo para que comience a sincron
 
 ### Usando Línea de Comandos
 
+#### Sintaxis Simplificada (Recomendada)
+
+{{< callout type="info" >}}
+**Disponible desde Drive v0.1.12 (enero 2026)**
+
+La sintaxis simplificada estará disponible a partir de la versión **Drive v0.1.12** en **enero de 2026**. Si estás usando una versión anterior, usa la sintaxis completa con `exec` y el nombre del servicio.
+{{< /callout >}}
+
+```bash
+./drive.sh node-start
+```
+
+#### Sintaxis Completa (Alternativa)
+
 ```bash
 ./drive.sh exec infinite node-start
 ```
@@ -56,6 +70,20 @@ Detener el nodo de forma controlada es importante para mantener la integridad de
 3. Confirma la operación
 
 ### Usando Línea de Comandos
+
+#### Sintaxis Simplificada (Recomendada)
+
+{{< callout type="info" >}}
+**Disponible desde Drive v0.1.12 (enero 2026)**
+
+La sintaxis simplificada estará disponible a partir de la versión **Drive v0.1.12** en **enero de 2026**. Si estás usando una versión anterior, usa la sintaxis completa con `exec` y el nombre del servicio.
+{{< /callout >}}
+
+```bash
+./drive.sh node-stop
+```
+
+#### Sintaxis Completa (Alternativa)
 
 ```bash
 ./drive.sh exec infinite node-stop

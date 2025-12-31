@@ -34,6 +34,28 @@ La inicialización simple genera una [Private Validator Key]({{< relref "../../.
 
 ## Usando Línea de Comandos
 
+### Sintaxis Simplificada (Recomendada)
+
+{{< callout type="info" >}}
+**Disponible desde Drive v0.1.12 (enero 2026)**
+
+La sintaxis simplificada estará disponible a partir de la versión **Drive v0.1.12** en **enero de 2026**. Si estás usando una versión anterior, usa la sintaxis completa con `exec` y el nombre del servicio.
+{{< /callout >}}
+
+```bash
+./drive.sh node-init
+```
+
+El script automáticamente:
+- Detecta que es un comando `node-init`
+- Obtiene el nombre del servicio del `docker-compose.yml` del directorio actual
+- Agrega `exec` y el nombre del servicio
+- Agrega `-it` automáticamente si es necesario (para solicitar el moniker)
+
+### Sintaxis Completa (Alternativa)
+
+Si prefieres especificar explícitamente el nombre del servicio:
+
 ```bash
 ./drive.sh exec infinite node-init
 ```

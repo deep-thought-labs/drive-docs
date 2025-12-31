@@ -15,3 +15,6 @@ Atomic concept files that explain fundamental technologies and concepts used thr
 - [Genesis File]({{< relref "genesis-file" >}}) - What is the genesis file and its purpose
 - [Node Data]({{< relref "node-data" >}}) - What is node data and where it's stored
 - [Private Validator Key]({{< relref "private-validator-key" >}}) - Cryptographic identity of the validator
+- [Multisig Wallet]({{< relref "multisig-wallet" >}}) - What is a multisig wallet and what it's used for
+- [Multisig Threshold]({{< relref "multisig-threshold" >}}) - What is the M-of-N threshold and how it works
+- [Multisig Signer]({{< relref "multisig-signer" >}}) - What is a signer and their role in multisig wallets

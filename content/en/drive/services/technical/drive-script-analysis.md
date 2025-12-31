@@ -30,6 +30,8 @@ The `drive.sh` script is a wrapper around Docker Compose that:
 2. **Abstracts complexity** - Provides a simple interface for Docker Compose commands
 3. **Handles sudo automatically** - Works with or without `sudo`
 4. **Shows logs automatically** - When starting services, automatically shows logs
+5. **Simplified syntax** - Detects `node-*` commands and automatically completes `exec` and service name
+6. **Automatic interactive mode detection** - Adds `-it` automatically when necessary
 
 ## Script Structure
 
@@ -131,7 +133,45 @@ fi
 - `-E` preserves environment variables
 - Captures exit code for error handling
 
-### 5. Automatic Log Display
+### 5. Automatic `node-*` Command Detection
+
+The script detects when the user executes a `node-*` command directly (without `exec` and service name):
+
+```bash
+# If user executes: ./drive.sh node-init
+# Script automatically transforms to: ./drive.sh exec <service-name> node-init
+```
+
+**Functionality:**
+- Detects commands that start with `node-`
+- Gets the service name from the current directory's `docker-compose.yml` using `get_service_name()`
+- Rebuilds arguments adding `exec` and the service name
+- Maintains compatibility with complete syntax if user already specified `exec`
+
+**`get_service_name()` method:**
+- Attempts to use `docker compose config --services` (preferred method)
+- Fallback to direct YAML parsing using `awk` or `grep`
+- Returns the first service found in `docker-compose.yml`
+
+### 6. Automatic Interactive Mode Detection
+
+The script detects commands that require interactive mode and automatically adds `-it`:
+
+**Commands that always require interactive:**
+- `node-ui` - Graphical interface always requires TTY
+
+**Commands that require interactive for certain operations:**
+- `node-init` - Requires interactive (requests moniker or seed phrase)
+- `node-keys` - Requires interactive for `create`, `add`, `delete`, `reset-password`
+- `node-logs` - Requires interactive when using `-f` or `--follow`
+
+**Functionality:**
+- Checks if `-it`, `-i`, or `--interactive` are already present
+- If not present, analyzes arguments to determine if interactive mode is needed
+- Inserts `-it` after `exec` if necessary
+- Preserves all other arguments
+
+### 7. Automatic Log Display
 
 If `up -d` was executed, the script:
 - Waits for container to be running

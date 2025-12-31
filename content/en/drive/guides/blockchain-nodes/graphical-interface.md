@@ -9,36 +9,59 @@ The graphical interface (node-ui) is the recommended method to manage your block
 
 To access the graphical interface:
 
+### Simplified Syntax (Recommended)
+
+{{< callout type="info" >}}
+**Available from Drive v0.1.12 (January 2026)**
+
+The simplified syntax will be available starting from **Drive v0.1.12** in **January 2026**. If you're using an earlier version, use the complete syntax with `exec` and the service name.
+{{< /callout >}}
+
 ```bash
 cd services/node0-infinite  # Or any other service
 ./drive.sh up -d            # Make sure the container is running
+./drive.sh node-ui          # ✅ Simplified syntax - no need to specify exec or name
+```
+
+The script automatically:
+- Detects that it's a `node-ui` command
+- Gets the service name from the `docker-compose.yml` in the current directory
+- Adds `exec` and the service name
+- Adds `-it` automatically (since `node-ui` requires interactive mode)
+
+### Complete Syntax (Alternative)
+
+If you prefer to explicitly specify the service name:
+
+```bash
+cd services/node0-infinite
 ./drive.sh exec infinite node-ui
 ```
 
-> [!NOTE]
-> **Command Syntax and Container Names**
->
-> To understand how to structure commands with `drive.sh` and know the correct container names for each service, see the section [Commands that Require Container Name]({{< relref "../general/container-management#commands-that-require-container-name" >}}) in Container Management.
-
-**Examples for different services:**
+**Examples for different services using simplified syntax:**
 
 ```bash
 # Infinite Mainnet
 cd services/node0-infinite
-./drive.sh exec infinite node-ui
+./drive.sh node-ui          # ✅ Simplified syntax
 
 # Infinite Testnet
 cd services/node1-infinite-testnet
-./drive.sh exec infinite-testnet node-ui
+./drive.sh node-ui          # ✅ Simplified syntax
 
 # Infinite Creative
 cd services/node2-infinite-creative
-./drive.sh exec infinite-creative node-ui
+./drive.sh node-ui          # ✅ Simplified syntax
 
 # QOM Network
 cd services/node3-qom
-./drive.sh exec qom node-ui
+./drive.sh node-ui          # ✅ Simplified syntax
 ```
+
+> [!TIP]
+> **Advantage of Simplified Syntax**
+>
+> You don't need to remember the service name. The script automatically detects it from the `docker-compose.yml` in the current directory. Simply navigate to the service directory and run `./drive.sh node-ui`.
 
 ## Interface Structure
 

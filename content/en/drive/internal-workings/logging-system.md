@@ -195,7 +195,8 @@ mkdir -p "$(dirname "$NODE_SUPERVISOR_LOG_FILE")"
 - **Origin:** `infinited` process inside the container
 - **Location:** `/var/log/node/node.log` (inside container)
 - **Content:** Specific output from the blockchain node
-- **Access:** `node-logs` or `docker compose exec infinite-drive node-logs`
+- **Access from container:** `node-logs`
+- **Access from host:** `./drive.sh node-logs` (simplified syntax) or `./drive.sh exec infinite node-logs` (complete syntax)
 
 ### Container Logs
 

@@ -59,6 +59,14 @@ Para obtener el mejor provecho de esta documentación, te recomendamos seguir es
   - Inicializar el nodo con recovery
   - Agregar claves al keyring para operaciones
 
+### 5. 🔐 Wallets Multifirma (Avanzado)
+
+**Para usuarios que necesitan seguridad adicional o control compartido:**
+
+- **[Visión General de Multifirma]({{< relref "multisig-overview" >}})** - Introducción y cuándo usar wallets multifirma
+- **[Operaciones Multifirma]({{< relref "multisig-operations" >}})** - Cómo crear y usar wallets multifirma
+- **[Seguridad Multifirma]({{< relref "multisig-security" >}})** - Mejores prácticas de seguridad específicas
+
 ## ¿Eres Validador o Full Node?
 
 Para entender las diferencias entre validadores y full nodes en cuanto a la gestión de claves, especialmente sobre cuándo y por qué necesitas preocuparte por la recuperabilidad de la Private Validator Key, consulta [Entender las Claves]({{< relref "understanding-keys" >}}).
@@ -90,6 +98,9 @@ Si encuentras problemas al gestionar claves, consulta:
 - [Private Validator Key]({{< relref "../../../../../concepts/private-validator-key" >}}) - Qué es el Private Validator Key
 - [Keyring vs Private Validator Key]({{< relref "../../../../../concepts/keyring-vs-validator-key" >}}) - Diferencias detalladas entre ambos componentes
 - [Inicialización de Nodo]({{< relref "../initialization" >}}) - Guía completa sobre modos de inicialización y recuperabilidad
+- [Wallet Multifirma]({{< relref "../../../../../concepts/multisig-wallet" >}}) - Qué es una wallet multifirma y para qué se usa
+- [Umbral Multifirma]({{< relref "../../../../../concepts/multisig-threshold" >}}) - Qué es el umbral M-of-N y cómo funciona
+- [Firmante Multifirma]({{< relref "../../../../../concepts/multisig-signer" >}}) - Qué es un firmante y su rol en wallets multifirma
 
 ### Guías Relacionadas
 

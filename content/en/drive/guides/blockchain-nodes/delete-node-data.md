@@ -83,12 +83,20 @@ If you prefer to use the command line, you can delete node data manually.
 First, make sure the node is stopped:
 
 ```bash
+# Simplified syntax (recommended)
+./drive.sh node-stop
+
+# Complete syntax (alternative)
 ./drive.sh exec infinite node-stop
 ```
 
 Verify that the node is stopped:
 
 ```bash
+# Simplified syntax (recommended)
+./drive.sh node-process-status
+
+# Complete syntax (alternative)
 ./drive.sh exec infinite node-process-status
 ```
 
@@ -192,7 +200,7 @@ This practice allows you to verify that you can always recover exactly the same 
 
 2. **Stop the node:**
    - Use the graphical interface: **"Node Operations"** → **"Stop Node"**
-   - Or use command line: `./drive.sh exec infinite node-stop`
+   - Or use command line: `./drive.sh node-stop` (simplified syntax) or `./drive.sh exec infinite node-stop` (complete syntax)
 
 3. **Delete node data:**
    - Use the graphical interface: **"Node Operations"** → **"Advanced Operations"** → **"Delete Node Data"**
@@ -227,6 +235,10 @@ If you have problems deleting data:
 
 1. **Make sure the node is stopped:**
    ```bash
+   # Simplified syntax (recommended)
+   ./drive.sh node-process-status
+   
+   # Complete syntax (alternative)
    ./drive.sh exec infinite node-process-status
    ```
    If the node is running, stop it first.

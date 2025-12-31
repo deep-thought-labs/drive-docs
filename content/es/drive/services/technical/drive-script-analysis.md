@@ -30,6 +30,8 @@ El script `drive.sh` es un wrapper alrededor de Docker Compose que:
 2. **Abstrae la complejidad** - Proporciona una interfaz simple para comandos de Docker Compose
 3. **Maneja sudo automáticamente** - Funciona con o sin `sudo`
 4. **Muestra logs automáticamente** - Al iniciar servicios, muestra los logs automáticamente
+5. **Sintaxis simplificada** - Detecta comandos `node-*` y completa automáticamente `exec` y nombre del servicio
+6. **Detección automática de modo interactivo** - Agrega `-it` automáticamente cuando es necesario
 
 ## Estructura del Script
 
@@ -131,7 +133,45 @@ fi
 - `-E` preserva las variables de entorno
 - Captura el código de salida para manejo de errores
 
-### 5. Visualización Automática de Logs
+### 5. Detección Automática de Comandos `node-*`
+
+El script detecta cuando el usuario ejecuta un comando `node-*` directamente (sin `exec` y nombre de servicio):
+
+```bash
+# Si el usuario ejecuta: ./drive.sh node-init
+# El script automáticamente transforma a: ./drive.sh exec <service-name> node-init
+```
+
+**Funcionalidad:**
+- Detecta comandos que empiezan con `node-`
+- Obtiene el nombre del servicio del `docker-compose.yml` del directorio actual usando `get_service_name()`
+- Reconstruye los argumentos agregando `exec` y el nombre del servicio
+- Mantiene compatibilidad con la sintaxis completa si el usuario ya especificó `exec`
+
+**Método `get_service_name()`:**
+- Intenta usar `docker compose config --services` (método preferido)
+- Fallback a parsing directo del YAML usando `awk` o `grep`
+- Retorna el primer servicio encontrado en `docker-compose.yml`
+
+### 6. Detección Automática de Modo Interactivo
+
+El script detecta comandos que requieren modo interactivo y agrega `-it` automáticamente:
+
+**Comandos que siempre requieren interactivo:**
+- `node-ui` - Interfaz gráfica siempre requiere TTY
+
+**Comandos que requieren interactivo para ciertas operaciones:**
+- `node-init` - Requiere interactivo (solicita moniker o seed phrase)
+- `node-keys` - Requiere interactivo para `create`, `add`, `delete`, `reset-password`
+- `node-logs` - Requiere interactivo cuando se usa `-f` o `--follow`
+
+**Funcionalidad:**
+- Verifica si `-it`, `-i`, o `--interactive` ya están presentes
+- Si no están presentes, analiza los argumentos para determinar si se necesita modo interactivo
+- Inserta `-it` después de `exec` si es necesario
+- Preserva todos los demás argumentos
+
+### 7. Visualización Automática de Logs
 
 Si se ejecutó `up -d`, el script:
 - Espera a que el contenedor esté ejecutándose

@@ -241,7 +241,7 @@ echo "   Configuration location: ${CYAN}${NODE_HOME}${RESET}"
 
 echo "${BOLD}To start the node:${RESET}"
 print_code "Inside container: node-start"
-print_code "From host: docker compose exec infinite-drive node-start"
+print_code "From host: ./drive.sh node-start"
 ```
 
 ## Complete Flow

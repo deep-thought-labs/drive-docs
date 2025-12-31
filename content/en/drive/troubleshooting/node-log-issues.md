@@ -14,6 +14,10 @@ If you don't see logs or logs are empty:
 Logs are only generated when the node is running. Check the status:
 
 ```bash
+# Simplified syntax (recommended)
+./drive.sh node-process-status
+
+# Complete syntax (alternative)
 ./drive.sh exec infinite node-process-status
 ```
 
@@ -67,7 +71,11 @@ If the file exists but is empty:
 
 **If no new logs appear:**
 - The node may be stopped or frozen
-- Verify process status: `./drive.sh exec infinite node-process-status`
+- Verify process status: `# Simplified syntax (recommended)
+./drive.sh node-process-status
+
+# Complete syntax (alternative)
+./drive.sh exec infinite node-process-status`
 - Review container logs for errors
 
 ## Logs Show Errors
@@ -79,6 +87,10 @@ If logs show errors:
 Review logs to identify the error type:
 
 ```bash
+# Simplified syntax (recommended)
+./drive.sh node-logs
+
+# Complete syntax (alternative)
 ./drive.sh exec infinite node-logs 100 | grep -i error
 ```
 
@@ -93,6 +105,10 @@ Review logs to identify the error type:
 Repetitive errors may indicate a systematic problem:
 
 ```bash
+# Simplified syntax (recommended)
+./drive.sh node-logs
+
+# Complete syntax (alternative)
 ./drive.sh exec infinite node-logs 500 | grep -i error | sort | uniq -c
 ```
 
@@ -131,7 +147,15 @@ If logs are very long and difficult to review:
 Specify how many lines you want to see:
 
 ```bash
+# Simplified syntax (recommended)
+./drive.sh node-logs
+
+# Complete syntax (alternative)
 ./drive.sh exec infinite node-logs 50   # Last 50 lines
+# Simplified syntax (recommended)
+./drive.sh node-logs
+
+# Complete syntax (alternative)
 ./drive.sh exec infinite node-logs 100  # Last 100 lines
 ```
 
@@ -140,6 +164,10 @@ Specify how many lines you want to see:
 To see only new logs:
 
 ```bash
+# Simplified syntax (recommended)
+./drive.sh node-logs
+
+# Complete syntax (alternative)
 ./drive.sh exec infinite node-logs -f
 ```
 
@@ -151,12 +179,24 @@ Use tools like `grep` to filter:
 
 ```bash
 # See only errors
+# Simplified syntax (recommended)
+./drive.sh node-logs
+
+# Complete syntax (alternative)
 ./drive.sh exec infinite node-logs 500 | grep -i error
 
 # See only synchronization messages
+# Simplified syntax (recommended)
+./drive.sh node-logs
+
+# Complete syntax (alternative)
 ./drive.sh exec infinite node-logs 500 | grep -i sync
 
 # See only peer connections
+# Simplified syntax (recommended)
+./drive.sh node-logs
+
+# Complete syntax (alternative)
 ./drive.sh exec infinite node-logs 500 | grep -i peer
 ```
 
@@ -180,6 +220,10 @@ If logs don't update:
 ### 1. Verify Node is Active
 
 ```bash
+# Simplified syntax (recommended)
+./drive.sh node-process-status
+
+# Complete syntax (alternative)
 ./drive.sh exec infinite node-process-status
 ```
 
