@@ -85,3 +85,7 @@ jobs:
 - Corregir problemas antes de hacer commit
 - Actualizar este documento si se cambian los criterios de validación
 
+
+
+
+

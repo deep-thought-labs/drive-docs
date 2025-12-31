@@ -23,6 +23,12 @@ After initializing your node, you need to start it so it begins synchronizing wi
 
 #### Simplified Syntax (Recommended)
 
+{{< callout type="info" >}}
+**Available from Drive v0.1.12 (January 2026)**
+
+The simplified syntax will be available starting from **Drive v0.1.12** in **January 2026**. If you're using an earlier version, use the complete syntax with `exec` and the service name.
+{{< /callout >}}
+
 ```bash
 ./drive.sh node-start
 ```
@@ -66,6 +72,12 @@ Stopping the node in a controlled manner is important to maintain data integrity
 ### Using Command Line
 
 #### Simplified Syntax (Recommended)
+
+{{< callout type="info" >}}
+**Available from Drive v0.1.12 (January 2026)**
+
+The simplified syntax will be available starting from **Drive v0.1.12** in **January 2026**. If you're using an earlier version, use the complete syntax with `exec` and the service name.
+{{< /callout >}}
 
 ```bash
 ./drive.sh node-stop

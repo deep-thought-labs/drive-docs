@@ -11,6 +11,12 @@ Para acceder a la interfaz gráfica:
 
 ### Sintaxis Simplificada (Recomendada)
 
+{{< callout type="info" >}}
+**Disponible desde Drive v0.1.12 (enero 2026)**
+
+La sintaxis simplificada estará disponible a partir de la versión **Drive v0.1.12** en **enero de 2026**. Si estás usando una versión anterior, usa la sintaxis completa con `exec` y el nombre del servicio.
+{{< /callout >}}
+
 ```bash
 cd services/node0-infinite  # O cualquier otro servicio
 ./drive.sh up -d            # Asegúrate de que el contenedor esté ejecutándose

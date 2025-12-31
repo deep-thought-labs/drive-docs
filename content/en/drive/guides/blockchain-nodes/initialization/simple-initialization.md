@@ -36,6 +36,12 @@ Simple initialization generates a [Private Validator Key]({{< relref "../../../.
 
 ### Simplified Syntax (Recommended)
 
+{{< callout type="info" >}}
+**Available from Drive v0.1.12 (January 2026)**
+
+The simplified syntax will be available starting from **Drive v0.1.12** in **January 2026**. If you're using an earlier version, use the complete syntax with `exec` and the service name.
+{{< /callout >}}
+
 ```bash
 ./drive.sh node-init
 ```

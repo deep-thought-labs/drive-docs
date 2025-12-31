@@ -18,6 +18,14 @@ The `drive.sh` script is a **wrapper around `docker compose`**. This means it fu
 - ✅ **Simplified syntax** - For `node-*` commands, you don't need to specify `exec` or the service name
 - ✅ **Automatic interactive mode detection** - Automatically adds `-it` when necessary
 
+{{< callout type="info" >}}
+**Simplified Syntax Availability**
+
+The simplified syntax for `node-*` commands (which doesn't require specifying `exec` or the service name) will be available starting from **Drive v0.1.12** in **January 2026**.
+
+If you're using an earlier version, you'll need to use the complete syntax with `exec` and the service name.
+{{< /callout >}}
+
 ## Script Location
 
 Each service has its own `drive.sh` script in its directory:
@@ -175,6 +183,12 @@ To execute commands inside the container, `drive.sh` offers two ways to do it:
 
 ### ✨ Simplified Syntax (Recommended)
 
+{{< callout type="info" >}}
+**Available from Drive v0.1.12 (January 2026)**
+
+The simplified syntax will be available starting from **Drive v0.1.12** in **January 2026**. If you're using an earlier version, use the complete syntax with `exec` and the service name.
+{{< /callout >}}
+
 For commands that start with `node-*` (like `node-init`, `node-ui`, `node-keys`, etc.), you can use the simplified syntax:
 
 ```bash
@@ -260,6 +274,12 @@ Useful for debugging, inspecting files inside the container, or running manual c
 
 > [!IMPORTANT]
 > **Simplified Syntax for `node-*` Commands**
+>
+> {{< callout type="info" >}}
+> **Available from Drive v0.1.12 (January 2026)**
+>
+> This functionality will be available starting from **Drive v0.1.12** in **January 2026**. If you're using an earlier version, you'll need to use the complete syntax specifying the container name.
+> {{< /callout >}}
 >
 > For commands that start with `node-*`, you **DO NOT need** to specify the container name. The script automatically detects it from the `docker-compose.yml` in the current directory.
 >

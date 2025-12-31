@@ -11,6 +11,12 @@ To access the graphical interface:
 
 ### Simplified Syntax (Recommended)
 
+{{< callout type="info" >}}
+**Available from Drive v0.1.12 (January 2026)**
+
+The simplified syntax will be available starting from **Drive v0.1.12** in **January 2026**. If you're using an earlier version, use the complete syntax with `exec` and the service name.
+{{< /callout >}}
+
 ```bash
 cd services/node0-infinite  # Or any other service
 ./drive.sh up -d            # Make sure the container is running

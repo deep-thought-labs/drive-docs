@@ -18,6 +18,14 @@ El script `drive.sh` es un **wrapper alrededor de `docker compose`**. Esto signi
 - ✅ **Sintaxis simplificada** - Para comandos `node-*`, no necesitas especificar `exec` ni el nombre del servicio
 - ✅ **Detección automática de modo interactivo** - Agrega automáticamente `-it` cuando es necesario
 
+{{< callout type="info" >}}
+**Disponibilidad de la Sintaxis Simplificada**
+
+La sintaxis simplificada para comandos `node-*` (que no requiere especificar `exec` ni el nombre del servicio) estará disponible a partir de la versión **Drive v0.1.12** en **enero de 2026**.
+
+Si estás usando una versión anterior, deberás usar la sintaxis completa con `exec` y el nombre del servicio.
+{{< /callout >}}
+
 ## Ubicación del Script
 
 Cada servicio tiene su propio script `drive.sh` en su directorio:
@@ -175,6 +183,12 @@ Para ejecutar comandos dentro del contenedor, `drive.sh` ofrece dos formas de ha
 
 ### ✨ Sintaxis Simplificada (Recomendada)
 
+{{< callout type="info" >}}
+**Disponible desde Drive v0.1.12 (enero 2026)**
+
+La sintaxis simplificada estará disponible a partir de la versión **Drive v0.1.12** en **enero de 2026**. Si estás usando una versión anterior, usa la sintaxis completa con `exec` y el nombre del servicio.
+{{< /callout >}}
+
 Para comandos que empiezan con `node-*` (como `node-init`, `node-ui`, `node-keys`, etc.), puedes usar la sintaxis simplificada:
 
 ```bash
@@ -260,6 +274,12 @@ cd services/node0-infinite
 
 > [!IMPORTANT]
 > **Sintaxis Simplificada para Comandos `node-*`**
+>
+> {{< callout type="info" >}}
+> **Disponible desde Drive v0.1.12 (enero 2026)**
+>
+> Esta funcionalidad estará disponible a partir de la versión **Drive v0.1.12** en **enero de 2026**. Si estás usando una versión anterior, deberás usar la sintaxis completa especificando el nombre del contenedor.
+> {{< /callout >}}
 >
 > Para comandos que empiezan con `node-*`, **NO necesitas** especificar el nombre del contenedor. El script lo detecta automáticamente del `docker-compose.yml` del directorio actual.
 >
