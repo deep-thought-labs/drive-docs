@@ -188,6 +188,9 @@ infinite1abc123def456ghi789jkl012mno345pqr678stu901vwx234yz
 
 Comparte esta dirección con todos los participantes para verificación. Cada participante puede recrear la wallet multifirma localmente con las mismas claves públicas para confirmar que la dirección coincide.
 
+>[!important]
+>Los participantes deben tener la misma billetera multifirma agregada a su llavero para poder firmar transacciones.
+
 ## Firmar Transacciones con Multifirma
 
 Para enviar una transacción desde una wallet multifirma, se requiere un proceso de firma distribuida.
@@ -200,13 +203,22 @@ El coordinador genera la transacción sin firmar:
 # Ejemplo: Transferencia de tokens
 infinited tx bank send \
   $(infinited keys show mi_multisig -a --keyring-backend file --home ~/.infinited) \
-  infinite1destinatario123... \
+  infinite1recipient123... \
   1000000drop \
   --chain-id infinite_421018-1 \
   --generate-only \
   --keyring-backend file \
   --home ~/.infinited \
-  > tx_unsigned.json
+  > ~/.infinited/tx_unsigned.json
+```
+
+>[!important]
+Distribuya `tx_unsigned.json` en el directorio `persistent-data` a los participantes. Deben compartir exactamente el mismo archivo con el coordinador. Se recomienda compartir el `SHA-256` del archivo.
+
+Los participantes colocan `tx_unsigned.json` en la siguiente ubicación:
+
+```bash
+~/drive/services/node0-infinite/persistent-data/tx_unsigned.json
 ```
 
 ### Paso 2: Cada Firmante Firma la Transacción
@@ -221,16 +233,20 @@ cd drive/services/node0-infinite
 ./drive.sh exec infinite bash
 
 # Firmar la transacción con la clave del participante
-infinited tx sign tx_unsigned.json \
+infinited tx sign ~/.infinited/tx_unsigned.json \
   --from participante1 \
   --multisig $(infinited keys show mi_multisig -a --keyring-backend file --home ~/.infinited) \
+  --chain-id infinite_421018-1 \
   --sign-mode amino-json \
   --keyring-backend file \
   --home ~/.infinited \
-  --output-document firma_participante1.json
+  --output-document ~/.infinited/firma_participante1.json
 ```
 
 Repite este proceso para cada participante que debe firmar (al menos el número requerido por el umbral).
+
+>[!important]
+>Envíe su archivo `signature_participant*.json`, ubicado en el directorio `persistent-data`, al coordinador. Debe compartir el mismo archivo con usted.
 
 ### Paso 3: Combinar Firmas
 
@@ -238,13 +254,14 @@ El coordinador combina las firmas de todos los participantes que firmaron:
 
 ```bash
 infinited tx multisign \
-  tx_unsigned.json \
+  ~/.infinited/tx_unsigned.json \
   mi_multisig \
-  firma_participante1.json \
-  firma_participante2.json \
+  ~/.infinited/firma_participante1.json \
+  ~/.infinited/firma_participante2.json \
+  --chain-id infinite_421018-1 \
   --keyring-backend file \
   --home ~/.infinited \
-  > tx_signed.json
+  > ~/.infinited/tx_signed.json
 ```
 
 > [!NOTE]
@@ -257,7 +274,7 @@ infinited tx multisign \
 Una vez combinadas las firmas, enviar la transacción:
 
 ```bash
-infinited tx broadcast tx_signed.json \
+infinited tx broadcast ~/.infinited/tx_signed.json \
   --chain-id infinite_421018-1 \
   --keyring-backend file \
   --home ~/.infinited
