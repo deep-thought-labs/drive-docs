@@ -188,6 +188,9 @@ infinite1abc123def456ghi789jkl012mno345pqr678stu901vwx234yz
 
 Share this address with all participants for verification. Each participant can recreate the multisig wallet locally with the same public keys to confirm that the address matches.
 
+>[!important]
+>Participants must have the same multisig wallet added to their keyring in order to sign transactions.
+
 ## Sign Transactions with Multisig
 
 To send a transaction from a multisig wallet, a distributed signing process is required.
@@ -206,7 +209,16 @@ infinited tx bank send \
   --generate-only \
   --keyring-backend file \
   --home ~/.infinited \
-  > tx_unsigned.json
+  > ~/.infinited/tx_unsigned.json
+```
+
+> [!important]
+Distribute `tx_unsigned.json` under the `persistent-data` directory to participants. They must share the exact same file with the coordinator. Sharing the `SHA-256` of the file is recommended.
+
+Participants place `tx_unsigned.json` in the following location:
+
+```bash
+~/drive/services/node0-infinite/persistent-data/tx_unsigned.json
 ```
 
 ### Step 2: Each Signer Signs the Transaction
@@ -221,16 +233,20 @@ cd drive/services/node0-infinite
 ./drive.sh exec infinite bash
 
 # Sign the transaction with the participant's key
-infinited tx sign tx_unsigned.json \
+infinited tx sign ~/.infinited/tx_unsigned.json \
   --from participant1 \
   --multisig $(infinited keys show my_multisig -a --keyring-backend file --home ~/.infinited) \
+  --chain-id infinite_421018-1 \
   --sign-mode amino-json \
   --keyring-backend file \
   --home ~/.infinited \
-  --output-document signature_participant1.json
+  --output-document ~/.infinited/signature_participant1.json
 ```
 
 Repeat this process for each participant who must sign (at least the number required by the threshold).
+
+> [!important]
+Submit your `signature_participant*.json` under the `persistent-data` directory to the cordinator. They must share the exact same file with you.
 
 ### Step 3: Combine Signatures
 
@@ -238,13 +254,14 @@ The coordinator combines the signatures from all participants who signed:
 
 ```bash
 infinited tx multisign \
-  tx_unsigned.json \
+  ~/.infinited/tx_unsigned.json \
   my_multisig \
-  signature_participant1.json \
-  signature_participant2.json \
+  ~/.infinited/signature_participant1.json \
+  ~/.infinited/signature_participant2.json \
+  --chain-id infinite_421018-1 \
   --keyring-backend file \
   --home ~/.infinited \
-  > tx_signed.json
+  > ~/.infinited/tx_signed.json
 ```
 
 > [!NOTE]
@@ -257,7 +274,7 @@ infinited tx multisign \
 Once signatures are combined, send the transaction:
 
 ```bash
-infinited tx broadcast tx_signed.json \
+infinited tx broadcast ~/.infinited/tx_signed.json \
   --chain-id infinite_421018-1 \
   --keyring-backend file \
   --home ~/.infinited
