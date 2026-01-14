@@ -13,6 +13,12 @@ Think of the keyring as a **wallet** where you can have multiple accounts or key
 - You can have **multiple keys** in the same keyring for different purposes
 - Keys in the keyring are used to **sign transactions** and perform on-chain operations
 - For example, the transaction to create a validator (`create-validator`) requires a key from the keyring
+- You can add multiple keys from the same seed phrase using different account indices
+
+> [!TIP]
+> **Multiple Keys from Same Seed Phrase**
+>
+> You can create multiple keys from one seed phrase and add them all to the keyring. This is useful for organizing keys by purpose (main, backup, test) or managing multiple accounts. See [Multiple Keys from Same Seed Phrase]({{< relref "../drive/guides/blockchain-nodes/keys/multiple-keys-from-seed" >}}) for detailed examples.
 
 ## Keyring Location
 

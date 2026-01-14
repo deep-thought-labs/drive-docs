@@ -86,6 +86,7 @@ Si recibes un error de "clave no encontrada" al usar comandos que requieren clav
 4. **Si la clave no está en la lista:**
    - Agrega la clave usando [Agregar Clave Existente desde Frase Semilla]({{< relref "../guides/blockchain-nodes/keys/operations#agregar-clave-existente-desde-frase-semilla" >}}) o la interfaz gráfica
    - Asegúrate de usar el nombre correcto de la clave
+   - Si necesitas crear múltiples claves desde la misma frase semilla, ver [Múltiples Keys de una Misma Frase Semilla]({{< relref "../guides/blockchain-nodes/keys/multiple-keys-from-seed" >}})
 
 ### Causas Comunes
 
@@ -131,6 +132,7 @@ Para más información sobre cómo usar claves en comandos, consulta [Usar Clave
 ## Ver También
 
 - [Operaciones de Gestión de Claves]({{< relref "../guides/blockchain-nodes/keys/operations" >}}) - Guía completa de todas las operaciones disponibles
+- [Múltiples Keys de una Misma Frase Semilla]({{< relref "../guides/blockchain-nodes/keys/multiple-keys-from-seed" >}}) - Crear múltiples claves desde una frase semilla
 - [Workflow para Validadores]({{< relref "../guides/blockchain-nodes/keys/validator-workflow" >}}) - Guía paso a paso para configurar claves como validador
 - [Mejores Prácticas de Seguridad]({{< relref "../guides/blockchain-nodes/keys/security" >}}) - Recomendaciones de seguridad
 - [Keyring]({{< relref "../../../../concepts/keyring" >}}) - Qué es un keyring y cómo funciona

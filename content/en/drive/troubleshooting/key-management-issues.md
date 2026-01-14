@@ -86,6 +86,7 @@ If you receive a "key not found" error when using commands that require keys:
 4. **If the key is not in the list:**
    - Add the key using [Add Existing Key from Seed Phrase]({{< relref "../guides/blockchain-nodes/keys/operations#add-existing-key-from-seed-phrase" >}}) or the graphical interface
    - Make sure to use the correct key name
+   - If you need to create multiple keys from the same seed phrase, see [Multiple Keys from Same Seed Phrase]({{< relref "../guides/blockchain-nodes/keys/multiple-keys-from-seed" >}})
 
 ### Common Causes
 
@@ -131,6 +132,7 @@ For more information on how to use keys in commands, see [Using Keys in Commands
 ## See Also
 
 - [Key Management Operations]({{< relref "../guides/blockchain-nodes/keys/operations" >}}) - Complete guide of all available operations
+- [Multiple Keys from Same Seed Phrase]({{< relref "../guides/blockchain-nodes/keys/multiple-keys-from-seed" >}}) - Create multiple keys from one seed phrase
 - [Workflow for Validators]({{< relref "../guides/blockchain-nodes/keys/validator-workflow" >}}) - Step-by-step guide to set up keys as a validator
 - [Security Best Practices]({{< relref "../guides/blockchain-nodes/keys/security" >}}) - Security recommendations
 - [Keyring]({{< relref "../../../../concepts/keyring" >}}) - What is a keyring and how it works

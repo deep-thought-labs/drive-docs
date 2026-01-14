@@ -155,6 +155,11 @@ Si ya tienes una frase semilla (de un nodo anterior, de otro sistema, o de una c
 
 **Cuándo usar:** Cuando quieras restaurar una clave existente o agregar una clave de otro nodo.
 
+> [!TIP]
+> **Múltiples Keys de una Misma Frase Semilla**
+>
+> Puedes crear múltiples keys desde la misma frase semilla usando diferentes índices de cuenta. Esto es útil para organizar keys por propósito (principal, respaldo, prueba) o gestionar múltiples cuentas. Ver [Múltiples Keys de una Misma Frase Semilla]({{< relref "multiple-keys-from-seed" >}}) para ejemplos detallados y casos de uso.
+
 #### Usando Interfaz Gráfica
 
 1. En el submenú "Key Management", selecciona **"Add Existing Key from Seed Phrase"**

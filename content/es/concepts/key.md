@@ -30,8 +30,14 @@ Las claves se generan típicamente a partir de una **frase semilla** (seed phras
 - **Estándar BIP39** - Formato estándar utilizado en la mayoría de blockchains
 - **Recuperación** - La misma frase semilla siempre genera la misma clave
 - **Respaldo crítico** - Si pierdes tu frase semilla, pierdes acceso permanente a tus claves
+- **Múltiples claves** - Puedes crear múltiples claves desde la misma frase semilla usando diferentes índices de cuenta
 
 **⚠️ IMPORTANTE:** La frase semilla es la única forma de recuperar tus claves. Si la pierdes, no hay forma de recuperar el acceso.
+
+> [!TIP]
+> **Múltiples Keys de una Misma Frase Semilla**
+>
+> Puedes crear múltiples claves desde la misma frase semilla usando diferentes índices de cuenta. Esto te permite organizar claves por propósito (principal, respaldo, prueba) o gestionar múltiples cuentas desde un mnemónico. Ver [Múltiples Keys de una Misma Frase Semilla]({{< relref "../drive/guides/blockchain-nodes/keys/multiple-keys-from-seed" >}}) para ejemplos detallados.
 
 ## Uso de Claves en Nodos Blockchain
 

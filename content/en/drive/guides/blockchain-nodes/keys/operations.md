@@ -155,6 +155,11 @@ If you already have a seed phrase (from a previous node, from another system, or
 
 **When to use:** When you want to restore an existing key or add a key from another node.
 
+> [!TIP]
+> **Multiple Keys from Same Seed Phrase**
+>
+> You can create multiple keys from the same seed phrase using different account indices. This is useful for organizing keys by purpose (main, backup, test) or managing multiple accounts. See [Multiple Keys from Same Seed Phrase]({{< relref "multiple-keys-from-seed" >}}) for detailed examples and use cases.
+
 #### Using Graphical Interface
 
 1. In the "Key Management" submenu, select **"Add Existing Key from Seed Phrase"**

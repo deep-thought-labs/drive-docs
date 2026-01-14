@@ -40,6 +40,7 @@ Para obtener el mejor provecho de esta documentación, te recomendamos seguir es
   - 📋 Listar y mostrar detalles de claves
   - 🗑️ Eliminar claves
   - 🔒 Restablecer contraseña del keyring
+- **[Múltiples Keys de una Misma Frase Semilla]({{< relref "multiple-keys-from-seed" >}})** - Crear múltiples keys desde una frase semilla usando diferentes índices de cuenta
 
 ### 3. 🔐 Mejores Prácticas de Seguridad
 

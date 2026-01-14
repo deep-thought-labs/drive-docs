@@ -13,6 +13,12 @@ Piensa en el keyring como una **billetera (wallet)** donde puedes tener múltipl
 - Puedes tener **múltiples claves** en el mismo keyring para diferentes propósitos
 - Las claves en el keyring se usan para **firmar transacciones** y realizar operaciones on-chain
 - Por ejemplo, la transacción para crear un validador (`create-validator`) requiere una clave del keyring
+- Puedes agregar múltiples claves desde la misma frase semilla usando diferentes índices de cuenta
+
+> [!TIP]
+> **Múltiples Keys de una Misma Frase Semilla**
+>
+> Puedes crear múltiples claves desde una frase semilla y agregarlas todas al keyring. Esto es útil para organizar claves por propósito (principal, respaldo, prueba) o gestionar múltiples cuentas. Ver [Múltiples Keys de una Misma Frase Semilla]({{< relref "../drive/guides/blockchain-nodes/keys/multiple-keys-from-seed" >}}) para ejemplos detallados.
 
 ## Ubicación del Keyring
 

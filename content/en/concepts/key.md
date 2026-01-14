@@ -30,8 +30,14 @@ Keys are typically generated from a **seed phrase** (mnemonic phrase):
 - **BIP39 standard** - Standard format used in most blockchains
 - **Recovery** - The same seed phrase always generates the same key
 - **Critical backup** - If you lose your seed phrase, you permanently lose access to your keys
+- **Multiple keys** - You can create multiple keys from the same seed phrase using different account indices
 
 **⚠️ IMPORTANT:** The seed phrase is the only way to recover your keys. If you lose it, there's no way to recover access.
+
+> [!TIP]
+> **Multiple Keys from One Seed Phrase**
+>
+> You can create multiple keys from the same seed phrase using different account indices. This allows you to organize keys by purpose (main, backup, test) or manage multiple accounts from one mnemonic. See [Multiple Keys from Same Seed Phrase]({{< relref "../drive/guides/blockchain-nodes/keys/multiple-keys-from-seed" >}}) for detailed examples.
 
 ## Use of Keys in Blockchain Nodes
 
