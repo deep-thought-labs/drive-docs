@@ -7,9 +7,44 @@ Cómo actualizar el sistema Drive y las imágenes Docker.
 
 Esta guía explica cómo actualizar tu sistema Drive, que consiste en múltiples contenedores Docker Compose que pueden estar en ejecución. El proceso de actualización asegura que obtengas los últimos cambios de código e imágenes Docker mientras evitas conflictos.
 
+## Métodos de Actualización
+
+Hay dos formas de actualizar Drive:
+
+### ✨ Actualización Automática (Recomendada)
+
+La forma más fácil de actualizar Drive es usando el script de actualización automática:
+
+```bash
+# Desde la raíz del repositorio drive
+./scripts/update-drive.sh
+```
+
+**Qué hace el script:**
+- ✅ Detecta automáticamente todos los servicios en ejecución
+- ✅ Detiene todos los servicios de forma segura
+- ✅ Restaura solo archivos rastreados (preserva archivos no rastreados como persistent-data)
+- ✅ Actualiza el repositorio con `git pull`
+- ✅ Reinicia solo los servicios que estaban ejecutándose antes
+
+**Ventajas:**
+- Un solo comando para actualizar todo
+- Preserva automáticamente el estado de los servicios
+- Seguro: solo restaura archivos rastreados, preserva todos los datos
+- No requiere pasos manuales
+
+> [!IMPORTANT]
+> **Seguridad de Datos**
+>
+> El script de actualización solo restaura archivos rastreados por Git. Todos los archivos no rastreados (incluyendo datos en directorios `persistent-data/`) son **preservados** y no serán eliminados.
+
+### Actualización Manual
+
+Si prefieres actualizar manualmente o necesitas más control, sigue los pasos a continuación.
+
 ## Resumen del Proceso de Actualización
 
-El proceso de actualización consiste en cuatro pasos principales:
+El proceso de actualización manual consiste en cuatro pasos principales:
 
 1. **Detener todos los contenedores** - Detener todos los servicios Docker Compose en ejecución
 2. **Actualizar el repositorio Git** - Restaurar y descargar los últimos cambios del repositorio
@@ -197,7 +232,12 @@ cd ../node0-infinite
 
 ## Lista de Verificación de Actualización
 
-Usa esta lista de verificación para asegurar una actualización completa:
+### Usando el Script Automático
+
+- [ ] Ejecutar `./scripts/update-drive.sh` desde el directorio raíz de drive
+- [ ] Verificar que los servicios se reiniciaron correctamente (`./drive.sh ps` en cada servicio)
+
+### Actualización Manual
 
 - [ ] Detener y eliminar todos los servicios en ejecución (`./drive.sh down` en cada servicio)
 - [ ] Navegar al directorio raíz de drive

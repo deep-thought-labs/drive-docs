@@ -7,9 +7,44 @@ How to update the Drive system and Docker images.
 
 This guide explains how to update your Drive system, which consists of multiple Docker Compose containers that may be running. The update process ensures you get the latest code changes and Docker images while avoiding conflicts.
 
+## Update Methods
+
+There are two ways to update Drive:
+
+### ✨ Automatic Update (Recommended)
+
+The easiest way to update Drive is using the automatic update script:
+
+```bash
+# From the drive repository root
+./scripts/update-drive.sh
+```
+
+**What the script does:**
+- ✅ Detects all running services automatically
+- ✅ Stops all services gracefully
+- ✅ Restores only tracked files (preserves untracked files like persistent-data)
+- ✅ Updates repository with `git pull`
+- ✅ Restarts only the services that were running before
+
+**Advantages:**
+- Single command to update everything
+- Automatically preserves service state
+- Safe: only restores tracked files, preserves all data
+- No manual steps required
+
+> [!IMPORTANT]
+> **Data Safety**
+>
+> The update script only restores files tracked by Git. All untracked files (including data in `persistent-data/` directories) are **preserved** and will not be deleted.
+
+### Manual Update
+
+If you prefer to update manually or need more control, follow the steps below.
+
 ## Update Process Overview
 
-The update process consists of four main steps:
+The manual update process consists of four main steps:
 
 1. **Stop all containers** - Stop all running Docker Compose services
 2. **Update Git repository** - Restore and pull latest changes from the repository
@@ -197,7 +232,12 @@ cd ../node0-infinite
 
 ## Update Checklist
 
-Use this checklist to ensure a complete update:
+### Using Automatic Script
+
+- [ ] Run `./scripts/update-drive.sh` from drive root directory
+- [ ] Verify services restarted correctly (`./drive.sh ps` in each service)
+
+### Manual Update
 
 - [ ] Stop and remove all running services (`./drive.sh down` in each service)
 - [ ] Navigate to drive root directory
