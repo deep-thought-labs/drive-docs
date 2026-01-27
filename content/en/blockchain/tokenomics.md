@@ -38,6 +38,8 @@ Just like we use **100 tokens** in genesis for easy percentage visualization (40
 
 > **Note**: All pools are implemented as ModuleAccounts in genesis. The table above shows the **locked tokens** (100,000,000) that will unlock over 42 years.
 
+**Design Philosophy:** Infinite Improbability Drive is an **operational infrastructure blockchain**, not a monetary store-of-value system. The inflation model and token distribution strategy are designed to sustain network operations, validator incentives, and ecosystem development—not to preserve purchasing power or function as digital hard money. Unlike Bitcoin's deflationary model optimized for value preservation, our controlled inflation ensures the network remains economically viable for infrastructure services, protocol operations, and long-term sustainability.
+
 ## Genesis Bootstrap (200 [42])
 
 At **Block 1**, exactly **200 Improbability [42]** (200 cups) are minted as liquid tokens and distributed as follows:

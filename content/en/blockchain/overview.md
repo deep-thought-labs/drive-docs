@@ -7,9 +7,11 @@ weight: 100
 
 > *"Governments of the Industrial World, you weary giants of flesh and steel — we are building the infrastructure you cannot control."*
 
-**Project 42: Infinite Drive** — A cypherpunk nation in cyberspace. Powered by improbability.
+**Project 42** — A cypherpunk nation in cyberspace. Powered by improbability.
 
 > Infinite Drive is **Project 42**: the complete ecosystem encompassing **Infinite Improbability Drive** (the blockchain), **Drive** (the infrastructure management client), and other foundational technologies. The blockchain is a core component of Project 42, alongside other infrastructure pieces that together form the cypherpunk nation. Developed by [Deep Thought Labs](https://deep-thought.computer).
+
+**🌐 [infinitedrive.xyz](https://infinitedrive.xyz)** | **📚 [Official Documentation](https://docs.infinitedrive.xyz/en)**
 
 ## The Network
 
@@ -24,6 +26,10 @@ weight: 100
 
 ## Network Identity
 
+Infinite Improbability Drive is **operational infrastructure** — the cryptographic backbone of our digital nation. It serves as the foundational layer upon which services, protocols, and implementations are constructed across the new cyberspace.
+
+This is infrastructure for the future: maintained, secured, and built by cypherpunks. Every transaction, every smart contract, every protocol built on this foundation contributes to a resilient digital ecosystem that operates independently of traditional power structures. The blockchain provides the trust, security, and economic coordination necessary for a sovereign cyberspace to thrive — the operational foundation for a new kind of internet, by the people, for the people.
+
 - **Chain Name**: `infinite`
 - **Chain ID**: `infinite_421018-1`
 - **Bech32 Prefix**: `infinite`
@@ -33,7 +39,7 @@ weight: 100
 
 - **Token Name**: Improbability
 - **Symbol**: `42`
-  - *Just 42. If you want to know why, we invite you to consult the [Enciclopedia Galáctica](https://grokipedia.com/page/42_(number)) for more information.*
+  - *42. The [Enciclopedia Galáctica](https://grokipedia.com/page/42_(number)) contains the answer — and the question.*
 - **Token Format**: Improbability [42]
 
 ## Unit of Measurement: cups
