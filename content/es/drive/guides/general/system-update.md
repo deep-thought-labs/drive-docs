@@ -17,7 +17,7 @@ La forma más fácil de actualizar Drive es usando el script de actualización a
 
 ```bash
 # Desde la raíz del repositorio drive
-./scripts/update-drive.sh
+./ops/update-drive.sh
 ```
 
 **Qué hace el script:**
@@ -234,7 +234,7 @@ cd ../node0-infinite
 
 ### Usando el Script Automático
 
-- [ ] Ejecutar `./scripts/update-drive.sh` desde el directorio raíz de drive
+- [ ] Ejecutar `./ops/update-drive.sh` desde el directorio raíz de drive
 - [ ] Verificar que los servicios se reiniciaron correctamente (`./drive.sh ps` en cada servicio)
 
 ### Actualización Manual

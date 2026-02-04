@@ -17,7 +17,7 @@ The easiest way to update Drive is using the automatic update script:
 
 ```bash
 # From the drive repository root
-./scripts/update-drive.sh
+./ops/update-drive.sh
 ```
 
 **What the script does:**
@@ -234,7 +234,7 @@ cd ../node0-infinite
 
 ### Using Automatic Script
 
-- [ ] Run `./scripts/update-drive.sh` from drive root directory
+- [ ] Run `./ops/update-drive.sh` from drive root directory
 - [ ] Verify services restarted correctly (`./drive.sh ps` in each service)
 
 ### Manual Update
