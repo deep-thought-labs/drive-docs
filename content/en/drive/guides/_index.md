@@ -10,6 +10,10 @@ Action-specific guides organized by category.
 - [Container Management]({{< relref "general/container-management" >}})
 - [System Update]({{< relref "general/system-update" >}})
 
+## Tools
+
+- [Endpoint Validation Scripts]({{< relref "tools/endpoint-validation" >}}) - Validate Cosmos gRPC, Tendermint RPC, and EVM RPC endpoints
+
 ## Blockchain Nodes
 
 - [Graphical Interface]({{< relref "blockchain-nodes/graphical-interface" >}}) - Graphical interface guide
