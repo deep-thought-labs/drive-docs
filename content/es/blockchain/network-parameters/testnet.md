@@ -69,11 +69,13 @@ Referencia completa de todos los parámetros de red configurados para Infinite I
 
 | Parámetro | Valor | Descripción |
 |-----------|-------|-------------|
-| `signed_blocks_window` | `10000` | Número de bloques para ventana de slashing |
-| `min_signed_per_window` | `0.050000000000000000` (5%) | Bloques mínimos firmados por ventana para evitar slashing |
-| `downtime_jail_duration` | `600s` (10 minutos) | Tiempo que un validador está en cárcel por downtime |
+| `signed_blocks_window` | `10000` | Número de bloques monitoreados para actividad de firma del validador |
+| `min_signed_per_window` | `0.050000000000000000` (5%) | Porcentaje mínimo de bloques que deben ser firmados dentro de la ventana para evitar slashing |
+| `downtime_jail_duration` | `600s` (10 minutos) | Duración que un validador permanece en cárcel **después** de que se detecta el downtime (no es el período de tolerancia antes de la detección) |
 | `slash_fraction_double_sign` | `0.050000000000000000` (5%) | Fracción de stake slasheado por doble firma |
 | `slash_fraction_downtime` | `0.000100000000000000` (0.01%) | Fracción de stake slasheado por downtime |
+
+> **Tolerancia de Downtime:** Con `signed_blocks_window` de 10,000 bloques y `min_signed_per_window` de 5%, los validadores pueden estar offline aproximadamente **13.9 horas** (a ~5 segundos por bloque) antes de ser penalizados. El `downtime_jail_duration` de 10 minutos es el período de cárcel **después** de que se detecta el downtime, no la ventana de tolerancia antes de la detección.
 
 ## Módulo Fee Market (EIP-1559)
 

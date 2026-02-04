@@ -69,11 +69,13 @@ Complete reference of all network parameters configured for Infinite Improbabili
 
 | Parameter | Value | Description |
 |-----------|-------|-------------|
-| `signed_blocks_window` | `10000` | Number of blocks for slashing window |
-| `min_signed_per_window` | `0.050000000000000000` (5%) | Minimum blocks signed per window to avoid slashing |
-| `downtime_jail_duration` | `600s` (10 minutes) | Time a validator is jailed for downtime |
+| `signed_blocks_window` | `10000` | Number of blocks monitored for validator signing activity |
+| `min_signed_per_window` | `0.050000000000000000` (5%) | Minimum percentage of blocks that must be signed within the window to avoid slashing |
+| `downtime_jail_duration` | `600s` (10 minutes) | Duration a validator remains jailed **after** downtime is detected (not the tolerance period before detection) |
 | `slash_fraction_double_sign` | `0.050000000000000000` (5%) | Fraction of stake slashed for double signing |
 | `slash_fraction_downtime` | `0.000100000000000000` (0.01%) | Fraction of stake slashed for downtime |
+
+> **Downtime Tolerance:** With `signed_blocks_window` of 10,000 blocks and `min_signed_per_window` of 5%, validators can be offline for approximately **13.9 hours** (at ~5 seconds per block) before being penalized. The `downtime_jail_duration` of 10 minutes is the jail period **after** downtime is detected, not the tolerance window before detection.
 
 ## Fee Market Module (EIP-1559)
 
