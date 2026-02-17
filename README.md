@@ -1,16 +1,29 @@
 # Drive Documentation
 
+## Theme and build requirements
+
+This site is built with [Hugo](https://gohugo.io/) and uses the **Hextra** theme, which is included as a **Git submodule**. You must initialize the submodule before the theme is available and the site can be built.
+
+- **Theme:** Hextra (`theme = "hextra"` in `hugo.toml`)
+- **Theme location:** `themes/hextra` (submodule)
+
+If you clone the repo without submodules, or see errors about missing shortcodes or layouts, the theme is not available. Initialize it as below.
+
+
 ## Quick Start - Running Hugo
 
 To run the Hugo documentation site locally:
 
 ```bash
-# Install Hugo (if not already installed)
+# 1. Install Hugo (if not already installed)
 # macOS: brew install hugo
 # Linux: sudo apt-get install hugo
 # Windows: choco install hugo
 
-# Start the development server
+# 2. Initialize the theme submodule (required for the site to build)
+git submodule update --init --recursive
+
+# 3. Start the development server
 hugo server
 
 # The site will be available at http://localhost:1313
@@ -19,6 +32,9 @@ hugo server
 For production build:
 
 ```bash
+# Ensure the theme submodule is initialized
+git submodule update --init --recursive
+
 # Generate static site
 hugo
 
