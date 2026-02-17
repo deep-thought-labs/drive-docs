@@ -16,4 +16,5 @@ Service structure documentation, service type descriptions, and service catalogs
 ## Service Types
 
 - [Blockchain Nodes]({{< relref "blockchain-nodes" >}})
+- [Blockchain Scanner]({{< relref "blockchain-scanner" >}})
 - [Nginx]({{< relref "nginx" >}})

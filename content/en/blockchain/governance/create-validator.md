@@ -3,7 +3,7 @@ title: "Create-Validator Transaction"
 ---
 A step-by-step guide to joining a live blockchain as a validator. Please make sure you understand the basic concepts of [Key](/en/concepts/key/) and [Keyring](/en/concepts/keyring/) before proceeding.
 
-## Prerequests
+## Prerequisites
 
 > [!important]
 > - The validator key is restored when initialized your node. [See Initialization](/en/concepts/node-initialization/)

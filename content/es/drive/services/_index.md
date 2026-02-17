@@ -16,4 +16,5 @@ Documentación de estructura de servicios, descripciones de tipos de servicios y
 ## Tipos de Servicios
 
 - [Nodos Blockchain]({{< relref "blockchain-nodes" >}})
+- [Blockchain Scanner]({{< relref "blockchain-scanner" >}})
 - [Nginx]({{< relref "nginx" >}})

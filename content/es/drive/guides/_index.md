@@ -14,6 +14,14 @@ Guías específicas de acciones organizadas por categoría.
 
 - [Scripts de validación de endpoints]({{< relref "tools/endpoint-validation" >}}) - Validar endpoints Cosmos gRPC, Tendermint RPC y EVM RPC
 
+## Blockchain Scanners
+
+- [Blockchain Scanners]({{< relref "blockchain-scanners" >}}) - Drive-Scan y Blockscout
+
+## Servidores RPC
+
+- [Servidores RPC]({{< relref "rpc-servers" >}}) - Configuración de servidores RPC (EVM, Comet, gRPC)
+
 ## Nodos Blockchain
 
 - [Interfaz Gráfica]({{< relref "blockchain-nodes/graphical-interface" >}}) - Guía de la interfaz gráfica
