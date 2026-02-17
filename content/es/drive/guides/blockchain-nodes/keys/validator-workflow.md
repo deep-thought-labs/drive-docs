@@ -104,6 +104,10 @@ Usa la frase semilla que acabas de crear y respaldar para inicializar tu nodo us
 > **Información Completa**
 >
 > Para instrucciones detalladas paso a paso sobre cómo agregar una clave existente al keyring, incluyendo imágenes de la interfaz gráfica y comandos de línea de comandos, consulta [Agregar Clave Existente desde Frase Semilla]({{< relref "operations#agregar-clave-existente-desde-frase-semilla" >}}) en Operaciones de Gestión de Claves.
+>
+> **Múltiples Keys de una Misma Frase Semilla:**
+>
+> Puedes crear múltiples keys desde la misma frase semilla usando diferentes índices de cuenta. Esto es útil si quieres keys separadas para diferentes propósitos (principal, respaldo, prueba). Ver [Múltiples Keys de una Misma Frase Semilla]({{< relref "multiple-keys-from-seed" >}}) para ejemplos detallados.
 
 ## Paso 5: Verificar la Private Validator Key
 

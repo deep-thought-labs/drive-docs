@@ -104,6 +104,10 @@ Use the seed phrase you just created and backed up to initialize your node using
 > **Complete Information**
 >
 > For detailed step-by-step instructions on how to add an existing key to the keyring, including graphical interface images and command line commands, see [Add Existing Key from Seed Phrase]({{< relref "operations#add-existing-key-from-seed-phrase" >}}) in Key Management Operations.
+>
+> **Multiple Keys from Same Seed Phrase:**
+>
+> You can create multiple keys from the same seed phrase using different account indices. This is useful if you want separate keys for different purposes (main, backup, test). See [Multiple Keys from Same Seed Phrase]({{< relref "multiple-keys-from-seed" >}}) for detailed examples.
 
 ## Step 5: Verify Private Validator Key
 

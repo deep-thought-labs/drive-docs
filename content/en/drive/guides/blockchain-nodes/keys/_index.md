@@ -40,6 +40,7 @@ To get the best out of this documentation, we recommend following this order:
   - 📋 List and show key details
   - 🗑️ Delete keys
   - 🔒 Reset keyring password
+- **[Multiple Keys from Same Seed Phrase]({{< relref "multiple-keys-from-seed" >}})** - Create multiple keys from one seed phrase using different account indices
 
 ### 3. 🔐 Security Best Practices
 
