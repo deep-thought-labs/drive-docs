@@ -2,11 +2,11 @@
 title: "RPC Servers Set Up Guide"
 ---
 
-# Step A: Expose RPC ports to localhost
+## Step 1: Expose RPC ports to localhost
 
 We recommend that you first change the ports in `drive/services/node0-infinite/docker-compose.yml` as follows:
 
-## ✅ Configuration example (limit RPC exposure to localhost, WS optional)
+### ✅ Configuration example (limit RPC exposure to localhost, WS optional)
 
 ```yaml
 ports:
@@ -43,7 +43,7 @@ Docker EVM RPC      Docker COMET RPC
 > Note: The P2P port (26656) is made public in order to contribute to the network and ensure stable connections.
 
 ---
-# Step A: app.toml (enable JSON-RPC)
+## Step 2: app.toml (enable JSON-RPC)
 
 File: 
 `drive/services/node0-infinite/persistent-data/config/app.toml`
@@ -62,7 +62,7 @@ enable = true
 address = "0.0.0.0:9090"
 ```
 
-## Step B: config.toml (enable COMET-RPC)
+## Step 3: config.toml (enable COMET-RPC)
 
 File: 
 `drive/services/node0-infinite/persistent-data/config/config.toml`
@@ -88,9 +88,9 @@ If you leave the port `127.0.0.1:8545` in the container, Docker's port forwardin
 ```
 
 
-# Step 3: Nginx configuration
+## Step 4: Nginx configuration
 
-## 3-A) Rate limiting and simultaneous connection limiting settings (optional but recommended)
+### 4-A) Rate limiting and simultaneous connection limiting settings (optional but recommended)
 
 File: `/etc/nginx/conf.d/00_rpc_limits.conf`
 
@@ -115,82 +115,95 @@ limit_conn_zone $binary_remote_addr zone=comet_ws_conn:10m;
 
 > Rate limiting and concurrent connection limits on public RPC endpoints are basic protective measures to maintain the stability and availability of the overall service by preventing node overload and DoS attacks, and avoiding CPU, memory, and I/O resource depletion. This prevents resource monopolization by specific users or bots, ensuring a fair and stable RPC environment for general users and relayers.
 
-## 3-B) vhost nginx
+### 4-B) vhost nginx
 
-### EVM-RPC settings
+#### EVM-RPC settings
 
 File: `/etc/nginx/conf.d/evm-rpc.conf`
 
-```
+```nginx
 server {
-  listen 80;
-  listen [::]:80;
-  # Use your domain here
-  server_name evm-rpc.infinitedrive.xyz;
-  return 301 https://$host$request_uri;
+    listen 80;
+    listen [::]:80;
+    # Please use your domain here
+    server_name evm-rpc.infinitedrive.xyz;
+    return 301 https://$host$request_uri;
 }
 
 server {
-  listen 443 ssl http2;
-  listen [::]:443 ssl http2;  
+    listen 443 ssl http2;
+    listen [::]:443 ssl http2;
 
-  # Use your domain here
-  server_name evm-rpc.infinitedrive.xyz;
-  # ---- Security headers ----
-  add_header X-Content-Type-Options "nosniff" always;
-  add_header Referrer-Policy "no-referrer" always;
-  add_header X-Frame-Options "DENY" always;
-  add_header Permissions-Policy "interest-cohort=()" always;
-  # Optional: HSTS (ONLY if you will keep HTTPS permanently)
-  # add_header Strict-Transport-Security "max-age=31536000; includeSubDomains; preload" always;
+    # Please use your domain here
+    server_name evm-rpc.infinitedrive.xyz;
 
-  # Place a valid certificate and key
-  ssl_certificate     /etc/nginx/ssl/infinitedrive.xyz.crt;
-  ssl_certificate_key /etc/nginx/ssl/infinitedrive.xyz.key;
+    # ---- Security headers ----
+    add_header X-Content-Type-Options "nosniff" always;
+    add_header Referrer-Policy "no-referrer" always;
+    add_header X-Frame-Options "DENY" always;
+    add_header Permissions-Policy "interest-cohort=()" always;
+    # Optional: HSTS (ONLY if you will keep HTTPS permanently)
+    # add_header Strict-Transport-Security "max-age=31536000; includeSubDomains; preload" always;
 
-  client_max_body_size 1m;
-    location / {
-    # ---- CORS (required for browser wallets like MetaMask) ----
-    add_header Access-Control-Allow-Origin "*" always;
-    add_header Access-Control-Allow-Methods "POST, OPTIONS" always;
-    add_header Access-Control-Allow-Headers "Content-Type, Authorization" always;
-    add_header Access-Control-Max-Age 86400 always;
+    # Place a valid certificate and key (fullchain.pem is recomended)
+    ssl_certificate     /etc/nginx/ssl/infinitedrive.xyz.crt;
+    ssl_certificate_key /etc/nginx/ssl/infinitedrive.xyz.key;
 
-    # Fast response for CORS preflight
-    if ($request_method = OPTIONS) {
-      add_header Content-Length 0;
-      add_header Content-Type text/plain;
-      return 204;
-    }
+    client_max_body_size 1m;
 
-    # ---- Basic abuse protection ----
-    limit_req zone=rpc_req burst=30 nodelay;
-    limit_conn rpc_conn 20;
-    
-    # ---- Reverse proxy to EVM JSON-RPC ----
-    proxy_pass http://127.0.0.1:8545;
-    proxy_http_version 1.1;
+    # ---- CORS (apply at SERVER level so it also works for 204/return) ----
+    add_header Access-Control-Allow-Origin "*" always;
+    add_header Access-Control-Allow-Methods "POST, GET, OPTIONS" always;
+    add_header Access-Control-Allow-Headers "Content-Type, Authorization, Accept, Origin, User-Agent, X-Requested-With" always;
+    add_header Access-Control-Expose-Headers "Content-Length, Content-Type" always;
+    add_header Access-Control-Max-Age 86400 always;
 
-    # Keepalive / upstream stability
-    proxy_set_header Connection "";
-    proxy_set_header Host $host;
-    proxy_set_header X-Real-IP $remote_addr;
-    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-  
-    proxy_connect_timeout 10s;
-    proxy_send_timeout 30s;
-    proxy_read_timeout 30s;
+    location / {
+        # Fast response for preflight (explicitly add headers here too)
+        if ($request_method = OPTIONS) {
+            add_header Access-Control-Allow-Origin "*" always;
+            add_header Access-Control-Allow-Methods "POST, GET, OPTIONS" always;
+            add_header Access-Control-Allow-Headers "Content-Type, Authorization, Accept, Origin, User-Agent, X-Requested-With" always;
+            add_header Access-Control-Max-Age 86400 always;
+            add_header Content-Length 0;
+            add_header Content-Type text/plain;
+            return 204;
+        }
 
-    # If upstream errors occur, don't cache or serve stale
-    proxy_intercept_errors off;
-  }
+        # ---- Basic abuse protection ----
+        limit_req zone=rpc_req burst=30 nodelay;
+        limit_conn rpc_conn 20;
+
+        # Prevent duplicate CORS headers if upstream adds any
+        proxy_hide_header Access-Control-Allow-Origin;
+        proxy_hide_header Access-Control-Allow-Methods;
+        proxy_hide_header Access-Control-Allow-Headers;
+        proxy_hide_header Access-Control-Expose-Headers;
+        proxy_hide_header Access-Control-Max-Age;
+
+        # ---- Reverse proxy to EVM JSON-RPC ----
+        proxy_pass http://127.0.0.1:8545;
+        proxy_http_version 1.1;
+
+        # Keepalive / upstream stability
+        proxy_set_header Connection "";
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+
+        proxy_connect_timeout 10s;
+        proxy_send_timeout 60s;
+        proxy_read_timeout 60s;
+
+        proxy_intercept_errors off;
+    }
 }
 ```
 
-### Comet-rpc configuration
+#### Comet-rpc configuration
 
 - `/etc/nginx/conf.d/comet-rpc.conf`
-```
+```nginx
 server {
   listen 80;
   listen [::]:80;
@@ -207,7 +220,7 @@ server {
   # Use your domain here
   server_name comet-rpc.infinitedrive.xyz;
   
-  # Place a valid certificate and key
+  # Place a valid certificate and key (fullchain.pem is recomended)
   ssl_certificate /etc/nginx/ssl/infinitedrive.xyz.crt;
   ssl_certificate_key /etc/nginx/ssl/infinitedrive.xyz.key;
 
@@ -255,7 +268,7 @@ server {
 }
 ```
 
-### Grpc settings
+#### Grpc settings
 
 File: `/etc/nginx/conf.d/grpc.conf`
 
@@ -267,7 +280,7 @@ server {
   # Use your domain here
   server_name grpc.infinitedrive.xyz;
 
-  # Place a valid certificate and key
+  # Place a valid certificate and key (fullchain.pem is recomended)
   ssl_certificate     /etc/nginx/ssl/infinitedrive.xyz.crt;
   ssl_certificate_key /etc/nginx/ssl/infinitedrive.xyz.key;
 
@@ -306,9 +319,9 @@ sudo systemctl reload nginx
 
 ---
 
-# Step 4: Check operation
+## Step 5: Check operation
 
-**4-A) Check from localhost without Nginx:**
+### 5-A) Check from localhost without Nginx
 ```bash
 # (EVM) Get latest block
 curl -s -H 'Content-Type: application/json' \
@@ -325,7 +338,7 @@ curl -s http://127.0.0.1:26657/status | head
 ```
 
 
-**4-B) Check via Nginx:**
+### 5-B) Check via Nginx
 ```bash
 # (EVM) Get the latest block
 curl -sk -H 'Content-Type: application/json' \
@@ -341,39 +354,102 @@ https://your-evm-rpc.example.com
 curl -sk https://your-comet-rpc.example.com/status | head
 ```
 
-### Check GRPC communication:
+### 5-C)Check GRPC communication:
 ```bash
 grpcurl -insecure your-grpc.example.com:443 list | head
 
 grpcurl -insecure your-grpc.example.com:443 \
   cosmos.base.tendermint.v1beta1.Service/GetLatestBlock
 ```
+> [!important]
+> ⚠️ **Cloudflare Proxy and Comet-RPC/gRPC**
+>
+> Streaming Comet-RPC websocket or gRPC through Cloudflare's "Orange Cloud (Proxy)" may be subject to configuration and plan restrictions.
+> 
+> Safety measures include:
+> 
+> - Use DNS only (gray cloud) for the Comet-RPC/gRPC subdomain.
+> (TLS terminates at Nginx, and comes directly over 443.)
+> 
+> - Or, configure Cloudflare to ensure Comet-RPC/gRPC is passed through.
+> 
+> Either option is acceptable.
 
-⚠️Note (Cloudflare Proxy and gRPC)
+We also recommend using a tool such as cerbot to obtain a **fullchain pem** certificate.
 
-Streaming gRPC through Cloudflare's "Orange Cloud (Proxy)" may be subject to configuration and plan restrictions.
+<details>
 
-Safety measures include:
+<summary><strong>📗Step by step guide installing Certbot and verify</strong></summary>
 
-- Use DNS only (gray cloud) for the gRPC subdomain.
-(TLS terminates at Nginx, and comes directly over 443.)
+**1. Install cerbot on Ubuntu:**
+```
+sudo apt update
+sudo apt install -y certbot python3-certbot-nginx
+```
 
-- Or, configure Cloudflare to ensure gRPC is passed through.
+**2. Obtaining a Certificate**
 
-Either option is acceptable.
+If Nginx is already running:
+```
+sudo certbot --nginx -d grpc.infinitedrive.xyz
+```
+
+If successful:
+`/etc/letsencrypt/live/grpc.infinitedrive.xyz/`
+will be created.
+
+
+**3. Check your Nginx configuration**
+
+example:
+```bash
+sudo nano /etc/nginx/conf.d/grpc.conf
+
+```
+
+Check if `ssl_certificate` and `ssl_certificate_key` is like below:
+```nginx
+ssl_certificate /etc/letsencrypt/live/grpc.infinitedrive.xyz/fullchain.pem;
+
+ssl_certificate_key /etc/letsencrypt/live/grpc.infinitedrive.xyz/privkey.pem;
+```
+
+**Q.Why fullchain.pem?**
+
+If you don't use fullchain.pem certificate, you'll get the following error:
+```nginx
+x509: certificate signed by unknown authority
+```
+
+**4. Nginx reload**
+
+```
+sudo nginx -t
+sudo systemctl reload nginx
+```
+
+**5. Verification**
+
+TLS verification:
+
+```bash
+curl -I https://grpc.infinitedrive.xyz
+```
+
+</details>
 
 ---
-## Step 4: Verify with the Drive Verification Tool
+## Step 6: Verify with the Drive Verification Tool
 
 Use the validation tool in the drive repository to verify that the RPC server is running correctly.
 
 ```bash
-cd drive/tools/validate-evm-rpc-endpoint
+cd ~/drive/tools/validate-evm-rpc-endpoint
 ./validate-evm-rpc-endpoint.sh https://your-evm-rpc.example.com
 
-cd ../validate-cosmos-rpc-endpoint
+cd ~/drive/tools/validate-cosmos-rpc-endpoint
 ./validate-cosmos-rpc-endpoint.sh https://your-comet-rpc.example.com
 
-cd ../validate-cosmos-grpc-endpoint
+cd ~/drive/tools/validate-cosmos-grpc-endpoint
 ./validate-cosmos-grpc-endpoint.sh https://your-grpc.example.com
 ```
