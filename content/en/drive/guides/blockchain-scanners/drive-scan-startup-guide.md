@@ -131,7 +131,7 @@ sudo mkdir -p /home/ubuntu/drive-scan/drive/services/scan0-infinite/{db,stats-db
 sudo chown -R ubuntu:ubuntu /home/ubuntu/drive-scan/drive/services/scan0-infinite/{db,stats-db,redis,logs,dets}
 
 # Set owner to 2000:2000
-sudo chown -R 2000:2000 ~/drive-scan//drive/services/scan0-infinite/db 
+sudo chown -R 2000:2000 ~/drive-scan/drive/services/scan0-infinite/db 
 sudo chown -R 2000:2000 ~/drive-scan/drive/services/scan0-infinite/stats-db 
 sudo chmod 700 ~/drive-scan/drive/services/scan0-infinite/db 
 sudo chmod 700 ~/drive-scan/drive/services/scan0-infinite/stats-db
@@ -262,7 +262,7 @@ sudo mkdir -p /home/ubuntu/drive-scan/drive/services/scan1-infinite-testnet/{db,
 sudo chown -R ubuntu:ubuntu /home/ubuntu/drive-scan/drive/services/scan1-infinite-testnet/{db,stats-db,redis,logs,dets}
 
 # Set owner to 2000:2000
-sudo chown -R 2000:2000 ~/drive-scan//drive/services/scan1-infinite-testnet/db 
+sudo chown -R 2000:2000 ~/drive-scan/drive/services/scan1-infinite-testnet/db 
 sudo chown -R 2000:2000 ~/drive-scan/drive/services/scan1-infinite-testnet/stats-db 
 sudo chmod 700 ~/drive-scan/drive/services/scan1-infinite-testnet/db 
 sudo chmod 700 ~/drive-scan/drive/services/scan1-infinite-testnet/stats-db
@@ -372,7 +372,7 @@ docker run --rm --network creative curlimages/curl:8.11.1 \
 -d '{"jsonrpc":"2.0","method":"web3_clientVersion","params":[],"id":1}'
 
 # Get block height
-docker run --rm --network testnet curlimages/curl:8.11.1 \
+docker run --rm --network creative curlimages/curl:8.11.1 \
 -s -H 'Content-Type: application/json' \
 -X POST http://infinite-creative:8545 \
 -d '{"jsonrpc":"2.0","method":"eth_blockNumber","params":[],"id":2}'
@@ -396,7 +396,7 @@ sudo mkdir -p /home/ubuntu/drive-scan/drive/services/scan2-infinite-creative/{db
 sudo chown -R ubuntu:ubuntu /home/ubuntu/drive-scan/drive/services/scan2-infinite-creative/{db,stats-db,redis,logs,dets}
 
 # Set owner to 2000:2000
-sudo chown -R 2000:2000 ~/drive-scan//drive/services/scan2-infinite-creative/db 
+sudo chown -R 2000:2000 ~/drive-scan/drive/services/scan2-infinite-creative/db 
 sudo chown -R 2000:2000 ~/drive-scan/drive/services/scan2-infinite-creative/stats-db 
 sudo chmod 700 ~/drive-scan/drive/services/scan2-infinite-creative/db 
 sudo chmod 700 ~/drive-scan/drive/services/scan2-infinite-creative/stats-db
